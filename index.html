@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>美妝保養與休閒健康專區 - 精選特惠購物</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts Inter & Noto Sans TC -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans TC"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              cyan: '#00c3f8',
+              cyanDark: '#00a3d4',
+              bgLight: '#e4f7ff',
+              ribbon: '#f84343',
+            }
+          },
+          boxShadow: {
+            'pill': '0 8px 20px -4px rgba(0, 195, 248, 0.4)',
+            'card': '0 4px 12px rgba(0, 0, 0, 0.05)',
+            'card-hover': '0 10px 25px rgba(0, 195, 248, 0.2)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom ribbon fold effect */
+    .ribbon-tag {
+      position: relative;
+      background: linear-gradient(135deg, #ff4d4d 0%, #f73131 100%);
+      color: white;
+      font-weight: 700;
+      box-shadow: 0 2px 5px rgba(239, 68, 68, 0.3);
+    }
+    
+    /* Smooth floating animation for decoration icons */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-6px) rotate(5deg); }
+    }
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+    .animate-float-delayed {
+      animation: float 3.5s ease-in-out 0.8s infinite;
+    }
+  </style>
+</head>
+
+<body class="bg-[#e7f7ff] text-gray-800 font-sans min-h-screen pb-16">
+
+  <!-- Top Navigation Header -->
+  <header class="bg-white/80 backdrop-blur-md sticky top-0 z-40 border-b border-sky-100 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center space-x-2">
+        <div class="bg-gradient-to-tr from-cyan-500 to-sky-400 p-2 rounded-xl text-white shadow-md">
+          <i class="fa-solid fa-store text-xl"></i>
+        </div>
+        <span class="font-bold text-xl text-gray-800 tracking-wide">優選購物節</span>
+      </div>
+
+      <!-- Controls & Cart -->
+      <div class="flex items-center gap-3">
+        <!-- Login Status Switch Toggle -->
+        <label class="cursor-pointer flex items-center gap-2 bg-sky-50 px-3 py-1.5 rounded-full border border-sky-200 text-xs sm:text-sm font-medium text-sky-800 hover:bg-sky-100 transition">
+          <input type="checkbox" id="loginToggle" class="sr-only peer" onchange="toggleLoginStatus(this.checked)">
+          <i class="fa-solid fa-user-lock text-red-500"></i>
+          <span>指定會員登入</span>
+          <div class="w-8 h-4 bg-gray-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-cyan-500 relative"></div>
+        </label>
+
+        <!-- Cart Button -->
+        <button onclick="openCartModal()" class="relative bg-white border border-gray-200 p-2 sm:px-3 sm:py-2 rounded-full hover:border-cyan-400 text-gray-700 font-medium flex items-center gap-2 shadow-sm transition">
+          <i class="fa-solid fa-cart-shopping text-cyan-600"></i>
+          <span class="hidden sm:inline text-xs">購物車</span>
+          <span id="cartCountBadge" class="bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-2 sm:px-4 py-8 space-y-12">
+
+    <!-- SECTION 1: 美妝保養 -->
+    <section>
+      <!-- Category Pill Title Banner -->
+      <div class="flex justify-center mb-6 sm:mb-8">
+        <div class="relative inline-flex items-center justify-center bg-gradient-to-r from-[#00d0ff] via-[#00c3f8] to-[#00b2f8] text-white px-10 sm:px-16 py-3 sm:py-3.5 rounded-full shadow-pill border-2 border-white/60">
+          
+          <!-- Left 3D Gift Icon -->
+          <div class="absolute -left-3 -bottom-1 sm:-left-4 sm:-bottom-2 animate-float">
+            <div class="bg-gradient-to-tr from-amber-400 to-yellow-300 p-2 sm:p-2.5 rounded-xl shadow-lg border border-yellow-200 rotate-[-12deg]">
+              <i class="fa-solid fa-gift text-blue-600 text-xl sm:text-2xl"></i>
+            </div>
+          </div>
+
+          <!-- Title Text -->
+          <h2 class="text-xl sm:text-2xl md:text-3xl font-black tracking-wider shadow-sm drop-shadow-md">
+            美妝保養
+          </h2>
+
+          <!-- Right 3D Shopping Bag Icon -->
+          <div class="absolute -right-3 -top-2 sm:-right-4 sm:-top-3 animate-float-delayed">
+            <div class="bg-gradient-to-tr from-pink-500 to-rose-400 p-2 sm:p-2.5 rounded-xl shadow-lg border border-pink-200 rotate-[15deg]">
+              <i class="fa-solid fa-bag-shopping text-white text-xl sm:text-2xl"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Cards Grid (6 Columns on Desktop) -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2.5 sm:gap-3.5" id="beautyGrid">
+        <!-- JS dynamically populates Beauty items -->
+      </div>
+    </section>
+
+    <!-- SECTION 2: 休閒健康 -->
+    <section>
+      <!-- Category Pill Title Banner -->
+      <div class="flex justify-center mb-6 sm:mb-8">
+        <div class="relative inline-flex items-center justify-center bg-gradient-to-r from-[#00d0ff] via-[#00c3f8] to-[#00b2f8] text-white px-10 sm:px-16 py-3 sm:py-3.5 rounded-full shadow-pill border-2 border-white/60">
+          
+          <!-- Left 3D Gift Icon -->
+          <div class="absolute -left-3 -bottom-1 sm:-left-4 sm:-bottom-2 animate-float">
+            <div class="bg-gradient-to-tr from-amber-400 to-yellow-300 p-2 sm:p-2.5 rounded-xl shadow-lg border border-yellow-200 rotate-[-12deg]">
+              <i class="fa-solid fa-gift text-blue-600 text-xl sm:text-2xl"></i>
+            </div>
+          </div>
+
+          <!-- Title Text -->
+          <h2 class="text-xl sm:text-2xl md:text-3xl font-black tracking-wider shadow-sm drop-shadow-md">
+            休閒健康
+          </h2>
+
+          <!-- Right 3D Shopping Bag Icon -->
+          <div class="absolute -right-3 -top-2 sm:-right-4 sm:-top-3 animate-float-delayed">
+            <div class="bg-gradient-to-tr from-pink-500 to-rose-400 p-2 sm:p-2.5 rounded-xl shadow-lg border border-pink-200 rotate-[15deg]">
+              <i class="fa-solid fa-bag-shopping text-white text-xl sm:text-2xl"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Cards Grid (6 Columns on Desktop) -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2.5 sm:gap-3.5" id="healthGrid">
+        <!-- JS dynamically populates Health items -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Quick View / Detail Modal -->
+  <div id="productModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 relative shadow-2xl animate-fade-in transform transition-all">
+      <button onclick="closeProductModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center transition">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+      
+      <div id="modalContent">
+        <!-- Modal content loaded dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Shopping Cart Side Drawer/Modal -->
+  <div id="cartModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex justify-end">
+    <div class="bg-white w-full max-w-md h-full shadow-2xl flex flex-col p-6">
+      <div class="flex justify-between items-center pb-4 border-b">
+        <h3 class="text-xl font-bold text-gray-800 flex items-center gap-2">
+          <i class="fa-solid fa-cart-shopping text-cyan-500"></i> 我的購物車
+        </h3>
+        <button onclick="closeCartModal()" class="text-gray-400 hover:text-gray-600 text-xl p-1">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div id="cartItemsList" class="flex-1 overflow-y-auto py-4 space-y-3">
+        <!-- Dynamic Cart Items -->
+      </div>
+
+      <div class="pt-4 border-t space-y-3">
+        <div class="flex justify-between text-lg font-bold">
+          <span>總金額：</span>
+          <span id="cartTotalPrice" class="text-red-600">$ 0</span>
+        </div>
+        <button onclick="checkoutCart()" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold py-3 rounded-xl shadow-lg hover:brightness-105 active:scale-[0.99] transition">
+          結帳領取會員優惠
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="fixed bottom-6 right-6 bg-gray-900/90 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3 z-50 opacity-0 pointer-events-none transition-all duration-300 transform translate-y-4">
+    <i class="fa-solid fa-circle-check text-green-400 text-lg"></i>
+    <span id="toastMessage" class="text-sm font-medium">已加入購物車</span>
+  </div>
+
+  <script>
+    // Product Data Definitions matching image items accurately
+    const beautyProducts = [
+      {
+        id: 'b1',
+        name: 'Kanebo 佳麗寶 ALLIE 高效防曬水凝乳夏季1+1組',
+        originalPrice: 1980,
+        memberPrice: 1580,
+        image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=400&q=80',
+        badge: '指定會員登入享優惠',
+        subBadges: [],
+        rating: 4.8
+      },
+      {
+        id: 'b2',
+        name: 'Kanebo 佳麗寶 ALLIE mini 防曬水凝乳外出旅行組 (...',
+        originalPrice: 1480,
+        memberPrice: 1180,
+        image: 'https://images.unsplash.com/photo-1608248597261-5421d55ab5f6?auto=format&fit=crop&w=400&q=80',
+        badge: '指定會員登入享優惠',
+        subBadges: [],
+        rating: 4.7
+      },
+      {
+        id: 'b3',
+        name: 'CeraVe 適樂膚 【買一送一組】長效清爽保濕乳(473...',
+        originalPrice: 1390,
+        memberPrice: 1140,
+        image: 'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=400&q=80',
+        badge: '指定會員登入享優惠',
+        subBadges: [],
+        rating: 4.9
+      },
+      {
+        id: 'b4',
+        name: 'KAFEN 卡氛 【買一送一】277 LAB麥角硫因抗痕精...',
+        originalPrice: 4960,
+        memberPrice: 2480,
+        image: 'https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=400&q=80',
+        badge: '指定會員登入享優惠',
+        subBadges: ['7-11 超取', 'EN'],
+        rating: 4.6
+      },
+      {
+        id: 'b5',
+        name: 'LANCOME 蘭蔻 【雙入特惠組】超極限肌因賦活...',
+        originalPrice: 14000,
+        memberPrice: 5199,
+        image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=400&q=80',
+        badge: '指定會員登入享優惠',
+        subBadges: [],
+        rating: 5.0
+      },
+      {
+        id: 'b6',
+        name: 'Estee Lauder 雅詩蘭黛 【買100ml送100ml】特...',
+        originalPrice: 15000,
+        memberPrice: 4299,
+        image: 'https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=400&q=80',
+        badge: '指定會員登入享優惠',
+        subBadges: [],
+        rating: 4.9
+      }
+    ];
+
+    const healthProducts = [
+      {
+        id: 'h1',
+        name: 'MRF 健身大師 【買一送一】雙氣囊按壓SPA按摩枕',
+        originalPrice: 2980,
+        memberPrice: 1280,
+        image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=400&q=80',
+        badge: '指定會員登入享優惠',
+        subBadges: ['MRF 健身大師'],
+        rating: 4.6
+      },
+      {
+        id: 'h2',
+        name: 'FJ 【買一送一】防風防水全自動晴雨兩用傘',
+        originalPrice: 1580,
+        memberPrice: 799,
+        image: 'https://images.unsplash.com/photo-1517420879524-86d64ac2f339?auto=format&fit=crop&w=400&q=80',
+        badge: '指定會員登入享優惠',
+        subBadges: [],
+        rating: 4.8
+      },
+      {
+        id: 'h3',
+        name: 'QMAT 【買一送一】4MM 環保TPE折疊瑜伽墊',
+        originalPrice: 1980,
+        memberPrice: 880,
+        image: 'https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?auto=format&fit=crop&w=400&q=80',
+        badge: '指定會員登入享優惠',
+        subBadges: [],
+        rating: 4.7
+      },
+      {
+        id: 'h4',
+        name: '大漢酵素 【買一送一】明亮夜鮮素 濃縮夜間酵素',
+        originalPrice: 3960,
+        memberPrice: 1980,
+        image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=400&q=80',
+        badge: '指定會員登入享優惠',
+        subBadges: ['7-11 超取', '贈'],
+        rating: 4.9
+      },
+      {
+        id: 'h5',
+        name: 'funcare 船井生醫 【買一送一】極纖錠 運動專用版',
+        originalPrice: 3360,
+        memberPrice: 1680,
+        image: 'https://images.unsplash.com/photo-1550572017-edd951aa8f72?auto=format&fit=crop&w=400&q=80',
+        badge: '指定會員登入享優惠',
+        subBadges: ['船井生醫'],
+        rating: 4.8
+      },
+      {
+        id: 'h6',
+        name: '3ZeBra 三隻斑馬 【買一送一】雙向揉捏熱敷按摩枕',
+        originalPrice: 2880,
+        memberPrice: 1380,
+        image: 'https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=400&q=80',
+        badge: '指定會員登入享優惠',
+        subBadges: [],
+        rating: 4.7
+      }
+    ];
+
+    // Global State
+    let isLoggedIn = false;
+    let cart = [];
+
+    // Helper: Format Price
+    function formatPrice(price) {
+      return '$ ' + price.toLocaleString();
+    }
+
+    // Render Product Cards
+    function renderProductCard(item) {
+      const showMemberPrice = isLoggedIn;
+      const displayPrice = showMemberPrice ? item.memberPrice : item.memberPrice; // Both show price, but user discount highlight toggle
+      
+      let subBadgesHtml = '';
+      if (item.subBadges && item.subBadges.length > 0) {
+        subBadgesHtml = item.subBadges.map(tag => {
+          if (tag === '7-11 超取') {
+            return `<span class="bg-[#00a061] text-white text-[10px] font-bold px-1.5 py-0.5 rounded flex items-center gap-0.5"><i class="fa-solid fa-truck-fast"></i> 超取</span>`;
+          }
+          return `<span class="bg-gray-100 text-gray-600 text-[10px] font-bold px-1.5 py-0.5 rounded border border-gray-200">${tag}</span>`;
+        }).join(' ');
+      }
+
+      return `
+        <div class="group bg-white rounded-xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between border border-gray-100 relative cursor-pointer" onclick="openProductModal('${item.id}')">
+          
+          <!-- Top Member Ribbon Banner -->
+          <div class="bg-gradient-to-r from-red-500 to-rose-500 text-white text-[11px] sm:text-xs font-bold py-1 px-2 flex items-center justify-center gap-1 shadow-sm">
+            <i class="fa-solid ${isLoggedIn ? 'fa-lock-open' : 'fa-lock'} text-[10px]"></i>
+            <span class="truncate">${item.badge}</span>
+          </div>
+
+          <!-- Product Image Container -->
+          <div class="relative pt-[100%] bg-gray-50 overflow-hidden">
+            <img 
+              src="${item.image}" 
+              alt="${item.name}" 
+              class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
+            
+            <!-- Floating Sub Badges on Image -->
+            ${subBadgesHtml ? `<div class="absolute top-2 left-2 flex flex-wrap gap-1 z-10">${subBadgesHtml}</div>` : ''}
+
+            <!-- Quick Add Hover Overlay -->
+            <button 
+              onclick="event.stopPropagation(); addToCart('${item.id}')"
+              class="absolute bottom-2 right-2 bg-cyan-500 hover:bg-cyan-600 text-white p-2 rounded-full shadow-md transition-transform duration-200 active:scale-95 opacity-90 sm:opacity-0 sm:group-hover:opacity-100"
+              title="加入購物車"
+            >
+              <i class="fa-solid fa-cart-plus text-xs sm:text-sm"></i>
+            </button>
+          </div>
+
+          <!-- Product Info -->
+          <div class="p-2.5 sm:p-3 flex-1 flex flex-col justify-between space-y-2">
+            <!-- Title -->
+            <h3 class="text-xs sm:text-sm font-medium text-gray-800 line-clamp-2 leading-snug group-hover:text-cyan-600 transition-colors">
+              ${item.name}
+            </h3>
+
+            <!-- Price Area -->
+            <div>
+              ${item.originalPrice ? `<div class="text-[10px] sm:text-xs text-gray-400 line-through">市價 ${formatPrice(item.originalPrice)}</div>` : ''}
+              <div class="text-sm sm:text-base font-black text-gray-900 tracking-tight flex items-baseline gap-1">
+                <span>${formatPrice(displayPrice)}</span>
+                ${isLoggedIn ? `<span class="text-[10px] text-red-500 font-normal bg-red-50 px-1 rounded">已享會員價</span>` : ''}
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Populate Grids
+    function initGrids() {
+      const beautyGrid = document.getElementById('beautyGrid');
+      const healthGrid = document.getElementById('healthGrid');
+
+      beautyGrid.innerHTML = beautyProducts.map(renderProductCard).join('');
+      healthGrid.innerHTML = healthProducts.map(renderProductCard).join('');
+    }
+
+    // Find product by ID
+    function getProductById(id) {
+      return [...beautyProducts, ...healthProducts].find(p => p.id === id);
+    }
+
+    // Toggle Member Status
+    function toggleLoginStatus(checked) {
+      isLoggedIn = checked;
+      initGrids();
+      showToast(isLoggedIn ? '已登入！享受獨家會員折扣優惠' : '已切換為一般訪客視角');
+    }
+
+    // Modal Operations
+    function openProductModal(id) {
+      const item = getProductById(id);
+      if (!item) return;
+
+      const modalContent = document.getElementById('modalContent');
+      modalContent.innerHTML = `
+        <div class="space-y-4">
+          <div class="w-full h-56 bg-gray-100 rounded-xl overflow-hidden relative">
+            <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover">
+            <div class="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
+              ${item.badge}
+            </div>
+          </div>
+          <div>
+            <span class="text-xs text-cyan-600 font-bold tracking-wider">熱銷商品</span>
+            <h3 class="text-lg font-bold text-gray-900 mt-1">${item.name}</h3>
+            <div class="flex items-center gap-1 mt-1 text-amber-400 text-xs">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <span class="text-gray-500 ml-1">(${item.rating})</span>
+            </div>
+          </div>
+          <div class="bg-sky-50 p-3 rounded-xl flex items-center justify-between">
+            <div>
+              <div class="text-xs text-gray-500">原價 ${formatPrice(item.originalPrice)}</div>
+              <div class="text-2xl font-black text-red-600">${formatPrice(item.memberPrice)}</div>
+            </div>
+            <div class="text-xs bg-white text-red-500 border border-red-200 font-bold px-2.5 py-1 rounded-full shadow-sm">
+              省 ${formatPrice(item.originalPrice - item.memberPrice)}
+            </div>
+          </div>
+          <p class="text-xs text-gray-500 leading-relaxed">
+            【原廠公司貨】品質保證，享指定專屬會員獨家優惠價，下單即享快速出貨服務！
+          </p>
+          <button 
+            onclick="addToCart('${item.id}'); closeProductModal();" 
+            class="w-full bg-gradient-to-r from-cyan-500 to-sky-500 text-white font-bold py-3 rounded-xl shadow-lg hover:brightness-105 active:scale-95 transition flex items-center justify-center gap-2"
+          >
+            <i class="fa-solid fa-cart-shopping"></i> 加入購物車
+          </button>
+        </div>
+      `;
+      document.getElementById('productModal').classList.remove('hidden');
+    }
+
+    function closeProductModal() {
+      document.getElementById('productModal').classList.add('hidden');
+    }
+
+    // Cart Management
+    function addToCart(id) {
+      const item = getProductById(id);
+      const existing = cart.find(c => c.id === id);
+
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ ...item, qty: 1 });
+      }
+
+      updateCartUI();
+      showToast(`已成功加入: ${item.name.substring(0, 10)}...`);
+    }
+
+    function updateCartUI() {
+      const countBadge = document.getElementById('cartCountBadge');
+      const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+      countBadge.innerText = totalCount;
+
+      const cartItemsList = document.getElementById('cartItemsList');
+      if (cart.length === 0) {
+        cartItemsList.innerHTML = `
+          <div class="text-center py-12 text-gray-400">
+            <i class="fa-solid fa-basket-shopping text-4xl mb-2"></i>
+            <p class="text-sm">購物車目前是空的</p>
+          </div>
+        `;
+        document.getElementById('cartTotalPrice').innerText = '$ 0';
+        return;
+      }
+
+      let totalPrice = 0;
+      cartItemsList.innerHTML = cart.map(item => {
+        const itemTotal = item.memberPrice * item.qty;
+        totalPrice += itemTotal;
+        return `
+          <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl border border-gray-100">
+            <img src="${item.image}" class="w-12 h-12 rounded-lg object-cover">
+            <div class="flex-1 ml-3 pr-2">
+              <h4 class="text-xs font-bold text-gray-800 line-clamp-1">${item.name}</h4>
+              <div class="text-xs text-red-600 font-semibold">${formatPrice(item.memberPrice)}</div>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="changeQty('${item.id}', -1)" class="w-6 h-6 bg-white border rounded text-xs font-bold hover:bg-gray-100">-</button>
+              <span class="text-xs font-bold w-4 text-center">${item.qty}</span>
+              <button onclick="changeQty('${item.id}', 1)" class="w-6 h-6 bg-white border rounded text-xs font-bold hover:bg-gray-100">+</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      document.getElementById('cartTotalPrice').innerText = formatPrice(totalPrice);
+    }
+
+    function changeQty(id, delta) {
+      const item = cart.find(c => c.id === id);
+      if (item) {
+        item.qty += delta;
+        if (item.qty <= 0) {
+          cart = cart.filter(c => c.id !== id);
+        }
+      }
+      updateCartUI();
+    }
+
+    function openCartModal() {
+      updateCartUI();
+      document.getElementById('cartModal').classList.remove('hidden');
+    }
+
+    function closeCartModal() {
+      document.getElementById('cartModal').classList.add('hidden');
+    }
+
+    function checkoutCart() {
+      if (cart.length === 0) {
+        showToast('購物車為空，請先選擇商品！');
+        return;
+      }
+      alert('感謝您的訂購！已經為您保留指定會員優惠折抵金額。');
+      cart = [];
+      updateCartUI();
+      closeCartModal();
+    }
+
+    // Toast Alert
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastMessage = document.getElementById('toastMessage');
+      toastMessage.innerText = msg;
+
+      toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+      toast.classList.add('opacity-100', 'translate-y-0');
+
+      setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+      }, 2500);
+    }
+
+    // Initialize Page
+    window.onload = function() {
+      initGrids();
+    };
+  </script>
+</body>
+</html>
