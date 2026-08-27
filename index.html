@@ -57,33 +57,157 @@
     .animate-float-delayed {
       animation: float 3.5s ease-in-out 0.8s infinite;
     }
+
+    /* Parcel Unboxing Animation Keyframes */
+    @keyframes parcelPulse {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.03) rotate(1deg); }
+    }
+    .animate-parcel-pulse {
+      animation: parcelPulse 2.2s ease-in-out infinite;
+    }
+
+    @keyframes flapOpenTop {
+      0% { transform: rotateX(0deg); }
+      100% { transform: rotateX(-120deg); opacity: 0; }
+    }
+    .animate-flap-top {
+      transform-origin: top;
+      animation: flapOpenTop 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    @keyframes letterRise {
+      0% { transform: translateY(60px) scale(0.85); opacity: 0; }
+      100% { transform: translateY(0) scale(1); opacity: 1; }
+    }
+    .animate-letter-rise {
+      animation: letterRise 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+    }
   </style>
 </head>
 
 <body class="bg-[#e7f7ff] text-gray-800 font-sans min-h-screen pb-16">
 
+  <!-- UNBOXING PARCEL MODAL OVERLAY -->
+  <div id="unboxingModal" class="fixed inset-0 bg-slate-900/85 backdrop-blur-md z-50 flex items-center justify-center p-4 transition-opacity duration-500">
+    
+    <div class="relative w-full max-w-lg flex flex-col items-center">
+      
+      <!-- Close Button (X) -->
+      <button onclick="closeUnboxingModal()" class="absolute -top-10 right-0 sm:-right-4 text-white/70 hover:text-white text-2xl transition bg-white/10 hover:bg-white/20 rounded-full w-9 h-9 flex items-center justify-center z-50">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- STAGE 1: UNOPENED PARCEL BOX -->
+      <div id="parcelContainer" onclick="openParcel()" class="cursor-pointer group relative w-72 sm:w-80 h-56 sm:h-64 bg-[#dca876] rounded-2xl shadow-2xl border-4 border-[#c58f5e] flex flex-col items-center justify-center p-6 animate-parcel-pulse hover:brightness-105 transition transform">
+        
+        <!-- Parcel Tape / Ribbon Vertical -->
+        <div id="parcelTapeV" class="absolute inset-y-0 w-12 bg-amber-100/90 border-x-2 border-amber-300/60 shadow-inner flex items-center justify-center">
+          <div class="w-8 h-8 rounded-full bg-red-500/90 text-white flex items-center justify-center text-xs font-black shadow-md">
+            VIP
+          </div>
+        </div>
+
+        <!-- Parcel Tape / Ribbon Horizontal -->
+        <div id="parcelTapeH" class="absolute inset-x-0 h-10 bg-amber-100/90 border-y-2 border-amber-300/60 shadow-inner"></div>
+
+        <!-- Shipping Label Card -->
+        <div class="relative z-10 bg-white/95 p-3 sm:p-4 rounded-xl shadow-lg border border-amber-200 text-center max-w-[90%] transform group-hover:scale-105 transition">
+          <div class="flex items-center justify-center gap-1.5 text-xs font-bold text-slate-500 mb-1">
+            <i class="fa-solid fa-box-archive text-amber-600"></i> 專屬驚喜包裹
+          </div>
+          <div class="text-xs sm:text-base font-black text-slate-800 whitespace-nowrap">
+            收件人：專屬新會員升級禮
+          </div>
+          <div class="mt-2 inline-flex items-center gap-1.5 bg-red-500 text-white text-xs font-extrabold px-3 py-1 rounded-full animate-bounce shadow">
+            <i class="fa-solid fa-hand-pointer"></i> 點擊拆封包裹
+          </div>
+        </div>
+
+        <!-- Click Hint -->
+        <p class="absolute -bottom-9 text-white/90 text-xs sm:text-sm font-bold tracking-wider animate-pulse">
+          🎁 拆開您的專屬驚喜升級禮
+        </p>
+      </div>
+
+      <!-- STAGE 2: OPENED LETTER CARD (Initially Hidden) -->
+      <div id="letterCard" class="hidden relative w-full bg-gradient-to-b from-amber-50 via-white to-sky-50 rounded-3xl p-6 sm:p-8 shadow-2xl border-2 border-amber-200/80 text-center overflow-hidden">
+        
+        <!-- Top Decorative Stamp -->
+        <div class="flex justify-center mb-3">
+          <div class="w-12 h-12 rounded-full bg-red-500 text-white flex items-center justify-center text-xl shadow-md border-2 border-amber-200 animate-float">
+            💌
+          </div>
+        </div>
+
+        <!-- Main Title -->
+        <h2 class="text-lg sm:text-2xl font-black text-slate-800 tracking-wide leading-tight">
+          這份心意，只留給初次相遇的你
+        </h2>
+
+        <!-- Subtitle -->
+        <p class="text-xs sm:text-sm text-slate-600 font-medium mt-2.5 leading-relaxed max-w-md mx-auto">
+          拆開包裹的那一刻，你的專屬升級禮遇已同步生效
+        </p>
+
+        <!-- Voucher Code Box -->
+        <div class="my-5 p-4 bg-white rounded-2xl border-2 border-dashed border-sky-300 shadow-sm flex flex-col items-center gap-1.5">
+          <span class="text-[11px] font-bold text-sky-600 uppercase tracking-widest bg-sky-100 px-2.5 py-0.5 rounded-full">
+            🎁 官網新會員專屬折抵
+          </span>
+          <div class="text-xl sm:text-2xl font-black text-slate-900 tracking-wider font-mono">
+            活動字串【<span class="text-red-500">NEW99</span>】
+          </div>
+          <p class="text-xs text-slate-500 font-semibold">
+            全館滿額即享現折 <span class="text-red-600 font-bold">$130 元</span> 優惠
+          </p>
+        </div>
+
+        <!-- CTA Action Buttons -->
+        <div class="space-y-2.5">
+          <button onclick="acceptGift('NEW99')" class="w-full bg-gradient-to-r from-slate-900 via-indigo-900 to-slate-900 hover:from-slate-800 hover:to-indigo-800 text-white font-black text-sm sm:text-base py-3 sm:py-3.5 rounded-xl sm:rounded-2xl shadow-xl transition transform active:scale-95 flex items-center justify-center gap-2 border border-indigo-400/30">
+            <i class="fa-solid fa-gift text-amber-400"></i> 收下心意並複製活動字串
+          </button>
+          
+          <button onclick="closeUnboxingModal()" class="text-xs font-bold text-slate-400 hover:text-slate-600 py-1 transition">
+            稍後再看，直接開始逛逛 <i class="fa-solid fa-chevron-right text-[10px]"></i>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
   <main class="max-w-7xl mx-auto px-2 sm:px-4 py-8 space-y-12">
 
     <!-- TOP PROMOTIONAL BANNER IMAGE -->
-    <div class="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-slate-200/80 bg-[#e3e6f2] group">
-      <div class="relative min-h-[150px] sm:min-h-[180px] md:min-h-[220px] w-full overflow-hidden flex items-center justify-between">
+    <div id="promoBanner" class="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-slate-200/80 bg-[#e3e6f2] group">
+      
+      <!-- Promo Banner Localized Toast (專屬橫幅區域小巧提示氣泡) -->
+      <div id="promoToast" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-900/95 text-white px-5 py-3 sm:px-6 sm:py-3.5 rounded-xl sm:rounded-2xl shadow-2xl flex items-center gap-2.5 sm:gap-3 z-30 opacity-0 pointer-events-none transition-all duration-300 transform scale-90 border border-white/10 whitespace-nowrap">
+        <i class="fa-solid fa-circle-check text-green-400 text-base sm:text-lg"></i>
+        <span id="promoToastMessage" class="text-xs sm:text-sm font-bold tracking-wide"></span>
+      </div>
+
+      <div class="relative min-h-[160px] sm:min-h-[190px] md:min-h-[230px] w-full overflow-hidden flex items-center justify-between">
         
-        <!-- Right Aligned Hand Skincare Image with natural edge blend -->
-        <div class="absolute right-0 top-0 bottom-0 h-full w-full sm:w-7/12 md:w-3/5 lg:w-7/12 flex justify-end items-center pointer-events-none z-0">
+        <!-- Right Aligned Hand Skincare Image with natural edge blend (Enlarged slightly with smooth edge mask) -->
+        <div class="absolute right-0 top-0 bottom-0 h-full w-3/5 sm:w-8/12 md:w-7/12 flex justify-end items-center pointer-events-none z-0">
           <img 
-            src="/upload_files/fonlego-rwd/website/手部.jpg" 
-            onerror="this.onerror=null; this.src='手部.jpg';"
+            src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E6%89%8B%E9%83%A8.jpg" 
+            onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/手部.jpg';"
             alt="手部精華保養" 
-            class="h-full w-full object-cover object-right group-hover:scale-105 transition-transform duration-700"
-            style="mask-image: linear-gradient(to left, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%); -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);"
+            class="h-full w-auto object-contain object-right scale-110 origin-right group-hover:scale-115 transition-transform duration-700"
+            style="mask-image: linear-gradient(to left, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%); -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);"
           />
         </div>
 
         <!-- Left Content Area extending matching background color -->
-        <div class="relative z-10 p-3 sm:p-4 md:p-6 max-w-xl md:max-w-2xl space-y-2 sm:space-y-2.5">
+        <div class="relative z-10 p-3 sm:p-5 md:p-6 max-w-[56%] sm:max-w-[60%] md:max-w-[64%] space-y-2 sm:space-y-2.5">
           <div class="flex items-center gap-2 flex-wrap">
             <span class="bg-red-500 text-white text-xs sm:text-sm font-black px-2.5 py-0.5 rounded-full shadow-sm tracking-wider uppercase animate-pulse">
-              🔥 獨家限時折抵
+              🎁 專屬限時折抵
             </span>
             <span class="text-xs sm:text-sm font-bold text-indigo-900 bg-white/90 backdrop-blur-sm px-2.5 py-0.5 rounded-full border border-indigo-200/80 shadow-sm">
               全館滿 $1000 即享免運
@@ -98,12 +222,20 @@
           </h2>
 
           <p class="text-xs sm:text-sm md:text-base text-slate-600 font-medium leading-relaxed hidden sm:block">
-            用得習慣嗎？下一次的優惠先幫你留好了！<br>少一點繁瑣，多一點心意💝  現在加入會員，回購直接折抵！
+            用得習慣嗎？下一次的優惠先幫你留好了！<br>少一點繁瑣，多一點心意💝 現在右上角註冊加入會員直接折抵！
           </p>
 
-          <div class="pt-0.5">
+          <div class="pt-0.5 flex flex-wrap gap-2 sm:gap-2.5 items-center">
             <button onclick="copyPromoCode('NEW99')" class="inline-flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg sm:rounded-xl shadow-lg hover:shadow-cyan-500/20 transition transform hover:scale-105 active:scale-95">
               <i class="fa-solid fa-copy text-amber-400"></i> 點我複製活動字串
+            </button>
+            
+            <button onclick="document.getElementById('beautySection').scrollIntoView({behavior: 'smooth'})" class="inline-flex items-center gap-1.5 bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs sm:text-sm px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg sm:rounded-xl shadow-lg hover:shadow-sky-500/20 transition transform hover:scale-105 active:scale-95">
+              <i class="fa-solid fa-wand-magic-sparkles text-amber-300"></i> 依膚況挑選：為肌膚找到專屬命定配方
+            </button>
+
+            <button onclick="document.getElementById('healthSection').scrollIntoView({behavior: 'smooth'})" class="inline-flex items-center gap-1.5 bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs sm:text-sm px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg sm:rounded-xl shadow-lg hover:shadow-rose-500/20 transition transform hover:scale-105 active:scale-95">
+              <i class="fa-solid fa-trophy text-amber-300"></i> 官網熱銷 TOP 榜：跟著大家買不踩雷
             </button>
           </div>
         </div>
@@ -192,7 +324,7 @@
     </div>
 
     <!-- SECTION 1: 美妝保養 -->
-    <section>
+    <section id="beautySection">
       <!-- Category Pill Title Banner -->
       <div class="flex justify-center mb-6 sm:mb-8">
         <div class="relative inline-flex items-center justify-center bg-gradient-to-r from-[#00d0ff] via-[#00c3f8] to-[#00b2f8] text-white px-10 sm:px-16 py-3 sm:py-3.5 rounded-full shadow-pill border-2 border-white/60">
@@ -225,7 +357,7 @@
     </section>
 
     <!-- SECTION 2: 休閒健康 -->
-    <section>
+    <section id="healthSection">
       <!-- Category Pill Title Banner -->
       <div class="flex justify-center mb-6 sm:mb-8">
         <div class="relative inline-flex items-center justify-center bg-gradient-to-r from-[#00d0ff] via-[#00c3f8] to-[#00b2f8] text-white px-10 sm:px-16 py-3 sm:py-3.5 rounded-full shadow-pill border-2 border-white/60">
@@ -659,8 +791,10 @@
 
     function updateCartUI() {
       const countBadge = document.getElementById('cartCountBadge');
-      const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
-      countBadge.innerText = totalCount;
+      if (countBadge) {
+        const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+        countBadge.innerText = totalCount;
+      }
 
       const cartItemsList = document.getElementById('cartItemsList');
       if (cart.length === 0) {
@@ -751,11 +885,27 @@
       tempInput.select();
       try {
         document.execCommand('copy');
-        showToast('已成功複製活動字串：【' + code + '】結帳輸入現折$130元');
+        showPromoToast('已成功複製活動字串：【' + code + '】結帳輸入現折$130元');
       } catch (err) {
-        showToast('複製失敗，活動字串為：' + code);
+        showPromoToast('複製失敗，活動字串為：' + code);
       }
       document.body.removeChild(tempInput);
+    }
+
+    // Show Toast over Promo Banner
+    function showPromoToast(msg) {
+      const toast = document.getElementById('promoToast');
+      const toastMessage = document.getElementById('promoToastMessage');
+      if (!toast || !toastMessage) return;
+
+      toastMessage.innerText = msg;
+      toast.classList.remove('opacity-0', 'pointer-events-none', 'scale-90');
+      toast.classList.add('opacity-100', 'scale-100');
+
+      setTimeout(() => {
+        toast.classList.remove('opacity-100', 'scale-100');
+        toast.classList.add('opacity-0', 'pointer-events-none', 'scale-90');
+      }, 2500);
     }
 
     // Initialize Page
@@ -770,6 +920,38 @@
         heroCarousel.addEventListener('mouseleave', () => startSlideTimer());
       }
     };
+
+    // Open Parcel Animation Function
+    function openParcel() {
+      const parcelContainer = document.getElementById('parcelContainer');
+      const letterCard = document.getElementById('letterCard');
+      if (!parcelContainer || !letterCard) return;
+
+      // Animate unboxing stage
+      parcelContainer.classList.add('animate-flap-top');
+      
+      setTimeout(() => {
+        parcelContainer.classList.add('hidden');
+        letterCard.classList.remove('hidden');
+        letterCard.classList.add('animate-letter-rise');
+      }, 400);
+    }
+
+    // Close Modal
+    function closeUnboxingModal() {
+      const modal = document.getElementById('unboxingModal');
+      if (!modal) return;
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        modal.classList.add('hidden');
+      }, 500);
+    }
+
+    // Accept Gift Button Action
+    function acceptGift(code) {
+      copyPromoCode(code);
+      closeUnboxingModal();
+    }
   </script>
 </body>
 </html>
