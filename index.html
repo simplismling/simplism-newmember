@@ -62,68 +62,52 @@
 
 <body class="bg-[#e7f7ff] text-gray-800 font-sans min-h-screen pb-16">
 
-  <!-- Top Navigation Header -->
-  <header class="bg-white/80 backdrop-blur-md sticky top-0 z-40 border-b border-sky-100 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-      <div class="flex items-center space-x-2">
-        <div class="bg-gradient-to-tr from-cyan-500 to-sky-400 p-2 rounded-xl text-white shadow-md">
-          <i class="fa-solid fa-store text-xl"></i>
-        </div>
-        <span class="font-bold text-xl text-gray-800 tracking-wide">優選購物節</span>
-      </div>
-
-      <!-- Controls & Cart -->
-      <div class="flex items-center gap-3">
-        <!-- Login Status Switch Toggle -->
-        <label class="cursor-pointer flex items-center gap-2 bg-sky-50 px-3 py-1.5 rounded-full border border-sky-200 text-xs sm:text-sm font-medium text-sky-800 hover:bg-sky-100 transition">
-          <input type="checkbox" id="loginToggle" class="sr-only peer" onchange="toggleLoginStatus(this.checked)">
-          <i class="fa-solid fa-user-lock text-red-500"></i>
-          <span>指定會員登入</span>
-          <div class="w-8 h-4 bg-gray-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-cyan-500 relative"></div>
-        </label>
-
-        <!-- Cart Button -->
-        <button onclick="openCartModal()" class="relative bg-white border border-gray-200 p-2 sm:px-3 sm:py-2 rounded-full hover:border-cyan-400 text-gray-700 font-medium flex items-center gap-2 shadow-sm transition">
-          <i class="fa-solid fa-cart-shopping text-cyan-600"></i>
-          <span class="hidden sm:inline text-xs">購物車</span>
-          <span id="cartCountBadge" class="bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
-        </button>
-      </div>
-    </div>
-  </header>
-
   <main class="max-w-7xl mx-auto px-2 sm:px-4 py-8 space-y-12">
 
     <!-- TOP PROMOTIONAL BANNER IMAGE -->
-    <div class="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-sky-100 bg-white group">
-      <div class="relative h-28 sm:h-40 md:h-48 w-full overflow-hidden">
-        <img 
-          src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=1600&q=80" 
-          alt="年中狂歡慶 頂級美妝與健康購物節" 
-          class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
-        />
-        <!-- Gradient Overlay & Info Badge -->
-        <div class="absolute inset-0 bg-gradient-to-r from-sky-950/80 via-sky-900/40 to-transparent flex items-center justify-between p-4 sm:p-8">
-          <div class="space-y-1 sm:space-y-2 max-w-xl text-white">
-            <div class="flex items-center gap-2">
-              <span class="bg-red-500 text-white text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full shadow-sm tracking-wider uppercase animate-pulse">
-                🔥 限量特惠
-              </span>
-              <span class="text-xs sm:text-sm font-semibold text-yellow-300 hidden sm:inline-block">
-                全館消費滿 $999 即享免運優惠
-              </span>
-            </div>
-            <h2 class="text-base sm:text-2xl md:text-3xl font-extrabold tracking-tight drop-shadow-md">
-              夏日美妝與健康狂歡節 ‧ 獨家領券折抵
-            </h2>
-            <p class="text-[11px] sm:text-xs md:text-sm text-sky-100 hidden sm:block">
-              限定會員登入享驚喜折扣，點擊下方輪播或區塊瀏覽熱銷商品
-            </p>
-          </div>
-          <button onclick="document.getElementById('beautyGrid').scrollIntoView({behavior: 'smooth'})" class="hidden md:flex items-center gap-2 bg-white/90 hover:bg-white text-sky-900 font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-md transition transform hover:scale-105 active:scale-95">
-            <i class="fa-solid fa-ticket text-red-500"></i> 立即領取折價券
-          </button>
+    <div class="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-slate-200/80 bg-[#e3e6f2] group">
+      <div class="relative min-h-[150px] sm:min-h-[180px] md:min-h-[220px] w-full overflow-hidden flex items-center justify-between">
+        
+        <!-- Right Aligned Hand Skincare Image with natural edge blend -->
+        <div class="absolute right-0 top-0 bottom-0 h-full w-full sm:w-7/12 md:w-3/5 lg:w-7/12 flex justify-end items-center pointer-events-none z-0">
+          <img 
+            src="/upload_files/fonlego-rwd/website/手部.jpg" 
+            onerror="this.onerror=null; this.src='手部.jpg';"
+            alt="手部精華保養" 
+            class="h-full w-full object-cover object-right group-hover:scale-105 transition-transform duration-700"
+            style="mask-image: linear-gradient(to left, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%); -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);"
+          />
         </div>
+
+        <!-- Left Content Area extending matching background color -->
+        <div class="relative z-10 p-3 sm:p-4 md:p-6 max-w-xl md:max-w-2xl space-y-2 sm:space-y-2.5">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="bg-red-500 text-white text-xs sm:text-sm font-black px-2.5 py-0.5 rounded-full shadow-sm tracking-wider uppercase animate-pulse">
+              🔥 獨家限時折抵
+            </span>
+            <span class="text-xs sm:text-sm font-bold text-indigo-900 bg-white/90 backdrop-blur-sm px-2.5 py-0.5 rounded-full border border-indigo-200/80 shadow-sm">
+              全館滿 $1000 即享免運
+            </span>
+            <span class="text-xs sm:text-sm font-bold text-indigo-900 bg-white/90 backdrop-blur-sm px-2.5 py-0.5 rounded-full border border-indigo-200/80 shadow-sm">
+              結帳輸入活動字串【NEW99】現折$130元
+            </span>
+          </div>
+
+          <h2 class="text-lg sm:text-2xl md:text-3xl font-black text-[#246da2] tracking-[0.227em] leading-tight">
+            官網新會員首購．專屬升級禮
+          </h2>
+
+          <p class="text-xs sm:text-sm md:text-base text-slate-600 font-medium leading-relaxed hidden sm:block">
+            用得習慣嗎？下一次的優惠先幫你留好了！<br>少一點繁瑣，多一點心意💝  現在加入會員，回購直接折抵！
+          </p>
+
+          <div class="pt-0.5">
+            <button onclick="copyPromoCode('NEW99')" class="inline-flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg sm:rounded-xl shadow-lg hover:shadow-cyan-500/20 transition transform hover:scale-105 active:scale-95">
+              <i class="fa-solid fa-copy text-amber-400"></i> 點我複製活動字串
+            </button>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -316,10 +300,10 @@
     </div>
   </div>
 
-  <!-- Notification Toast -->
-  <div id="toast" class="fixed bottom-6 right-6 bg-gray-900/90 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3 z-50 opacity-0 pointer-events-none transition-all duration-300 transform translate-y-4">
-    <i class="fa-solid fa-circle-check text-green-400 text-lg"></i>
-    <span id="toastMessage" class="text-sm font-medium">已加入購物車</span>
+  <!-- Notification Toast (Centered in Screen) -->
+  <div id="toast" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-900/95 text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 z-50 opacity-0 pointer-events-none transition-all duration-300 transform scale-90 border border-white/10 text-center">
+    <i class="fa-solid fa-circle-check text-green-400 text-xl"></i>
+    <span id="toastMessage" class="text-sm sm:text-base font-semibold">已加入購物車</span>
   </div>
 
   <script>
@@ -750,13 +734,28 @@
       const toastMessage = document.getElementById('toastMessage');
       toastMessage.innerText = msg;
 
-      toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
-      toast.classList.add('opacity-100', 'translate-y-0');
+      toast.classList.remove('opacity-0', 'pointer-events-none', 'scale-90');
+      toast.classList.add('opacity-100', 'scale-100');
 
       setTimeout(() => {
-        toast.classList.remove('opacity-100', 'translate-y-0');
-        toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+        toast.classList.remove('opacity-100', 'scale-100');
+        toast.classList.add('opacity-0', 'pointer-events-none', 'scale-90');
       }, 2500);
+    }
+
+    // Copy Promo Code Function
+    function copyPromoCode(code) {
+      const tempInput = document.createElement('textarea');
+      tempInput.value = code;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      try {
+        document.execCommand('copy');
+        showToast('已成功複製活動字串：【' + code + '】結帳輸入現折$130元');
+      } catch (err) {
+        showToast('複製失敗，活動字串為：' + code);
+      }
+      document.body.removeChild(tempInput);
     }
 
     // Initialize Page
