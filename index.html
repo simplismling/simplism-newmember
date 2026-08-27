@@ -89,9 +89,9 @@
 <body class="bg-[#e7f7ff] text-gray-800 font-sans min-h-screen pb-16">
 
   <!-- UNBOXING PARCEL MODAL OVERLAY -->
-  <div id="unboxingModal" class="fixed inset-0 bg-slate-900/85 backdrop-blur-md z-50 flex items-start sm:items-center justify-center p-4 pt-12 sm:pt-0 transition-opacity duration-500 overflow-y-auto">
+  <div id="unboxingModal" class="fixed inset-0 bg-slate-900/85 backdrop-blur-md z-50 flex items-start justify-center p-4 pt-6 sm:pt-10 transition-opacity duration-500 overflow-y-auto">
     
-    <div class="relative w-full max-w-lg flex flex-col items-center my-auto">
+    <div class="relative w-full max-w-xl flex flex-col items-center my-2 sm:my-4">
       
       <!-- Close Button (X) -->
       <button onclick="closeUnboxingModal()" class="absolute -top-10 right-0 sm:-right-4 text-white/70 hover:text-white text-2xl transition bg-white/10 hover:bg-white/20 rounded-full w-9 h-9 flex items-center justify-center z-50">
@@ -99,77 +99,77 @@
       </button>
 
       <!-- STAGE 1: UNOPENED PARCEL BOX -->
-      <div id="parcelContainer" onclick="openParcel()" class="cursor-pointer group relative w-72 sm:w-80 h-56 sm:h-64 bg-[#dca876] rounded-2xl shadow-2xl border-4 border-[#c58f5e] flex flex-col items-center justify-center p-6 animate-parcel-pulse hover:brightness-105 transition transform">
+      <div id="parcelContainer" onclick="openParcel()" class="cursor-pointer group relative w-80 sm:w-96 h-64 sm:h-72 bg-[#dca876] rounded-2xl shadow-2xl border-4 border-[#c58f5e] flex flex-col items-center justify-center p-6 sm:p-8 animate-parcel-pulse hover:brightness-105 transition transform">
         
         <!-- Parcel Tape / Ribbon Vertical -->
-        <div id="parcelTapeV" class="absolute inset-y-0 w-12 bg-amber-100/90 border-x-2 border-amber-300/60 shadow-inner flex items-center justify-center">
-          <div class="w-8 h-8 rounded-full bg-red-500/90 text-white flex items-center justify-center text-xs font-black shadow-md">
+        <div id="parcelTapeV" class="absolute inset-y-0 w-14 bg-amber-100/90 border-x-2 border-amber-300/60 shadow-inner flex items-center justify-center">
+          <div class="w-9 h-9 rounded-full bg-red-500/90 text-white flex items-center justify-center text-xs sm:text-sm font-black shadow-md">
             VIP
           </div>
         </div>
 
         <!-- Parcel Tape / Ribbon Horizontal -->
-        <div id="parcelTapeH" class="absolute inset-x-0 h-10 bg-amber-100/90 border-y-2 border-amber-300/60 shadow-inner"></div>
+        <div id="parcelTapeH" class="absolute inset-x-0 h-12 bg-amber-100/90 border-y-2 border-amber-300/60 shadow-inner"></div>
 
         <!-- Shipping Label Card -->
-        <div class="relative z-10 bg-white/95 p-3 sm:p-4 rounded-xl shadow-lg border border-amber-200 text-center max-w-[90%] transform group-hover:scale-105 transition">
-          <div class="flex items-center justify-center gap-1.5 text-xs font-bold text-slate-500 mb-1">
+        <div class="relative z-10 bg-white/95 p-4 sm:p-5 rounded-xl shadow-lg border border-amber-200 text-center max-w-[90%] transform group-hover:scale-105 transition">
+          <div class="flex items-center justify-center gap-1.5 text-xs sm:text-sm font-bold text-slate-500 mb-1">
             <i class="fa-solid fa-box-archive text-amber-600"></i> 專屬驚喜包裹
           </div>
-          <div class="text-xs sm:text-base font-black text-slate-800 whitespace-nowrap">
+          <div class="text-sm sm:text-lg font-black text-slate-800 whitespace-nowrap">
             收件人：專屬新會員升級禮
           </div>
-          <div class="mt-2 inline-flex items-center gap-1.5 bg-red-500 text-white text-xs font-extrabold px-3 py-1 rounded-full animate-bounce shadow">
+          <div class="mt-2.5 inline-flex items-center gap-1.5 bg-red-500 text-white text-xs sm:text-sm font-extrabold px-3.5 py-1.5 rounded-full animate-bounce shadow">
             <i class="fa-solid fa-hand-pointer"></i> 點擊拆封包裹
           </div>
         </div>
 
         <!-- Click Hint -->
-        <p class="absolute -bottom-9 text-white/90 text-xs sm:text-sm font-bold tracking-wider animate-pulse">
+        <p class="absolute -bottom-10 text-white/90 text-sm sm:text-base font-bold tracking-wider animate-pulse">
           🎁 拆開您的專屬驚喜升級禮
         </p>
       </div>
 
       <!-- STAGE 2: OPENED LETTER CARD (Initially Hidden) -->
-      <div id="letterCard" class="hidden relative w-full bg-gradient-to-b from-amber-50 via-white to-sky-50 rounded-3xl p-6 sm:p-8 shadow-2xl border-2 border-amber-200/80 text-center overflow-hidden">
+      <div id="letterCard" class="hidden relative w-full bg-gradient-to-b from-amber-50 via-white to-sky-50 rounded-3xl p-7 sm:p-10 shadow-2xl border-2 border-amber-200/80 text-center overflow-hidden">
         
         <!-- Top Decorative Stamp -->
         <div class="flex justify-center mb-3">
-          <div class="w-12 h-12 rounded-full bg-red-500 text-white flex items-center justify-center text-xl shadow-md border-2 border-amber-200 animate-float">
+          <div class="w-14 h-14 rounded-full bg-red-500 text-white flex items-center justify-center text-2xl shadow-md border-2 border-amber-200 animate-float">
             💌
           </div>
         </div>
 
         <!-- Main Title -->
-        <h2 class="text-lg sm:text-2xl font-black text-slate-800 tracking-wide leading-tight">
+        <h2 class="text-xl sm:text-3xl font-black text-slate-800 tracking-wide leading-tight">
           這份心意，只留給初次相遇的你
         </h2>
 
         <!-- Subtitle -->
-        <p class="text-xs sm:text-sm text-slate-600 font-medium mt-2.5 leading-relaxed max-w-md mx-auto">
+        <p class="text-xs sm:text-base text-slate-600 font-medium mt-3 leading-relaxed max-w-md mx-auto">
           拆開包裹的那一刻，你的專屬升級禮遇已同步生效
         </p>
 
         <!-- Voucher Code Box -->
-        <div class="my-5 p-4 bg-white rounded-2xl border-2 border-dashed border-sky-300 shadow-sm flex flex-col items-center gap-1.5">
-          <span class="text-[11px] font-bold text-sky-600 uppercase tracking-widest bg-sky-100 px-2.5 py-0.5 rounded-full">
+        <div class="my-6 p-5 bg-white rounded-2xl border-2 border-dashed border-sky-300 shadow-sm flex flex-col items-center gap-2">
+          <span class="text-xs font-bold text-sky-600 uppercase tracking-widest bg-sky-100 px-3 py-1 rounded-full">
             🎁 官網新會員專屬折抵
           </span>
-          <div class="text-xl sm:text-2xl font-black text-slate-900 tracking-wider font-mono">
+          <div class="text-2xl sm:text-3xl font-black text-slate-900 tracking-wider font-mono">
             活動字串【<span class="text-red-500">NEW99</span>】
           </div>
-          <p class="text-xs text-slate-500 font-semibold">
+          <p class="text-xs sm:text-sm text-slate-500 font-semibold">
             全館滿額即享現折 <span class="text-red-600 font-bold">$130 元</span> 優惠
           </p>
         </div>
 
         <!-- CTA Action Buttons -->
-        <div class="space-y-2.5">
-          <button onclick="acceptGift('NEW99')" class="w-full bg-gradient-to-r from-slate-900 via-indigo-900 to-slate-900 hover:from-slate-800 hover:to-indigo-800 text-white font-black text-sm sm:text-base py-3 sm:py-3.5 rounded-xl sm:rounded-2xl shadow-xl transition transform active:scale-95 flex items-center justify-center gap-2 border border-indigo-400/30">
+        <div class="space-y-3">
+          <button onclick="acceptGift('NEW99')" class="w-full bg-gradient-to-r from-slate-900 via-indigo-900 to-slate-900 hover:from-slate-800 hover:to-indigo-800 text-white font-black text-base sm:text-lg py-3.5 sm:py-4 rounded-xl sm:rounded-2xl shadow-xl transition transform active:scale-95 flex items-center justify-center gap-2 border border-indigo-400/30">
             <i class="fa-solid fa-gift text-amber-400"></i> 收下心意並複製活動字串
           </button>
           
-          <button onclick="closeUnboxingModal()" class="text-xs font-bold text-slate-400 hover:text-slate-600 py-1 transition">
+          <button onclick="closeUnboxingModal()" class="text-xs sm:text-sm font-bold text-slate-400 hover:text-slate-600 py-1 transition">
             稍後再看，直接開始逛逛 <i class="fa-solid fa-chevron-right text-[10px]"></i>
           </button>
         </div>
