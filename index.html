@@ -225,16 +225,16 @@
             用得習慣嗎？下一次的優惠先幫你留好了！<br>少一點繁瑣，多一點心意💝 現在右上角註冊加入會員直接折抵！
           </p>
 
-          <div class="pt-0.5 flex flex-wrap gap-2 sm:gap-2.5 items-center">
-            <button onclick="copyPromoCode('NEW99')" class="inline-flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg sm:rounded-xl shadow-lg hover:shadow-cyan-500/20 transition transform hover:scale-105 active:scale-95">
+          <div class="pt-0.5 flex items-center gap-2 sm:gap-2.5 flex-nowrap overflow-x-auto pb-1 max-w-full">
+            <button onclick="copyPromoCode('NEW99')" class="inline-flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-lg sm:rounded-xl shadow-lg hover:shadow-cyan-500/20 transition transform hover:scale-105 active:scale-95 whitespace-nowrap flex-shrink-0">
               <i class="fa-solid fa-copy text-amber-400"></i> 點我複製活動字串
             </button>
-            
-            <button onclick="document.getElementById('beautySection').scrollIntoView({behavior: 'smooth'})" class="inline-flex items-center gap-1.5 bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs sm:text-sm px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg sm:rounded-xl shadow-lg hover:shadow-sky-500/20 transition transform hover:scale-105 active:scale-95">
-              <i class="fa-solid fa-wand-magic-sparkles text-amber-300"></i> 依膚況挑選：為肌膚找到專屬命定配方
+
+            <button onclick="openAiAdvisorModal('beauty')" class="inline-flex items-center gap-1.5 bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-700 hover:to-indigo-700 text-white font-bold text-xs sm:text-sm px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-lg sm:rounded-xl shadow-lg hover:shadow-sky-500/20 transition transform hover:scale-105 active:scale-95 whitespace-nowrap flex-shrink-0">
+              <i class="fa-solid fa-wand-magic-sparkles text-amber-300"></i> AI 膚況診斷：命定保養推薦
             </button>
 
-            <button onclick="document.getElementById('healthSection').scrollIntoView({behavior: 'smooth'})" class="inline-flex items-center gap-1.5 bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs sm:text-sm px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg sm:rounded-xl shadow-lg hover:shadow-rose-500/20 transition transform hover:scale-105 active:scale-95">
+            <button onclick="document.getElementById('healthSection').scrollIntoView({behavior: 'smooth'})" class="inline-flex items-center gap-1.5 bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs sm:text-sm px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-lg sm:rounded-xl shadow-lg hover:shadow-rose-500/20 transition transform hover:scale-105 active:scale-95 whitespace-nowrap flex-shrink-0">
               <i class="fa-solid fa-trophy text-amber-300"></i> 官網熱銷 TOP 榜：跟著大家買不踩雷
             </button>
           </div>
@@ -400,6 +400,96 @@
       
       <div id="modalContent">
         <!-- Modal content loaded dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING AI ADVISOR BUTTON -->
+  <div class="fixed bottom-6 right-6 z-40">
+    <button onclick="openAiAdvisorModal('all')" class="group relative flex items-center gap-2.5 bg-gradient-to-r from-sky-600 via-indigo-600 to-purple-600 hover:from-sky-500 hover:to-purple-500 text-white p-3.5 sm:px-5 sm:py-3.5 rounded-full shadow-2xl hover:shadow-indigo-500/50 transition-all duration-300 transform hover:scale-105 active:scale-95 border-2 border-white/50">
+      <div class="relative">
+        <i class="fa-solid fa-wand-magic-sparkles text-amber-300 text-lg sm:text-xl animate-pulse"></i>
+      </div>
+      <span class="font-extrabold text-xs sm:text-sm hidden sm:inline tracking-wide">AI 智能選物顧問</span>
+      <span class="absolute -top-1.5 -right-1.5 flex h-3.5 w-3.5">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-amber-500 border border-white"></span>
+      </span>
+    </button>
+  </div>
+
+  <!-- AI SMART ADVISOR MODAL (Gemini LLM powered) -->
+  <div id="aiAdvisorModal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-2xl w-full p-5 sm:p-8 relative shadow-2xl border border-indigo-100 max-h-[90vh] flex flex-col">
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-tr from-sky-500 to-indigo-600 text-white flex items-center justify-center text-xl shadow-md">
+            <i class="fa-solid fa-robot"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="text-base sm:text-xl font-black text-slate-800">Gemini AI 智能選物與膚況顧問</h3>
+              <span class="text-[10px] bg-gradient-to-r from-amber-500 to-rose-500 text-white font-black px-2 py-0.5 rounded-full uppercase tracking-wider">AI 驅動</span>
+            </div>
+            <p class="text-xs text-slate-500 mt-0.5">輸入您的膚況困擾或健康需求，為您量身分析命定配方</p>
+          </div>
+        </div>
+        <button onclick="closeAiAdvisorModal()" class="text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-full w-8 h-8 flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Quick Preset Tags -->
+      <div class="py-3 flex items-center gap-1.5 overflow-x-auto text-xs whitespace-nowrap">
+        <span class="text-slate-400 font-bold text-[11px]"><i class="fa-solid fa-lightbulb text-amber-500"></i> 熱門診斷：</span>
+        <button onclick="applyAiPrompt('夏天容易出油脫妝，又有換季泛紅乾燥問題，推薦適合的防曬與保濕精華。')" class="bg-sky-50 hover:bg-sky-100 text-sky-700 px-2.5 py-1 rounded-full font-medium transition border border-sky-200">
+          油水不平衡・清爽防曬
+        </button>
+        <button onclick="applyAiPrompt('長時間久坐上班肩頸痠痛，晚上睡眠品質不佳，推薦紓壓與健康酵素好物。')" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-full font-medium transition border border-emerald-200">
+          久坐緊繃・紓壓夜間保養
+        </button>
+        <button onclick="applyAiPrompt('針對乾性肌膚與細紋抗老，想找高CP值又具修護效果的專櫃雙入精華液。')" class="bg-purple-50 hover:bg-purple-100 text-purple-700 px-2.5 py-1 rounded-full font-medium transition border border-purple-200">
+          乾肌抗痕・修護精華
+        </button>
+      </div>
+
+      <!-- AI Prompt Input Area -->
+      <div class="relative mt-1">
+        <textarea 
+          id="aiQueryInput" 
+          rows="3" 
+          placeholder="例如：我臉部 T 字部位容易出油但雙頰乾燥，想要找不會黏膩的夏日防曬與長效乳液..."
+          class="w-full p-3.5 sm:p-4 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition resize-none placeholder:text-slate-400"
+        ></textarea>
+        <div class="flex justify-between items-center mt-2.5">
+          <span class="text-[11px] text-slate-400">💡 結合館內熱銷庫存智慧比對</span>
+          <button 
+            id="aiGenerateBtn"
+            onclick="askGeminiAdvisor()" 
+            class="bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-700 hover:to-indigo-700 text-white font-bold text-xs sm:text-sm px-5 py-2.5 rounded-xl shadow-lg hover:shadow-indigo-500/30 transition transform hover:scale-105 active:scale-95 flex items-center gap-2"
+          >
+            <i class="fa-solid fa-wand-magic-sparkles text-amber-300"></i>
+            <span>開始 AI 智能分析</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- AI Results Display Window -->
+      <div class="mt-4 flex-1 overflow-y-auto min-h-[160px] max-h-[320px] rounded-2xl bg-slate-50 border border-slate-200/80 p-4 relative">
+        <div id="aiLoadingState" class="hidden flex flex-col items-center justify-center h-32 space-y-3">
+          <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
+          <p class="text-xs sm:text-sm text-indigo-600 font-bold animate-pulse">Gemini AI 正在分析館內商品與膚況配方...</p>
+        </div>
+
+        <div id="aiEmptyState" class="flex flex-col items-center justify-center h-32 text-center text-slate-400">
+          <i class="fa-regular fa-comments text-3xl mb-2 text-indigo-300"></i>
+          <p class="text-xs sm:text-sm">點擊上方快速標籤或輸入您的需求，即刻獲取 AI 顧問專屬分析報告！</p>
+        </div>
+
+        <div id="aiOutputContent" class="hidden space-y-4 text-xs sm:text-sm leading-relaxed text-slate-700">
+          <!-- Dynamically populated Markdown/HTML content -->
+        </div>
       </div>
     </div>
   </div>
@@ -756,6 +846,26 @@
               省 ${formatPrice(item.originalPrice - item.memberPrice)}
             </div>
           </div>
+          
+          <!-- AI Ingredient & Benefit Analysis Box -->
+          <div id="productAiSection" class="bg-gradient-to-br from-indigo-50/80 to-purple-50/80 p-3 rounded-xl border border-indigo-100 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-indigo-900 flex items-center gap-1.5">
+                <i class="fa-solid fa-sparkles text-amber-500"></i> Gemini AI 專家智慧解析
+              </span>
+              <button 
+                id="btnAiAnalyze-${item.id}"
+                onclick="analyzeProductWithAi('${item.id}')" 
+                class="text-[11px] bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-2.5 py-1 rounded-lg shadow-sm transition flex items-center gap-1"
+              >
+                <i class="fa-solid fa-wand-magic-sparkles text-yellow-300"></i> 一鍵解析
+              </button>
+            </div>
+            <div id="productAiOutput" class="text-xs text-slate-600 leading-relaxed font-normal">
+              點擊「一鍵解析」由 AI 專家為您分析主要成分、適合膚況與最佳使用時機。
+            </div>
+          </div>
+
           <p class="text-xs text-gray-500 leading-relaxed">
             【原廠公司貨】品質保證，享指定專屬會員獨家優惠價，下單即享快速出貨服務！
           </p>
@@ -772,6 +882,203 @@
 
     function closeProductModal() {
       document.getElementById('productModal').classList.add('hidden');
+    }
+
+    // Helper: Exponential Backoff Fetch
+    async function fetchWithBackoff(url, options, maxRetries = 3) {
+      let delay = 1000;
+      for (let i = 0; i < maxRetries; i++) {
+        try {
+          const res = await fetch(url, options);
+          if (res.ok) return res;
+          if (res.status === 429 || res.status >= 500) {
+            await new Promise(r => setTimeout(r, delay));
+            delay *= 2;
+            continue;
+          }
+          return res;
+        } catch (e) {
+          if (i === maxRetries - 1) throw e;
+          await new Promise(r => setTimeout(r, delay));
+          delay *= 2;
+        }
+      }
+      throw new Error('無法連線至 AI 服務，請稍後再試。');
+    }
+
+    // AI Advisor Modal Controllers
+    function openAiAdvisorModal(category) {
+      const modal = document.getElementById('aiAdvisorModal');
+      if (!modal) return;
+      modal.classList.remove('hidden');
+
+      if (category === 'beauty') {
+        const input = document.getElementById('aiQueryInput');
+        if (input && !input.value) {
+          input.value = '我是混和性膚質，夏季 T 字出油兩頰乾燥，請推薦館內適合的防曬與保養精華組合。';
+        }
+      }
+    }
+
+    function closeAiAdvisorModal() {
+      const modal = document.getElementById('aiAdvisorModal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function applyAiPrompt(promptText) {
+      const input = document.getElementById('aiQueryInput');
+      if (input) {
+        input.value = promptText;
+        askGeminiAdvisor();
+      }
+    }
+
+    // Call Gemini for Store Consultation
+    async function askGeminiAdvisor() {
+      const input = document.getElementById('aiQueryInput');
+      const userPrompt = input ? input.value.trim() : '';
+      if (!userPrompt) {
+        showToast('請先輸入您的需求或膚況困擾！');
+        return;
+      }
+
+      const emptyState = document.getElementById('aiEmptyState');
+      const loadingState = document.getElementById('aiLoadingState');
+      const outputContent = document.getElementById('aiOutputContent');
+      const generateBtn = document.getElementById('aiGenerateBtn');
+
+      emptyState.classList.add('hidden');
+      outputContent.classList.add('hidden');
+      loadingState.classList.remove('hidden');
+      if (generateBtn) generateBtn.disabled = true;
+
+      // Available Products Catalog for grounding context
+      const catalogData = [
+        ...beautyProducts.map(p => `【美妝保養】${p.name} (會員價 $${p.memberPrice})`),
+        ...healthProducts.map(p => `【休閒健康】${p.name} (會員價 $${p.memberPrice})`)
+      ].join('\n');
+
+      const systemPrompt = `你是一位專業親切的高級美妝保養品配方師與健康管理顧問。
+請根據使用者提供的膚況困擾或生活健康需求，從以下「商店專區商品目錄」中挑選最適合的 1~2 款商品進行推薦與專業解析：
+
+【商店商品目錄】
+${catalogData}
+
+【回覆規範】
+1. 以繁體中文回答，語氣溫暖、專業、具說服力。
+2. 結構清楚：
+   - 🌟 【膚況/需求診斷分析】：簡短點出肌膚或身心狀態的核心需求。
+   - 🎯 【專屬命定推薦】：列出推薦的具體商品名稱及特色關鍵。
+   - 💡 【日常保養/使用建議】：提供 2~3 個超實用的早晚搭配或使用小技巧。
+3. 提醒結帳可輸入專屬活動字串【NEW99】享全館現折 $130 元優惠。
+4. 請使用排版清晰的格式（如粗體與條列項目）。`;
+
+      const apiKey = "";
+      const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+
+      const payload = {
+        contents: [{ parts: [{ text: userPrompt }] }],
+        systemInstruction: {
+          parts: [{ text: systemPrompt }]
+        }
+      };
+
+      try {
+        const response = await fetchWithBackoff(apiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const result = await response.json();
+        const generatedText = result.candidates?.[0]?.content?.parts?.[0]?.text;
+
+        if (generatedText) {
+          // Format basic markdown to HTML for readability
+          const formattedHtml = generatedText
+            .replace(/\*\*(.*?)\*\*/g, '<strong class="text-indigo-900 font-bold">$1</strong>')
+            .replace(/\n\n/g, '<div class="h-2"></div>')
+            .replace(/\n/g, '<br>');
+
+          outputContent.innerHTML = `
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-indigo-100">
+              <div class="flex items-center gap-2 mb-3 text-indigo-700 font-bold border-b pb-2">
+                <i class="fa-solid fa-certificate text-amber-500"></i> AI 顧問專屬分析建議書
+              </div>
+              <div class="space-y-2 text-slate-700">
+                ${formattedHtml}
+              </div>
+            </div>
+          `;
+          outputContent.classList.remove('hidden');
+        } else {
+          outputContent.innerHTML = `<p class="text-red-500 text-xs">暫時無法生成分析建議，請稍後再試。</p>`;
+          outputContent.classList.remove('hidden');
+        }
+      } catch (err) {
+        outputContent.innerHTML = `<p class="text-red-500 text-xs">AI 服務連線異常，請稍後再試。</p>`;
+        outputContent.classList.remove('hidden');
+      } finally {
+        loadingState.classList.add('hidden');
+        if (generateBtn) generateBtn.disabled = false;
+      }
+    }
+
+    // Call Gemini for Single Product Deep-dive Analysis
+    async function analyzeProductWithAi(productId) {
+      const product = getProductById(productId);
+      if (!product) return;
+
+      const outputDiv = document.getElementById('productAiOutput');
+      const btn = document.getElementById(`btnAiAnalyze-${productId}`);
+      if (!outputDiv) return;
+
+      outputDiv.innerHTML = `
+        <div class="flex items-center gap-2 text-indigo-600 font-medium py-1">
+          <i class="fa-solid fa-spinner fa-spin text-sm"></i>
+          <span>Gemini AI 正在深入剖析成分與使用場景...</span>
+        </div>
+      `;
+      if (btn) btn.disabled = true;
+
+      const systemPrompt = `你是一位專業化妝品科學家與健康品鑑專家。請針對給定的商品名稱，簡明扼要地以繁體中文提供：
+1. 【核心亮點】：1句話說明為何這款商品受歡迎。
+2. 【適應族群】：適合什麼樣的膚質或生活情境。
+3. 【專家加分用法】：1個能讓效果翻倍的使用小秘訣。
+總字數控制在 120 字以內，精簡精確。`;
+
+      const prompt = `請解析商品：${product.name}，售價：${product.memberPrice}`;
+      const apiKey = "";
+      const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+
+      const payload = {
+        contents: [{ parts: [{ text: prompt }] }],
+        systemInstruction: { parts: [{ text: systemPrompt }] }
+      };
+
+      try {
+        const response = await fetchWithBackoff(apiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const result = await response.json();
+        const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
+
+        if (text) {
+          const formatted = text
+            .replace(/\*\*(.*?)\*\*/g, '<strong class="text-indigo-900 font-bold">$1</strong>')
+            .replace(/\n/g, '<br>');
+          outputDiv.innerHTML = `<div class="space-y-1 text-slate-700 bg-white/70 p-2.5 rounded-lg border border-indigo-100/80">${formatted}</div>`;
+        } else {
+          outputDiv.innerHTML = `<span class="text-red-500">無法獲取解析，請稍後重試。</span>`;
+        }
+      } catch (e) {
+        outputDiv.innerHTML = `<span class="text-red-500">AI 解析連線逾時，請再試一次。</span>`;
+      } finally {
+        if (btn) btn.disabled = false;
+      }
     }
 
     // Cart Management
