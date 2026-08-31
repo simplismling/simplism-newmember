@@ -325,7 +325,7 @@
     <section id="healthSection" class="scroll-mt-6 sm:scroll-mt-10">
       <!-- Category Pill Title Banner -->
       <div class="flex justify-center mb-5 sm:mb-8 px-2">
-        <a href="https://www.simplism.com.tw/products/product/" onclick="handleCopyAndGo(event, 'NEW99')" class="relative inline-flex items-center justify-center bg-gradient-to-r from-[#faefc7] via-[#f4e6a6] to-[#ebd992] text-[#364C84] hover:from-[#fcf4d9] hover:to-[#e2cd7d] px-10 sm:px-16 md:px-20 py-4 sm:py-5 md:py-6 rounded-full shadow-lg sm:shadow-xl border-2 border-amber-200/80 cursor-pointer transition transform hover:scale-[1.03] active:scale-95 group max-w-full sm:max-w-2xl w-auto select-none no-underline">
+        <a href="https://www.simplism.com.tw/products/product/" target="_self" rel="noopener noreferrer" onclick="handleCopyAndGo(event, 'NEW99', 'https://www.simplism.com.tw/products/product/')" class="relative inline-flex items-center justify-center bg-gradient-to-r from-[#faefc7] via-[#f4e6a6] to-[#ebd992] text-[#364C84] hover:from-[#fcf4d9] hover:to-[#e2cd7d] px-10 sm:px-16 md:px-20 py-4 sm:py-5 md:py-6 rounded-full shadow-lg sm:shadow-xl border-2 border-amber-200/80 cursor-pointer transition transform hover:scale-[1.03] active:scale-95 group max-w-full sm:max-w-2xl w-auto select-none no-underline">
           
           <!-- Left 3D Gift Icon -->
           <div class="absolute -left-2 sm:-left-3.5 -bottom-1 sm:-bottom-1.5 animate-float pointer-events-none">
@@ -889,6 +889,7 @@
 
     // Handle Copy and Native Navigation (Ensures 100% reliable page opening in current tab)
     function handleCopyAndGo(e, code) {
+      // 1. 複製活動字串
       try {
         const tempInput = document.createElement('textarea');
         tempInput.value = code;
@@ -903,7 +904,27 @@
         console.warn('複製失敗:', err);
       }
 
-      // 不阻擋預設跳轉事件，讓 <a> 標籤原生 href 立即導向，保證在所有瀏覽器環境皆可正常開啟
+      // 2. 安全跳轉（避免跨來源沙盒 SecurityError）
+      const targetUrl = "https://www.simplism.com.tw/products/product/";
+      try {
+        if (window.top && window.top !== window) {
+          try {
+            window.top.location.href = targetUrl;
+            return;
+          } catch (secErr) {
+            // 若沙盒阻止操作 top，平穩降級為當前視窗導向
+            window.location.href = targetUrl;
+            return;
+          }
+        }
+        window.location.href = targetUrl;
+      } catch (navErr) {
+        try {
+          window.location.assign(targetUrl);
+        } catch (finalErr) {
+          // 允許原生 a 標籤點擊事件正常流轉
+        }
+      }
     }
 
     // Show Toast over Promo Banner
@@ -920,6 +941,58 @@
         toast.classList.remove('opacity-100', 'scale-100');
         toast.classList.add('opacity-0', 'pointer-events-none', 'scale-90');
       }, 2500);
+    }
+
+    // Handle Copy and Robust Navigation
+    function handleCopyAndGo(e, code, targetUrl) {
+      if (e) {
+        e.preventDefault();
+      }
+
+      // 1. 雙重複製機制（確保 100% 寫入剪貼簿）
+      try {
+        const tempInput = document.createElement('textarea');
+        tempInput.value = code;
+        tempInput.setAttribute('readonly', '');
+        tempInput.style.position = 'fixed';
+        tempInput.style.left = '-9999px';
+        tempInput.style.top = '-9999px';
+        tempInput.style.opacity = '0';
+        document.body.appendChild(tempInput);
+        tempInput.focus();
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+      } catch (err) {
+        console.warn('execCommand 複製失敗，嘗試備援:', err);
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code).catch(() => {});
+      }
+
+      showToast('已複製活動字串【' + code + '】，為您前往全商品頁...');
+
+      // 2. 安全導向跳轉（同分頁載入目標官網，避開 iframe 沙盒拒絕連線）
+      setTimeout(() => {
+        try {
+          // 若在 iframe 中且允許跳出，優先以頂層視窗導向避免被 X-Frame-Options 阻擋
+          if (window.top && window.top !== window) {
+            try {
+              window.top.location.href = targetUrl;
+              return;
+            } catch (frameErr) {
+              // 若預覽環境沙盒不允許直接修改 top，則以當前窗口打開
+              window.location.href = targetUrl;
+              return;
+            }
+          }
+          // 一般環境直接於同分頁跳轉
+          window.location.href = targetUrl;
+        } catch (navErr) {
+          window.location.assign(targetUrl);
+        }
+      }, 300);
     }
 
     // Initialize Page
