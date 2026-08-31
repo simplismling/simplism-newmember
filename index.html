@@ -864,7 +864,7 @@
     }
 
     // Toast Alert
-    function showToast(msg) {
+    function showToast(msg, duration = 3000) {
       const toast = document.getElementById('toast');
       const toastMessage = document.getElementById('toastMessage');
       toastMessage.innerText = msg;
@@ -875,7 +875,7 @@
       setTimeout(() => {
         toast.classList.remove('opacity-100', 'scale-100');
         toast.classList.add('opacity-0', 'pointer-events-none', 'scale-90');
-      }, 2500);
+      }, duration);
     }
 
     // Copy Promo Code Function
@@ -893,46 +893,6 @@
       document.body.removeChild(tempInput);
     }
 
-    // Handle Copy and Native Navigation (Ensures 100% reliable page opening in current tab)
-    function handleCopyAndGo(e, code) {
-      // 1. 複製活動字串
-      try {
-        const tempInput = document.createElement('textarea');
-        tempInput.value = code;
-        tempInput.setAttribute('readonly', '');
-        tempInput.style.position = 'fixed';
-        tempInput.style.left = '-9999px';
-        document.body.appendChild(tempInput);
-        tempInput.select();
-        document.execCommand('copy');
-        document.body.removeChild(tempInput);
-      } catch (err) {
-        console.warn('複製失敗:', err);
-      }
-
-      // 2. 安全跳轉（避免跨來源沙盒 SecurityError）
-      const targetUrl = "https://www.simplism.com.tw/products/product/";
-      try {
-        if (window.top && window.top !== window) {
-          try {
-            window.top.location.href = targetUrl;
-            return;
-          } catch (secErr) {
-            // 若沙盒阻止操作 top，平穩降級為當前視窗導向
-            window.location.href = targetUrl;
-            return;
-          }
-        }
-        window.location.href = targetUrl;
-      } catch (navErr) {
-        try {
-          window.location.assign(targetUrl);
-        } catch (finalErr) {
-          // 允許原生 a 標籤點擊事件正常流轉
-        }
-      }
-    }
-
     // Show Toast over Promo Banner
     function showPromoToast(msg) {
       const toast = document.getElementById('promoToast');
@@ -946,7 +906,7 @@
       setTimeout(() => {
         toast.classList.remove('opacity-100', 'scale-100');
         toast.classList.add('opacity-0', 'pointer-events-none', 'scale-90');
-      }, 2500);
+      }, 3000);
     }
 
     // Handle Copy and Robust Navigation (Solves X-Frame-Options "Refused to Connect" issue)
@@ -973,7 +933,8 @@
         navigator.clipboard.writeText(code).catch(() => {});
       }
 
-      showToast('已複製活動字串【' + code + '】，為您前往全商品頁...');
+      // 顯示專屬提示，顯示時長設定為 3 秒 (3000ms)
+      showToast('已複製活動字串【' + code + '】，為您前往全商品選購', 3000);
 
       // 2. 判斷運行環境：
       // 若在獨立分頁 (非 iframe)，直接在當前分頁 (同分頁) 導向
@@ -983,12 +944,11 @@
         if (e) e.preventDefault();
         setTimeout(() => {
           window.location.href = targetUrl;
-        }, 200);
+        }, 1200);
         return;
       }
 
       // 若在 iframe 預覽環境中，為避免被 simplism 官方 X-Frame-Options 阻擋拒絕連線：
-      // 嘗試跳脫至頂層視窗；若沙盒限制禁止跨域修改 top，則以新視窗打開確保 100% 能正常開啟
       if (e) e.preventDefault();
       setTimeout(() => {
         try {
@@ -997,7 +957,7 @@
           // 沙盒限制阻止修改 top 時，開啟新頁面避免出現「拒絕連線」畫面
           window.open(targetUrl, '_blank', 'noopener,noreferrer');
         }
-      }, 200);
+      }, 1200);
     }
 
     // Initialize Page
