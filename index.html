@@ -8,6 +8,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- FontAwesome Icons CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Flaticon UIcons (Solid Rounded & Solid Straight) CDN -->
+  <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css">
+  <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-solid-straight/css/uicons-solid-straight.css">
   <!-- Google Fonts Inter & Noto Sans TC & Noto Serif TC -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
   
@@ -102,6 +105,28 @@
     .animate-float-delayed {
       animation: float 3.5s ease-in-out 0.8s infinite;
     }
+
+    /* 標籤流動反光效果 */
+    @keyframes specular-sweep {
+      0% {
+        transform: translateX(-150%) skewX(-25deg);
+        opacity: 0;
+      }
+      15% {
+        opacity: 0.85;
+      }
+      35% {
+        transform: translateX(260%) skewX(-25deg);
+        opacity: 0.85;
+      }
+      36%, 100% {
+        transform: translateX(260%) skewX(-25deg);
+        opacity: 0;
+      }
+    }
+    .animate-reflection {
+      animation: specular-sweep 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
   </style>
 </head>
 
@@ -153,18 +178,14 @@
             用得習慣嗎？下一次的優惠先幫你留好了！<br>少一點繁瑣，多一點心意 💝 現在右上角註冊加入會員直接折抵！
           </p>
 
-          <div class="pt-1 sm:pt-0.5 flex items-stretch sm:items-center gap-1.5 sm:gap-2.5 flex-wrap">
+          <div class="pt-1 sm:pt-0.5 flex items-center gap-2 sm:gap-3 flex-wrap">
             <button onclick="copyPromoCode('NEW99')" class="font-chironsung flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 bg-gradient-to-r from-[#faefc7] via-[#f4e6a6] to-[#ebd992] hover:from-[#fcf4d9] hover:to-[#e2cd7d] text-[#364C84] font-bold text-[11px] sm:text-xs md:text-sm px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg sm:rounded-xl shadow hover:shadow-amber-900/15 transition transform hover:scale-[1.02] sm:hover:scale-105 active:scale-95 whitespace-nowrap border border-amber-200/60">
               <i class="fa-solid fa-copy text-[#364C84]"></i> 點我複製活動字串
             </button>
-
-            <button onclick="document.getElementById('beautySection').scrollIntoView({behavior: 'smooth'})" class="font-chironsung flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 bg-gradient-to-r from-[#5ba5dd] via-[#4494d1] to-[#317bb8] hover:from-[#6cb0e4] hover:to-[#296fa8] text-[#ffffff] font-bold text-[11px] sm:text-xs md:text-sm px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg sm:rounded-xl shadow hover:shadow-blue-400/25 transition transform hover:scale-[1.02] sm:hover:scale-105 active:scale-95 whitespace-nowrap border border-sky-200/50">
-              <i class="fa-solid fa-wand-magic-sparkles text-[#f7f3e7]"></i> 依膚況挑選：為肌膚找到專屬命定配方
-            </button>
-
-            <button onclick="document.getElementById('healthSection').scrollIntoView({behavior: 'smooth'})" class="font-chironsung w-full sm:w-auto inline-flex items-center justify-center gap-1.5 bg-gradient-to-r from-[#ba3931] via-[#a8312a] to-[#8c2620] hover:from-[#c9433a] hover:to-[#7c201a] text-white font-bold text-[11px] sm:text-xs md:text-sm px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg sm:rounded-xl shadow hover:shadow-red-900/25 transition transform hover:scale-[1.02] sm:hover:scale-105 active:scale-95 whitespace-nowrap border border-rose-400/30">
-              <i class="fa-solid fa-trophy text-amber-300"></i> 官網熱銷 TOP 榜：跟著大家買不踩雷
-            </button>
+            <span class="font-chironsung text-[10.5px] sm:text-xs text-slate-600 font-medium flex items-center gap-1 bg-white/70 backdrop-blur-sm px-2.5 py-1.5 rounded-lg border border-slate-200/60 shadow-sm">
+              <i class="fa-solid fa-circle-info text-amber-500 text-[10px] sm:text-xs flex-shrink-0"></i>
+              <span>可隨時返回本頁複製活動字串</span>
+            </span>
           </div>
         </div>
 
@@ -178,14 +199,14 @@
         
         <!-- Slide 1 -->
         <div class="carousel-slide absolute inset-0 opacity-100 transition-opacity duration-700 ease-in-out flex items-center justify-between bg-gradient-to-r from-sky-600 via-cyan-500 to-teal-400 text-white p-4 sm:p-8 md:p-12">
-          <div class="z-10 max-w-[65%] sm:max-w-md md:max-w-lg space-y-1.5 sm:space-y-3 md:space-y-4">
-            <span class="inline-block bg-white/20 backdrop-blur-md text-white text-[10px] sm:text-xs md:text-sm font-bold px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full border border-white/30">
+          <div class="z-10 max-w-[70%] sm:max-w-lg md:max-w-xl space-y-2 sm:space-y-3.5 md:space-y-5">
+            <span class="inline-block bg-white/20 backdrop-blur-md text-white text-[10px] sm:text-xs md:text-sm font-bold px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full border border-white/30 shadow-sm tracking-wide">
               官網限定 ｜ 專屬膚況調理組
             </span>
-            <h1 class="font-notoserif-bold text-lg sm:text-2xl md:text-3xl lg:text-4xl leading-snug sm:leading-tight drop-shadow-md tracking-wider">
+            <h1 class="font-notoserif-bold text-xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-snug sm:leading-tight drop-shadow-lg tracking-wider">
               六大膚質<br>保養懶人包
             </h1>
-            <p class="text-[11px] sm:text-sm md:text-base text-sky-100 line-clamp-2 sm:line-clamp-none leading-relaxed">
+            <p class="text-xs sm:text-base md:text-lg text-sky-50 font-medium line-clamp-2 sm:line-clamp-none leading-relaxed drop-shadow-sm">
               擺脫「乾、油、敏、荳、老」<br>【下滑挑選】快速找出你的專屬保養組！
             </p>
           </div>
@@ -199,41 +220,53 @@
         </div>
 
         <!-- Slide 2 -->
-        <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out flex items-center justify-between bg-gradient-to-r from-rose-500 via-pink-500 to-sky-400 text-white p-4 sm:p-8 md:p-12">
+        <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out flex items-center justify-between bg-gradient-to-r from-[#f7f2e7] via-[#f3ebe0] to-[#e8decb] text-stone-800 p-4 sm:p-8 md:p-12 overflow-hidden">
           <div class="z-10 max-w-[65%] sm:max-w-md md:max-w-lg space-y-1.5 sm:space-y-3 md:space-y-4">
-            <span class="inline-block bg-white/20 backdrop-blur-md text-white text-[10px] sm:text-xs md:text-sm font-bold px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full border border-white/30">
-              ✨ 獨家夏日防曬企劃
+            <span class="inline-block bg-white/70 backdrop-blur-sm text-stone-800 text-[10px] sm:text-xs md:text-sm font-black px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full border border-amber-200/60 shadow-sm tracking-wide">
+              會員專屬禮遇
             </span>
-            <h1 class="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-extrabold leading-snug sm:leading-tight drop-shadow-md">
-              ALLIE / CeraVe<br>品牌週降價 <span class="text-yellow-300">低至 35 折</span>
+            <h1 class="font-notoserif-bold text-lg sm:text-2xl md:text-3xl lg:text-4xl font-black leading-snug sm:leading-tight text-stone-800 drop-shadow-sm tracking-wide">
+              加入簡單保養<br><span class="text-stone-800 font-black drop-shadow-sm">美好回饋很簡單</span>
             </h1>
-            <p class="text-[11px] sm:text-sm md:text-base text-pink-100 line-clamp-2 sm:line-clamp-none leading-relaxed">
-              超值組合包限量開賣，補水清爽不黏膩，夏日必備肌膚對策！
+            <p class="text-[11px] sm:text-sm md:text-base text-stone-800 font-medium line-clamp-2 sm:line-clamp-none leading-relaxed">
+              登入領專屬好禮，最高享 <span class="text-stone-800 font-black drop-shadow-sm">$500</span> 升等回饋
             </p>
-            <button onclick="document.getElementById('beautyGrid').scrollIntoView({behavior: 'smooth'})" class="mt-1 sm:mt-2 inline-flex items-center gap-1.5 sm:gap-2 bg-white hover:bg-gray-100 text-rose-600 font-extrabold text-[11px] sm:text-xs md:text-sm px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-lg sm:rounded-xl shadow-md transition transform hover:scale-105 active:scale-95">
-              查看熱銷排行 <i class="fa-solid fa-fire"></i>
+            <button onclick="openMembershipModal()" class="mt-1 sm:mt-2 inline-flex items-center gap-1.5 sm:gap-2 bg-gradient-to-r from-[#faefc7] via-[#f4e6a6] to-[#ebd992] hover:from-[#fcf4d9] hover:to-[#e2cd7d] text-stone-800 font-extrabold text-[11px] sm:text-xs md:text-sm px-3.5 py-1.5 sm:px-5 sm:py-2.5 rounded-lg sm:rounded-xl shadow-md transition transform hover:scale-105 active:scale-95 border border-amber-200/60">
+              查看會員制度 <i class="fa-solid fa-arrow-right text-xs text-stone-800"></i>
             </button>
           </div>
-          <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=800&q=80" alt="夏日防曬" class="absolute right-0 top-0 h-full w-1/2 sm:w-7/12 object-cover object-center opacity-85 sm:opacity-100 pointer-events-none" style="mask-image: linear-gradient(to left, rgba(0,0,0,1) 60%, rgba(0,0,0,0)); -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 60%, rgba(0,0,0,0));">
+          <img 
+            src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/20250606_0076.jpg" 
+            onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/20250606_0076.jpg';"
+            alt="加入簡單保養 美好回饋" 
+            class="absolute right-0 top-0 h-full w-7/12 sm:w-8/12 md:w-8/12 object-cover object-right opacity-95 sm:opacity-100 pointer-events-none" 
+            style="mask-image: linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%); -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);"
+          >
         </div>
 
         <!-- Slide 3 -->
-        <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out flex items-center justify-between bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 text-white p-4 sm:p-8 md:p-12">
-          <div class="z-10 max-w-[65%] sm:max-w-md md:max-w-lg space-y-1.5 sm:space-y-3 md:space-y-4">
+        <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out flex items-center justify-between bg-gradient-to-r from-[#9b7b66] via-[#b0907a] to-[#c8ab97] text-white p-4 sm:p-8 md:p-12 overflow-hidden">
+          <div class="z-10 max-w-[60%] sm:max-w-md md:max-w-lg space-y-1.5 sm:space-y-3 md:space-y-4">
             <span class="inline-block bg-white/20 backdrop-blur-md text-white text-[10px] sm:text-xs md:text-sm font-bold px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full border border-white/30">
-              🌿 休閒健康館 重磅登場
+              全膚質安心選
             </span>
-            <h1 class="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-extrabold leading-snug sm:leading-tight drop-shadow-md">
-              按摩枕 / 酵素 / 瑜伽墊<br>全館享 <span class="text-yellow-300">免運加碼禮</span>
+            <h1 class="font-notoserif-bold text-lg sm:text-2xl md:text-3xl lg:text-4xl font-black leading-snug sm:leading-tight drop-shadow-md tracking-wide">
+              官網熱銷 TOP 榜
             </h1>
-            <p class="text-[11px] sm:text-sm md:text-base text-blue-100 line-clamp-2 sm:line-clamp-none leading-relaxed">
-              告別疲勞，輕鬆享受紓壓健生活，滿額再贈精美獨家好禮！
+            <p class="text-[11px] sm:text-sm md:text-base text-stone-100 line-clamp-2 sm:line-clamp-none leading-relaxed drop-shadow-sm">
+              跟著大家買不踩雷・純粹日常的安心首選
             </p>
-            <button onclick="document.getElementById('healthGrid').scrollIntoView({behavior: 'smooth'})" class="mt-1 sm:mt-2 inline-flex items-center gap-1.5 sm:gap-2 bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-extrabold text-[11px] sm:text-xs md:text-sm px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-lg sm:rounded-xl shadow-md transition transform hover:scale-105 active:scale-95">
-              探索健康專區 <i class="fa-solid fa-heart-pulse"></i>
+            <button onclick="handleProductNav(event, 'https://www.simplism.com.tw/products/product/')" class="mt-1 sm:mt-2 inline-flex items-center gap-1.5 sm:gap-2 bg-gradient-to-r from-[#faefc7] via-[#f4e6a6] to-[#ebd992] hover:from-[#fcf4d9] hover:to-[#e2cd7d] text-stone-800 font-extrabold text-[11px] sm:text-xs md:text-sm px-3.5 py-1.5 sm:px-5 sm:py-2.5 rounded-lg sm:rounded-xl shadow-md transition transform hover:scale-105 active:scale-95 border border-amber-200/60">
+              查看熱銷日常保養 <i class="fa-solid fa-arrow-right text-xs text-stone-800"></i>
             </button>
           </div>
-          <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80" alt="休閒健康" class="absolute right-0 top-0 h-full w-1/2 sm:w-7/12 object-cover object-center opacity-85 sm:opacity-100 pointer-events-none" style="mask-image: linear-gradient(to left, rgba(0,0,0,1) 60%, rgba(0,0,0,0)); -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 60%, rgba(0,0,0,0));">
+          <img 
+            src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/Gemini_Generated_Image_8bo1918bo1918bo1.jpg" 
+            onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/Gemini_Generated_Image_8bo1918bo1918bo1.jpg';"
+            alt="官網熱銷 TOP 榜" 
+            class="absolute right-0 top-0 h-full w-7/12 sm:w-8/12 md:w-8/12 object-cover object-right opacity-95 sm:opacity-100 pointer-events-none" 
+            style="mask-image: linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%); -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);"
+          >
         </div>
 
       </div>
@@ -258,66 +291,148 @@
     <section id="beautySection" class="scroll-mt-6 sm:scroll-mt-10">
       <!-- Category Pill Title Banner -->
       <div class="flex justify-center mb-5 sm:mb-8 px-2">
-        <div class="relative inline-flex items-center justify-center bg-gradient-to-r from-[#5ba5dd] via-[#4494d1] to-[#317bb8] text-white px-8 sm:px-14 md:px-16 py-2.5 sm:py-3.5 rounded-full shadow-md sm:shadow-lg border-2 border-white/60">
+        <div class="relative inline-flex items-center justify-center text-white px-8 sm:px-14 md:px-16 py-2.5 sm:py-3.5 rounded-full shadow-lg sm:shadow-xl border-2 border-sky-200/90">
           
-          <!-- Left 3D Gift Icon -->
-          <div class="absolute -left-2.5 -bottom-1 sm:-left-4 sm:-bottom-2 animate-float">
-            <div class="bg-gradient-to-br from-[#fdf8eb] via-[#f7f3e7] to-[#ebdcc4] p-1.5 sm:p-2.5 rounded-lg sm:rounded-xl shadow-md sm:shadow-lg border border-amber-200/80 rotate-[-12deg]">
-              <i class="fa-solid fa-gift text-amber-600 text-base sm:text-xl md:text-2xl"></i>
+          <!-- Glossy & Gradient Background with Specular Reflection (Soft Light Blue Gradient Theme) -->
+          <div class="absolute inset-0 rounded-full overflow-hidden bg-gradient-to-r from-[#70c7f8] via-[#4baee8] to-[#70c7f8] shadow-inner pointer-events-none">
+            <!-- Top Half Glass Reflection Curved Sheen -->
+            <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/50 via-white/20 to-transparent rounded-t-full"></div>
+            
+            <!-- Bottom Subtle Soft Glow -->
+            <div class="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-sky-600/20 to-transparent"></div>
+
+            <!-- Moving Specular Reflection Light Streak -->
+            <div class="absolute -inset-y-4 left-0 w-24 sm:w-32 bg-gradient-to-r from-transparent via-white/70 to-transparent transform -skew-x-[25deg] animate-reflection pointer-events-none filter blur-[1px]"></div>
+          </div>
+
+          <!-- Left Brightness Icon (Retaining background with shadow, no border) -->
+          <div class="absolute -left-2 sm:-left-3.5 -bottom-1 sm:-bottom-1.5 animate-float pointer-events-none z-20">
+            <div class="bg-gradient-to-br from-[#fdf8eb] via-[#f7f3e7] to-[#ebdcc4] p-2 sm:p-3 rounded-lg sm:rounded-xl shadow-md sm:shadow-lg rotate-[-12deg] flex items-center justify-center">
+              <i class="fi fi-sr-brightness text-[#364C84] text-base sm:text-xl md:text-2xl flex items-center justify-center leading-none"></i>
+            </div>
+          </div>
+
+          <!-- Right Moon Stars Icon (Bright Yellow Background) -->
+          <div class="absolute -right-2 sm:-right-3.5 -top-1 sm:-top-1.5 animate-float-delayed pointer-events-none z-20">
+            <div class="bg-gradient-to-br from-[#fef08a] via-[#fde047] to-[#eab308] p-2 sm:p-3 rounded-lg sm:rounded-xl shadow-md sm:shadow-lg rotate-[15deg] flex items-center justify-center">
+              <i class="fi fi-ss-moon-stars text-[#364C84] text-base sm:text-xl md:text-2xl flex items-center justify-center leading-none"></i>
             </div>
           </div>
 
           <!-- Title Text -->
-          <h2 class="text-base sm:text-2xl md:text-3xl font-black tracking-wider shadow-sm drop-shadow-md whitespace-nowrap">
-            依膚況挑選
+          <h2 class="font-notoserif-bold relative z-10 text-base sm:text-2xl md:text-3xl font-black tracking-wider drop-shadow-md whitespace-nowrap flex items-center">
+            <span>保養</span>
+            <span class="text-xl sm:text-3xl md:text-4xl font-black mx-1 sm:mx-1.5 text-yellow-300 drop-shadow inline-block transform scale-110">3</span>
+            <span>步驟｜依膚況挑選</span>
           </h2>
-
-          <!-- Right 3D Shopping Bag Icon -->
-          <div class="absolute -right-2.5 -top-1 sm:-right-4 sm:-top-3 animate-float-delayed">
-            <div class="bg-gradient-to-br from-[#db5d5c] via-[#c95251] to-[#b0403f] p-1.5 sm:p-2.5 rounded-lg sm:rounded-xl shadow-md sm:shadow-lg border border-rose-200/50 rotate-[15deg]">
-              <i class="fa-solid fa-bag-shopping text-white text-base sm:text-xl md:text-2xl"></i>
-            </div>
-          </div>
         </div>
       </div>
 
-      <!-- Skincare Routine Infographic Images Container -->
-      <div class="space-y-4 sm:space-y-6">
-        <!-- Top 2-Column Grid for Dry & Combination Skin Routines -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-          <!-- 1. 乾肌潤澤保濕組 -->
-          <div class="w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-md sm:shadow-lg border border-slate-200/80 bg-white transition-all duration-300 hover:shadow-xl flex flex-col justify-center">
-            <img 
-              src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E4%B9%BE%E8%82%8C%E6%BD%A4%E6%BE%A4%E4%BF%9D%E6%BF%95%E7%B5%84%28%E4%B9%BE%E8%82%8C%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F.jpg" 
-              onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/乾肌潤澤保濕組(乾肌)保養三步驟.jpg';"
-              alt="乾肌潤澤保濕組 (乾肌) 保養三步驟" 
-              class="w-full h-auto object-cover object-center block select-none"
-              loading="lazy"
-            />
-          </div>
-
-          <!-- 2. 混合肌控油調理組 -->
-          <div class="w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-md sm:shadow-lg border border-slate-200/80 bg-white transition-all duration-300 hover:shadow-xl flex flex-col justify-center">
-            <img 
-              src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E6%B7%B7%E5%90%88%E8%82%8C%E6%8E%A7%E6%B2%B9%E8%AA%BF%E7%90%86%E7%B5%84%28%E6%B7%B7%E5%90%88%E8%82%8C%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F.jpg" 
-              onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/混合肌控油調理組(混合肌)保養三步驟.jpg';"
-              alt="混合肌控油調理組 (混合肌) 保養三步驟" 
-              class="w-full h-auto object-cover object-center block select-none"
-              loading="lazy"
-            />
-          </div>
-        </div>
-
-        <!-- 3. 敏肌專研全效修護組 (滿版單張) -->
-        <div class="w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-md sm:shadow-lg border border-slate-200/80 bg-white transition-all duration-300 hover:shadow-xl">
+      <!-- Skincare Routine Infographic Images: 2-Column Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+        
+        <!-- 1. 乾肌潤澤保濕組(乾肌)保養三步驟 -->
+        <a 
+          href="https://www.simplism.com.tw/product-detail/820260420001" 
+          target="_top" 
+          rel="noopener noreferrer" 
+          onclick="handleProductNav(event, 'https://www.simplism.com.tw/product-detail/820260420001')" 
+          class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-md sm:shadow-lg border border-slate-200/80 bg-white transition-all duration-300 hover:shadow-xl hover:scale-[1.01] cursor-pointer"
+        >
           <img 
-            src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E6%95%8F%E8%82%8C%E5%B0%88%E7%A0%94%E5%85%A8%E6%95%88%E4%BF%AE%E8%AD%B7%E7%B5%84%28%E6%95%8F%E5%BC%B1%E6%B3%9B%E7%B4%85%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F.jpg" 
-            onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/敏肌專研全效修護組(敏弱泛紅)保養三步驟.jpg';"
-            alt="敏肌專研全效修護組 (敏弱泛紅) 保養三步驟" 
-            class="w-full h-auto object-cover object-center block select-none"
+            src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E4%B9%BE%E8%82%8C%E6%BD%A4%E6%BE%A4%E4%BF%9D%E6%BF%95%E7%B5%84%28%E4%B9%BE%E8%82%8C%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F%281%29.jpg" 
+            onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/乾肌潤澤保濕組(乾肌)保養三步驟(1).jpg';"
+            alt="乾肌潤澤保濕組 (乾肌) 保養三步驟" 
+            class="w-full h-auto object-cover object-center block select-none group-hover:opacity-95 transition-opacity"
             loading="lazy"
           />
-        </div>
+        </a>
+
+        <!-- 2. 混合肌控油調理組(混合肌)保養三步驟 -->
+        <a 
+          href="https://www.simplism.com.tw/product-detail/820260420002" 
+          target="_top" 
+          rel="noopener noreferrer" 
+          onclick="handleProductNav(event, 'https://www.simplism.com.tw/product-detail/820260420002')" 
+          class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-md sm:shadow-lg border border-slate-200/80 bg-white transition-all duration-300 hover:shadow-xl hover:scale-[1.01] cursor-pointer"
+        >
+          <img 
+            src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E6%B7%B7%E5%90%88%E8%82%8C%E6%8E%A7%E6%B2%B9%E8%AA%BF%E7%90%86%E7%B5%84%28%E6%B7%B7%E5%90%88%E8%82%8C%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F%281%29.jpg" 
+            onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/混合肌控油調理組(混合肌)保養三步驟(1).jpg';"
+            alt="混合肌控油調理組 (混合肌) 保養三步驟" 
+            class="w-full h-auto object-cover object-center block select-none group-hover:opacity-95 transition-opacity"
+            loading="lazy"
+          />
+        </a>
+
+        <!-- 3. 敏肌專研全效修護組(敏弱泛紅)保養三步驟 -->
+        <a 
+          href="https://www.simplism.com.tw/product-detail/820260420003" 
+          target="_top" 
+          rel="noopener noreferrer" 
+          onclick="handleProductNav(event, 'https://www.simplism.com.tw/product-detail/820260420003')" 
+          class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-md sm:shadow-lg border border-slate-200/80 bg-white transition-all duration-300 hover:shadow-xl hover:scale-[1.01] cursor-pointer"
+        >
+          <img 
+            src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E6%95%8F%E8%82%8C%E5%B0%88%E7%A0%94%E5%85%A8%E6%95%88%E4%BF%AE%E8%AD%B7%E7%B5%84%28%E6%95%8F%E5%BC%B1%E6%B3%9B%E7%B4%85%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F%281%29.jpg" 
+            onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/敏肌專研全效修護組(敏弱泛紅)保養三步驟(1).jpg';"
+            alt="敏肌專研全效修護組 (敏弱泛紅) 保養三步驟" 
+            class="w-full h-auto object-cover object-center block select-none group-hover:opacity-95 transition-opacity"
+            loading="lazy"
+          />
+        </a>
+
+        <!-- 4. 煥膚淨瑕調理組(荳荳粉刺)保養三步驟 -->
+        <a 
+          href="https://www.simplism.com.tw/product-detail/820260420004" 
+          target="_top" 
+          rel="noopener noreferrer" 
+          onclick="handleProductNav(event, 'https://www.simplism.com.tw/product-detail/820260420004')" 
+          class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-md sm:shadow-lg border border-slate-200/80 bg-white transition-all duration-300 hover:shadow-xl hover:scale-[1.01] cursor-pointer"
+        >
+          <img 
+            src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E7%85%A5%E8%86%9A%E6%B7%A8%E7%91%95%E8%AA%BF%E7%90%86%E7%B5%84%28%E8%8D%B3%E8%8D%B3%E7%B2%89%E5%88%BA%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F.jpg" 
+            onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/煥膚淨瑕調理組(荳荳粉刺)保養三步驟.jpg';"
+            alt="煥膚淨瑕調理組 (荳荳粉刺) 保養三步驟" 
+            class="w-full h-auto object-cover object-center block select-none group-hover:opacity-95 transition-opacity"
+            loading="lazy"
+          />
+        </a>
+
+        <!-- 5. 極緻抗老修復組(抗老緊緻)保養三步驟 -->
+        <a 
+          href="https://www.simplism.com.tw/product-detail/820260420005" 
+          target="_top" 
+          rel="noopener noreferrer" 
+          onclick="handleProductNav(event, 'https://www.simplism.com.tw/product-detail/820260420005')" 
+          class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-md sm:shadow-lg border border-slate-200/80 bg-white transition-all duration-300 hover:shadow-xl hover:scale-[1.01] cursor-pointer"
+        >
+          <img 
+            src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E6%A5%B5%E7%B7%BB%E6%8A%97%E8%80%81%E4%BF%AE%E5%BE%A9%E7%B5%84%28%E6%8A%97%E8%80%81%E7%B7%8A%E7%B7%BB%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F.jpg" 
+            onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/極緻抗老修復組(抗老緊緻)保養三步驟.jpg';"
+            alt="極緻抗老修復組 (抗老緊緻) 保養三步驟" 
+            class="w-full h-auto object-cover object-center block select-none group-hover:opacity-95 transition-opacity"
+            loading="lazy"
+          />
+        </a>
+
+        <!-- 6. 深度修護穩膚組(美容課程後)保養三步驟 -->
+        <a 
+          href="https://www.simplism.com.tw/product-detail/820260420006" 
+          target="_top" 
+          rel="noopener noreferrer" 
+          onclick="handleProductNav(event, 'https://www.simplism.com.tw/product-detail/820260420006')" 
+          class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-md sm:shadow-lg border border-slate-200/80 bg-white transition-all duration-300 hover:shadow-xl hover:scale-[1.01] cursor-pointer"
+        >
+          <img 
+            src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E6%B7%B1%E5%BA%A6%E4%BF%AE%E8%AD%B7%E7%A9%A9%E8%86%9A%E7%B5%84%28%E7%BE%8E%E5%AE%B9%E8%AA%B2%E7%A8%8B%E5%BE%8C%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F.jpg" 
+            onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/深度修護穩膚組(美容課程後)保養三步驟.jpg';"
+            alt="深度修護穩膚組 (美容課程後) 保養三步驟" 
+            class="w-full h-auto object-cover object-center block select-none group-hover:opacity-95 transition-opacity"
+            loading="lazy"
+          />
+        </a>
+
       </div>
     </section>
 
@@ -330,18 +445,30 @@
           target="_top" 
           rel="noopener noreferrer" 
           onclick="handleCopyAndGo(event, 'NEW99', 'https://www.simplism.com.tw/products/product/')" 
-          class="relative inline-flex items-center justify-center bg-gradient-to-r from-[#faefc7] via-[#f4e6a6] to-[#ebd992] text-[#364C84] hover:from-[#fcf4d9] hover:to-[#e2cd7d] px-10 sm:px-16 md:px-20 py-4 sm:py-5 md:py-6 rounded-full shadow-lg sm:shadow-xl border-2 border-amber-200/80 cursor-pointer transition transform hover:scale-[1.03] active:scale-95 group max-w-full sm:max-w-2xl w-auto select-none no-underline"
+          class="relative inline-flex items-center justify-center text-[#364C84] px-10 sm:px-16 md:px-20 py-4 sm:py-5 md:py-6 rounded-full shadow-lg sm:shadow-xl border-2 border-amber-200/80 cursor-pointer transition transform hover:scale-[1.03] active:scale-95 group max-w-full sm:max-w-2xl w-auto select-none no-underline"
         >
           
+          <!-- Glossy & Golden Gradient Background with Specular Reflection -->
+          <div class="absolute inset-0 rounded-full overflow-hidden bg-gradient-to-r from-[#faefc7] via-[#f4e6a6] to-[#ebd992] group-hover:from-[#fcf4d9] group-hover:to-[#e2cd7d] shadow-inner pointer-events-none transition-colors duration-300">
+            <!-- Top Half Glass Reflection Curved Sheen -->
+            <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/55 via-white/20 to-transparent rounded-t-full"></div>
+            
+            <!-- Bottom Subtle Warm Glow -->
+            <div class="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-amber-600/10 to-transparent"></div>
+
+            <!-- Moving Specular Reflection Light Streak -->
+            <div class="absolute -inset-y-4 left-0 w-24 sm:w-32 bg-gradient-to-r from-transparent via-white/80 to-transparent transform -skew-x-[25deg] animate-reflection pointer-events-none filter blur-[1px]"></div>
+          </div>
+
           <!-- Left 3D Gift Icon -->
-          <div class="absolute -left-2 sm:-left-3.5 -bottom-1 sm:-bottom-1.5 animate-float pointer-events-none">
+          <div class="absolute -left-2 sm:-left-3.5 -bottom-1 sm:-bottom-1.5 animate-float pointer-events-none z-20">
             <div class="bg-gradient-to-br from-[#fdf8eb] via-[#f7f3e7] to-[#ebdcc4] p-2 sm:p-3 rounded-lg sm:rounded-xl shadow-md sm:shadow-lg border border-amber-200/80 rotate-[-12deg]">
               <i class="fa-solid fa-copy text-[#364C84] text-base sm:text-xl md:text-2xl"></i>
             </div>
           </div>
 
           <!-- Title Text -->
-          <h2 class="text-sm sm:text-2xl md:text-3xl font-black tracking-wider shadow-sm whitespace-nowrap flex items-center">
+          <h2 class="relative z-10 text-sm sm:text-2xl md:text-3xl font-black tracking-wider shadow-sm whitespace-nowrap flex items-center">
             <span>點我複製活動字串．前往全商品選購</span>
             <svg class="w-4 h-4 sm:w-6 sm:h-6 md:w-7 md:h-7 inline-block ml-1.5 sm:ml-2.5 transition-transform duration-300 group-hover:translate-x-1.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M5 12h14M13 5l7 7-7 7"/>
@@ -349,7 +476,7 @@
           </h2>
 
           <!-- Right 3D Shopping Bag Icon -->
-          <div class="absolute -right-2 sm:-right-3.5 -top-1 sm:-top-1.5 animate-float-delayed pointer-events-none">
+          <div class="absolute -right-2 sm:-right-3.5 -top-1 sm:-top-1.5 animate-float-delayed pointer-events-none z-20">
             <div class="bg-gradient-to-br from-[#db5d5c] via-[#c95251] to-[#b0403f] p-2 sm:p-3 rounded-lg sm:rounded-xl shadow-md sm:shadow-lg border border-rose-200/50 rotate-[15deg]">
               <i class="fa-solid fa-bag-shopping text-white text-base sm:text-xl md:text-2xl"></i>
             </div>
@@ -369,6 +496,32 @@
       
       <div id="modalContent">
         <!-- Modal content loaded dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Membership Tiers Modal -->
+  <div id="membershipModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-2.5 sm:p-4 md:p-6" onclick="if(event.target === this) closeMembershipModal()">
+    <div class="bg-white rounded-2xl sm:rounded-3xl max-w-5xl w-full relative shadow-2xl overflow-hidden flex flex-col max-h-[94vh] border border-white/20 animate-fade-in">
+      <!-- Modal Header -->
+      <div class="flex-shrink-0 flex items-center justify-between px-4 py-3 sm:px-6 sm:py-3.5 border-b border-gray-100 bg-slate-50/90 backdrop-blur-sm z-10">
+        <h3 class="text-sm sm:text-base md:text-lg font-bold text-gray-800 flex items-center gap-2">
+          <i class="fa-solid fa-crown text-amber-500"></i> 會員等級制度與專屬禮遇
+        </h3>
+        <button onclick="closeMembershipModal()" class="text-gray-400 hover:text-gray-700 bg-white hover:bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center transition shadow-sm" aria-label="關閉">
+          <i class="fa-solid fa-xmark text-base sm:text-lg"></i>
+        </button>
+      </div>
+      
+      <!-- Modal Body (Image Container) -->
+      <div class="flex-1 min-h-0 overflow-y-auto overflow-x-auto p-2 sm:p-4 md:p-5 flex items-center justify-center bg-gray-50/60">
+        <img 
+          src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E6%9C%83%E5%93%A1%E7%AD%89%E7%B4%9A%E5%88%B6%E5%BA%A6_7%E7%89%88%281%29.png" 
+          onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/會員等級制度_7版(1).png';"
+          alt="會員等級制度" 
+          class="max-h-[75vh] sm:max-h-[80vh] w-auto max-w-full object-contain mx-auto block rounded-lg sm:rounded-xl shadow-sm select-none"
+          loading="lazy"
+        />
       </div>
     </div>
   </div>
@@ -402,7 +555,7 @@
   </div>
 
   <!-- Notification Toast (Centered in Screen) -->
-  <div id="toast" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[90%] bg-gray-900/95 text-white px-4 py-3 sm:px-6 sm:py-4 rounded-xl sm:rounded-2xl shadow-2xl flex items-center gap-2.5 sm:gap-3 z-50 opacity-0 pointer-events-none transition-all duration-300 transform scale-90 border border-white/10 text-center">
+  <div id="toast" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[90%] bg-gray-900/95 text-white px-5 py-3.5 sm:px-7 sm:py-4 rounded-xl sm:rounded-2xl shadow-2xl flex items-center justify-center gap-2.5 sm:gap-3 z-[9999] opacity-0 pointer-events-none transition-all duration-300 transform scale-90 border border-white/10 text-center backdrop-blur-md">
     <i class="fa-solid fa-circle-check text-green-400 text-base sm:text-xl flex-shrink-0"></i>
     <span id="toastMessage" class="text-xs sm:text-sm md:text-base font-semibold break-words">已加入購物車</span>
   </div>
@@ -541,6 +694,7 @@
 
     let currentSlide = 0;
     let slideTimer = null;
+    let isTransitioning = false;
 
     function showSlide(index) {
       const slides = document.querySelectorAll('.carousel-slide');
@@ -573,28 +727,45 @@
     }
 
     function nextSlide() {
+      if (isTransitioning) return;
+      isTransitioning = true;
       showSlide(currentSlide + 1);
       resetSlideTimer();
+      setTimeout(() => { isTransitioning = false; }, 400);
     }
 
     function prevSlide() {
+      if (isTransitioning) return;
+      isTransitioning = true;
       showSlide(currentSlide - 1);
       resetSlideTimer();
+      setTimeout(() => { isTransitioning = false; }, 400);
     }
 
     function goToSlide(index) {
+      if (isTransitioning || index === currentSlide) return;
+      isTransitioning = true;
       showSlide(index);
       resetSlideTimer();
+      setTimeout(() => { isTransitioning = false; }, 400);
     }
 
     function startSlideTimer() {
+      stopSlideTimer(); // 確保絕不重複建立多個定時器
       slideTimer = setInterval(() => {
         showSlide(currentSlide + 1);
-      }, 4000);
+      }, 4500); // 舒適平穩的 4.5 秒輪播間隔
+    }
+
+    function stopSlideTimer() {
+      if (slideTimer) {
+        clearInterval(slideTimer);
+        slideTimer = null;
+      }
     }
 
     function resetSlideTimer() {
-      if (slideTimer) clearInterval(slideTimer);
+      stopSlideTimer();
       startSlideTimer();
     }
 
@@ -775,6 +946,32 @@
       document.getElementById('productModal').classList.add('hidden');
     }
 
+    // Membership Modal Functions
+    function openMembershipModal() {
+      const modal = document.getElementById('membershipModal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // 防止背景滾動
+      }
+    }
+
+    function closeMembershipModal() {
+      const modal = document.getElementById('membershipModal');
+      if (modal) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = ''; // 恢復背景滾動
+      }
+    }
+
+    // Keyboard ESC to close modals
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeMembershipModal();
+        closeProductModal();
+        closeCartModal();
+      }
+    });
+
     // Cart Management
     function addToCart(id) {
       const item = getProductById(id);
@@ -882,9 +1079,15 @@
     function copyPromoCode(code) {
       const tempInput = document.createElement('textarea');
       tempInput.value = code;
+      tempInput.setAttribute('readonly', '');
+      tempInput.style.position = 'fixed';
+      tempInput.style.top = '0';
+      tempInput.style.left = '-9999px';
+      tempInput.style.opacity = '0';
       document.body.appendChild(tempInput);
-      tempInput.select();
       try {
+        tempInput.focus({ preventScroll: true });
+        tempInput.select();
         document.execCommand('copy');
         showPromoToast('已成功複製活動字串：【' + code + '】結帳輸入現折$130元');
       } catch (err) {
@@ -909,19 +1112,40 @@
       }, 3000);
     }
 
+    // Handle Skincare Routine Product Navigation (Safe for both top-level and iframe environments)
+    function handleProductNav(e, targetUrl) {
+      if (e) e.preventDefault();
+      const isInsideIframe = window.self !== window.top;
+      if (!isInsideIframe) {
+        window.location.href = targetUrl;
+        return;
+      }
+      try {
+        window.top.location.href = targetUrl;
+      } catch (sandboxErr) {
+        window.open(targetUrl, '_blank', 'noopener,noreferrer');
+      }
+    }
+
     // Handle Copy and Robust Navigation (Solves X-Frame-Options "Refused to Connect" issue)
     function handleCopyAndGo(e, code, targetUrl) {
-      // 1. 同步執行剪貼簿複製（雙軌機制，100% 成功複製折扣字串）
+      // 1. 立即阻止預設事件與傳遞，徹底防止電腦版與手機版點擊後頁面往上跳動
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+
+      // 2. 同步執行剪貼簿複製（加入 preventScroll，避免焦點引發視窗捲動）
       try {
         const tempInput = document.createElement('textarea');
         tempInput.value = code;
         tempInput.setAttribute('readonly', '');
         tempInput.style.position = 'fixed';
+        tempInput.style.top = '0';
         tempInput.style.left = '-9999px';
-        tempInput.style.top = '-9999px';
         tempInput.style.opacity = '0';
         document.body.appendChild(tempInput);
-        tempInput.focus();
+        tempInput.focus({ preventScroll: true });
         tempInput.select();
         document.execCommand('copy');
         document.body.removeChild(tempInput);
@@ -933,31 +1157,23 @@
         navigator.clipboard.writeText(code).catch(() => {});
       }
 
-      // 顯示專屬提示，顯示時長設定為 3 秒 (3000ms)
+      // 3. 顯示專屬提示，顯示時長為 3 秒 (3000ms)，並保持畫面停留在原位置
       showToast('已複製活動字串【' + code + '】，為您前往全商品選購', 3000);
 
-      // 2. 判斷運行環境：
-      // 若在獨立分頁 (非 iframe)，直接在當前分頁 (同分頁) 導向
+      // 4. 判斷運行環境於 3 秒後平穩跳轉
       const isInsideIframe = window.self !== window.top;
 
-      if (!isInsideIframe) {
-        if (e) e.preventDefault();
-        setTimeout(() => {
-          window.location.href = targetUrl;
-        }, 1200);
-        return;
-      }
-
-      // 若在 iframe 預覽環境中，為避免被 simplism 官方 X-Frame-Options 阻擋拒絕連線：
-      if (e) e.preventDefault();
       setTimeout(() => {
-        try {
-          window.top.location.href = targetUrl;
-        } catch (sandboxErr) {
-          // 沙盒限制阻止修改 top 時，開啟新頁面避免出現「拒絕連線」畫面
-          window.open(targetUrl, '_blank', 'noopener,noreferrer');
+        if (!isInsideIframe) {
+          window.location.href = targetUrl;
+        } else {
+          try {
+            window.top.location.href = targetUrl;
+          } catch (sandboxErr) {
+            window.open(targetUrl, '_blank', 'noopener,noreferrer');
+          }
         }
-      }, 1200);
+      }, 3000);
     }
 
     // Initialize Page
@@ -970,8 +1186,8 @@
 
       const heroCarousel = document.getElementById('heroCarousel');
       if (heroCarousel) {
-        heroCarousel.addEventListener('mouseenter', () => clearInterval(slideTimer));
-        heroCarousel.addEventListener('mouseleave', () => startSlideTimer());
+        heroCarousel.addEventListener('mouseenter', stopSlideTimer);
+        heroCarousel.addEventListener('mouseleave', startSlideTimer);
       }
     }
 
