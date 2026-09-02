@@ -13,7 +13,8 @@
   <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-solid-straight/css/uicons-solid-straight.css">
   <!-- Google Fonts Inter & Noto Sans TC & Noto Serif TC -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
-  
+  <base target="_top">
+
   <style>
     /* 全局防溢出與平滑捲動設定 */
     html, body {
@@ -1229,5 +1230,11 @@
       initPage();
     }
   </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/image-map-resizer/1.0.10/js/imageMapResizer.min.js"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+    imageMapResize();
+  });
+</script>
 </body>
 </html>
