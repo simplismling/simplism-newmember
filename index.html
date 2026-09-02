@@ -1229,5 +1229,34 @@
       initPage();
     }
   </script>
+<script>
+    (function () {
+      function sendHeightToParent() {
+        if (window.parent && window.parent !== window) {
+          // 精確抓取當前頁面實際渲染高度
+          const realHeight = Math.max(
+            document.documentElement.scrollHeight,
+            document.body.scrollHeight,
+            document.documentElement.offsetHeight,
+            document.body.offsetHeight
+          );
+          window.parent.postMessage({
+            type: 'SIMPLISM_RWD_HEIGHT',
+            height: realHeight
+          }, '*');
+        }
+      }
+
+      // 監聽資源載入、DOM 變化與螢幕尺寸調整
+      window.addEventListener('load', sendHeightToParent);
+      window.addEventListener('resize', sendHeightToParent);
+
+      if ('ResizeObserver' in window) {
+        const ro = new ResizeObserver(() => sendHeightToParent());
+        ro.observe(document.documentElement);
+        ro.observe(document.body);
+      }
+    })();
+  </script>
 </body>
 </html>
