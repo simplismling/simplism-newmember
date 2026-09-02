@@ -128,34 +128,35 @@
           />
         </div>
 
-        <div class="relative z-10 p-3 sm:p-5 md:p-8 w-full sm:max-w-[75%] md:max-w-[70%] space-y-1.5 sm:space-y-2.5 pr-2 sm:pr-6">
-          <div class="flex items-center gap-1 sm:gap-2 flex-wrap">
-            <span class="font-chironsung bg-red-500 text-white text-[10px] sm:text-xs md:text-sm font-black px-2 py-0.5 sm:px-2.5 rounded-full shadow-sm tracking-wider uppercase animate-pulse">
-              🎁 專屬限時折抵
-            </span>
-            <span class="font-chironsung text-[10px] sm:text-xs md:text-sm font-bold text-[#364C84] bg-white/90 backdrop-blur-sm px-2 py-0.5 sm:px-2.5 rounded-full border border-indigo-200/80 shadow-sm">
-              全館滿 $1000 即享國內免運
-            </span>
-            <span class="font-chironsung text-[10px] sm:text-xs md:text-sm font-bold text-[#364C84] bg-white/90 backdrop-blur-sm px-2 py-0.5 sm:px-2.5 rounded-full border border-indigo-200/80 shadow-sm">
-              結帳輸入活動字串【NEW99】首購現折$130元
-            </span>
-          </div>
+<div class="relative z-10 p-3 sm:p-5 md:p-8 w-full sm:max-w-[75%] md:max-w-[70%] space-y-1.5 sm:space-y-2.5 pr-2 sm:pr-6">
+  <div class="flex items-center gap-1 sm:gap-2 flex-wrap">
+    <span class="font-chironsung bg-red-500 text-white text-[10px] sm:text-xs md:text-sm font-black px-2 py-0.5 sm:px-2.5 rounded-full shadow-sm tracking-wider uppercase animate-pulse">
+      🎁 專屬限時折抵
+    </span>
+    <span class="font-chironsung text-[10px] sm:text-xs md:text-sm font-bold text-[#364C84] bg-white/90 backdrop-blur-sm px-2 py-0.5 sm:px-2.5 rounded-full border border-indigo-200/80 shadow-sm">
+      全館滿 $1000 即享國內免運
+    </span>
+    <span class="font-chironsung text-[10px] sm:text-xs md:text-sm font-bold text-[#364C84] bg-white/90 backdrop-blur-sm px-2 py-0.5 sm:px-2.5 rounded-full border border-indigo-200/80 shadow-sm">
+      結帳輸入活動字串【NEW99】首購現折$130元
+    </span>
+  </div>
 
-          <h2 class="font-gensen text-sm sm:text-xl md:text-2xl lg:text-3xl font-black text-[#364C84] tracking-[0.05em] sm:tracking-[0.15em] md:tracking-[0.227em] leading-tight">
-            官網新會員首購．專屬升級禮
-          </h2>
+  <h2 class="font-gensen text-sm sm:text-xl md:text-2xl lg:text-3xl font-black text-[#364C84] tracking-[0.05em] sm:tracking-[0.15em] md:tracking-[0.227em] leading-tight">
+    官網新會員首購．專屬升級禮
+  </h2>
 
-          <p class="font-chironsung text-[11px] sm:text-xs md:text-base text-slate-600 font-medium leading-relaxed hidden sm:block">
-            用得習慣嗎？下一次的優惠先幫你留好了！<br>少一點繁瑣，多一點心意 💝 現在右上角註冊加入會員直接折抵！
-          </p>
+  <!-- 關鍵修改處：移除 hidden sm:block，改為 block，並設定手機版 text-[10.5px] 讓兩行文案平整不擁擠 -->
+  <p class="font-chironsung text-[10.5px] sm:text-xs md:text-base text-slate-600 font-medium leading-relaxed block">
+    用得習慣嗎？下一次的優惠先幫你留好了！<br>少一點繁瑣，多一點心意 💝 現在右上角註冊加入會員直接折抵！
+  </p>
 
-          <div class="pt-0.5 sm:pt-1 flex items-center gap-2 flex-wrap w-full">
-            <button onclick="copyPromoCode('NEW99')" type="button" class="font-chironsung w-full sm:w-auto inline-flex items-center justify-center gap-1.5 bg-gradient-to-r from-[#faefc7] via-[#f4e6a6] to-[#ebd992] hover:from-[#fcf4d9] hover:to-[#e2cd7d] text-[#364C84] font-bold text-[10px] sm:text-xs md:text-sm px-2.5 py-1.5 sm:px-4 sm:py-2.5 rounded-lg sm:rounded-xl shadow hover:shadow-amber-900/15 transition transform active:scale-95 text-center border border-amber-200/60 leading-snug">
-              <i class="fa-solid fa-copy text-[#364C84] text-xs flex-shrink-0"></i>
-              <span class="break-words">點我複製活動字串 (可隨時返回本頁複製)</span>
-            </button>
-          </div>
-        </div>
+  <div class="pt-0.5 sm:pt-1 flex items-center gap-2 flex-wrap w-full">
+    <button onclick="copyPromoCode('NEW99')" type="button" class="font-chironsung w-full sm:w-auto inline-flex items-center justify-center gap-1.5 bg-gradient-to-r from-[#faefc7] via-[#f4e6a6] to-[#ebd992] hover:from-[#fcf4d9] hover:to-[#e2cd7d] text-[#364C84] font-bold text-[10px] sm:text-xs md:text-sm px-2.5 py-1.5 sm:px-4 sm:py-2.5 rounded-lg sm:rounded-xl shadow hover:shadow-amber-900/15 transition transform active:scale-95 text-center border border-amber-200/60 leading-snug">
+      <i class="fa-solid fa-copy text-[#364C84] text-xs flex-shrink-0"></i>
+      <span class="break-words">點我複製活動字串 (可隨時返回本頁複製)</span>
+    </button>
+  </div>
+</div>
       </div>
     </div>
 
