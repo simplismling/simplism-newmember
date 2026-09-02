@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>美妝保養與休閒健康專區 - 精選特惠購物</title>
+  <title>Simplism 簡單保養｜官網新會員首購．專屬升級禮</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- FontAwesome Icons CDN -->
@@ -15,12 +15,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
   
   <style>
-    /* 全局防溢出與平滑捲動設定 */
+    /* 全局防溢出與觸控設定 */
     html, body {
       max-width: 100%;
       overflow-x: hidden;
       -webkit-tap-highlight-color: transparent;
-      touch-action: manipulation;
     }
 
     /* 思源宋體 - 粗體 */
@@ -32,105 +31,55 @@
     /* 源泉圓體 */
     @font-face {
       font-family: 'GenSenRounded';
-      src: local('GenSenRounded-B'),
-           local('GenSenRounded-Bold'),
-           local('GenSenRounded TW Bold'),
-           local('GenSenRounded TW-B'),
-           local('GenSenRounded TW-Bold'),
-           local('源泉圓體 Bold'),
-           local('源泉圓體-B'),
-           local('源泉圓體-Bold'),
-           local('GenSenRounded-M'),
-           local('GenSenRounded TW-M'),
-           local('源泉圓體-M'),
-           local('GenSenRounded'),
-           local('GenSenRounded TW'),
-           local('源泉圓體'),
-           local('源泉圓體 TW');
+      src: local('GenSenRounded-B'), local('GenSenRounded-Bold'), local('GenSenRounded TW Bold'), local('源泉圓體 Bold'), local('Noto Sans TC'), sans-serif;
       font-weight: 700 900;
       font-style: normal;
       font-display: swap;
     }
-
     .font-gensen {
-      font-family: 'GenSenRounded', 'GenSenRounded TW', 'GenSenRounded-B', 'GenSenRounded-Bold', '源泉圓體', '源泉圓體 TW', 'Noto Sans TC', sans-serif;
+      font-family: 'GenSenRounded', 'Noto Sans TC', sans-serif;
     }
 
     /* 昭源宋體 */
     @font-face {
       font-family: 'ChironSungHK';
-      src: local('Chiron Sung HK-R'),
-           local('Chiron Sung HK Regular'),
-           local('Chiron Sung HK-Regular'),
-           local('Chiron Sung HK Text-R'),
-           local('Chiron Sung HK Text-Regular'),
-           local('Chiron Sung HK-M'),
-           local('Chiron Sung HK Medium'),
-           local('Chiron Sung HK Text-M'),
-           local('Chiron Sung HK'),
-           local('Chiron Sung HK Text'),
-           local('Chiron Sung HK VF'),
-           local('昭源宋體 Regular'),
-           local('昭源宋體-R'),
-           local('昭源宋體-Regular'),
-           local('昭源宋體-M'),
-           local('昭源宋體');
+      src: local('Chiron Sung HK-R'), local('Chiron Sung HK Regular'), local('昭源宋體 Regular'), local('Noto Serif TC'), serif;
       font-weight: 400 500 700;
       font-style: normal;
       font-display: swap;
     }
-
     .font-chironsung {
-      font-family: 'ChironSungHK', 'Chiron Sung HK', 'Chiron Sung HK Text', 'Chiron Sung HK VF', '昭源宋體', 'Noto Serif TC', 'Source Han Serif TC', 'Songti TC', serif;
+      font-family: 'ChironSungHK', 'Noto Serif TC', serif;
     }
 
-    /* 隱藏捲動軸但保留滑動功能 */
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-    /* 裝飾動畫 */
     @keyframes float {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
       50% { transform: translateY(-4px) rotate(4deg); }
     }
-    .animate-float {
-      animation: float 3s ease-in-out infinite;
-    }
-    .animate-float-delayed {
-      animation: float 3.5s ease-in-out 0.8s infinite;
-    }
+    .animate-float { animation: float 3s ease-in-out infinite; }
+    .animate-float-delayed { animation: float 3.5s ease-in-out 0.8s infinite; }
 
-    /* 標籤流動反光效果 */
     @keyframes specular-sweep {
-      0% {
-        transform: translateX(-150%) skewX(-25deg);
-        opacity: 0;
-      }
-      15% {
-        opacity: 0.85;
-      }
-      35% {
-        transform: translateX(260%) skewX(-25deg);
-        opacity: 0.85;
-      }
-      36%, 100% {
-        transform: translateX(260%) skewX(-25deg);
-        opacity: 0;
-      }
+      0% { transform: translateX(-150%) skewX(-25deg); opacity: 0; }
+      15% { opacity: 0.85; }
+      35% { transform: translateX(260%) skewX(-25deg); opacity: 0.85; }
+      36%, 100% { transform: translateX(260%) skewX(-25deg); opacity: 0; }
     }
-    .animate-reflection {
-      animation: specular-sweep 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-    }
+    .animate-reflection { animation: specular-sweep 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
 
-    /* 彈窗在行動裝置平滑滾動 */
     .modal-scroll {
       -webkit-overflow-scrolling: touch;
       overscroll-behavior: contain;
+    }
+
+    /* 確保所有連結與按鈕在 iOS/iPad 觸控時擁有指針樣式 */
+    a, button {
+      cursor: pointer;
+      -webkit-user-select: none;
+      user-select: none;
     }
   </style>
 </head>
@@ -142,26 +91,22 @@
     <!-- TOP PROMOTIONAL BANNER IMAGE -->
     <div id="promoBanner" class="relative w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-md sm:shadow-lg border border-slate-200/80 bg-[#f7f3e7] group">
       
-      <!-- Promo Banner Localized Toast -->
       <div id="promoToast" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[92%] sm:max-w-md bg-slate-900/95 text-white px-3.5 py-2 sm:px-6 sm:py-3.5 rounded-xl sm:rounded-2xl shadow-2xl flex items-center gap-2 sm:gap-3 z-30 opacity-0 pointer-events-none transition-all duration-300 transform scale-90 border border-white/10 text-center">
         <i class="fa-solid fa-circle-check text-green-400 text-sm sm:text-base flex-shrink-0"></i>
         <span id="promoToastMessage" class="text-xs sm:text-sm font-bold tracking-wide break-words"></span>
       </div>
 
       <div class="relative min-h-[190px] sm:min-h-[210px] md:min-h-[240px] w-full overflow-hidden flex items-center justify-between">
-        
-        <!-- Right Aligned Hand Skincare Image -->
         <div class="absolute right-0 top-0 bottom-0 h-full w-2/3 sm:w-7/12 md:w-1/2 flex justify-end items-end sm:items-center pointer-events-none z-0">
           <img 
             src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E6%89%8B%E9%83%A801.jpg" 
             onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/手部01.jpg';"
             alt="手部精華保養" 
-            class="h-full w-auto object-contain object-right-bottom sm:object-right scale-[1.2] sm:scale-[1.5] origin-bottom-right sm:origin-right group-hover:scale-[1.25] sm:group-hover:scale-[1.55] transition-transform duration-700 opacity-25 sm:opacity-90 md:opacity-100"
+            class="h-full w-auto object-contain object-right-bottom sm:object-right scale-[1.2] sm:scale-[1.5] origin-bottom-right sm:origin-right opacity-25 sm:opacity-90 md:opacity-100"
             style="mask-image: linear-gradient(to left, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%); -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);"
           />
         </div>
 
-        <!-- Left Content Area -->
         <div class="relative z-10 p-3 sm:p-5 md:p-8 w-full sm:max-w-[75%] md:max-w-[70%] space-y-1.5 sm:space-y-2.5 pr-2 sm:pr-6">
           <div class="flex items-center gap-1 sm:gap-2 flex-wrap">
             <span class="font-chironsung bg-red-500 text-white text-[10px] sm:text-xs md:text-sm font-black px-2 py-0.5 sm:px-2.5 rounded-full shadow-sm tracking-wider uppercase animate-pulse">
@@ -184,7 +129,7 @@
           </p>
 
           <div class="pt-0.5 sm:pt-1 flex items-center gap-2 flex-wrap w-full">
-            <button onclick="copyPromoCode('NEW99')" class="font-chironsung w-full sm:w-auto inline-flex items-center justify-center gap-1.5 bg-gradient-to-r from-[#faefc7] via-[#f4e6a6] to-[#ebd992] hover:from-[#fcf4d9] hover:to-[#e2cd7d] text-[#364C84] font-bold text-[10px] sm:text-xs md:text-sm px-2.5 py-1.5 sm:px-4 sm:py-2.5 rounded-lg sm:rounded-xl shadow hover:shadow-amber-900/15 transition transform active:scale-95 text-center border border-amber-200/60 leading-snug touch-manipulation">
+            <button type="button" onclick="copyPromoCode('NEW99')" class="font-chironsung w-full sm:w-auto inline-flex items-center justify-center gap-1.5 bg-gradient-to-r from-[#faefc7] via-[#f4e6a6] to-[#ebd992] hover:from-[#fcf4d9] hover:to-[#e2cd7d] text-[#364C84] font-bold text-[10px] sm:text-xs md:text-sm px-2.5 py-1.5 sm:px-4 sm:py-2.5 rounded-lg sm:rounded-xl shadow active:scale-95 text-center border border-amber-200/60 leading-snug">
               <i class="fa-solid fa-copy text-[#364C84] text-xs flex-shrink-0"></i>
               <span class="break-words">點我活動複製活動字串(可隨時返回本頁複製活動字串)</span>
             </button>
@@ -195,8 +140,7 @@
     </div>
 
     <!-- HERO CAROUSEL BANNER -->
-    <div class="relative w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl group border border-sky-100 bg-white select-none touch-pan-y" id="heroCarousel">
-      <!-- Carousel Slides Container -->
+    <div class="relative w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl group border border-sky-100 bg-white select-none" id="heroCarousel">
       <div class="relative min-h-[220px] h-56 sm:h-72 md:h-80 lg:h-96 w-full overflow-hidden">
         
         <!-- Slide 1 -->
@@ -222,7 +166,7 @@
         </div>
 
         <!-- Slide 2 -->
-        <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out flex items-center justify-between bg-gradient-to-r from-[#f7f2e7] via-[#f3ebe0] to-[#e8decb] text-stone-800 p-3.5 sm:p-7 md:p-12 overflow-hidden">
+        <div class="carousel-slide absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-700 ease-in-out flex items-center justify-between bg-gradient-to-r from-[#f7f2e7] via-[#f3ebe0] to-[#e8decb] text-stone-800 p-3.5 sm:p-7 md:p-12 overflow-hidden">
           <div class="z-10 max-w-[65%] sm:max-w-md md:max-w-lg space-y-1 sm:space-y-3 md:space-y-4">
             <span class="inline-block bg-white/70 backdrop-blur-sm text-stone-800 text-[9px] sm:text-xs md:text-sm font-black px-2 py-0.5 sm:px-3 sm:py-1 rounded-full border border-amber-200/60 shadow-sm tracking-wide">
               會員專屬禮遇
@@ -233,7 +177,7 @@
             <p class="text-[10px] sm:text-sm md:text-base text-stone-800 font-medium line-clamp-2 sm:line-clamp-none leading-relaxed">
               登入領專屬好禮，最高享 <span class="text-stone-800 font-black drop-shadow-sm">$500</span> 升等回饋
             </p>
-            <button onclick="openMembershipModal()" class="mt-1 sm:mt-2 inline-flex items-center gap-1 sm:gap-2 bg-gradient-to-r from-[#faefc7] via-[#f4e6a6] to-[#ebd992] hover:from-[#fcf4d9] hover:to-[#e2cd7d] text-stone-800 font-extrabold text-[10px] sm:text-xs md:text-sm px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-lg sm:rounded-xl shadow-md transition transform active:scale-95 border border-amber-200/60 touch-manipulation">
+            <button type="button" onclick="openMembershipModal()" class="mt-1 sm:mt-2 inline-flex items-center gap-1 sm:gap-2 bg-gradient-to-r from-[#faefc7] via-[#f4e6a6] to-[#ebd992] hover:from-[#fcf4d9] hover:to-[#e2cd7d] text-stone-800 font-extrabold text-[10px] sm:text-xs md:text-sm px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-lg sm:rounded-xl shadow active:scale-95 border border-amber-200/60">
               查看會員制度 <i class="fa-solid fa-arrow-right text-[10px] sm:text-xs text-stone-800"></i>
             </button>
           </div>
@@ -247,7 +191,7 @@
         </div>
 
         <!-- Slide 3 -->
-        <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out flex items-center justify-between bg-gradient-to-r from-[#9b7b66] via-[#b0907a] to-[#c8ab97] text-white p-3.5 sm:p-7 md:p-12 overflow-hidden">
+        <div class="carousel-slide absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-700 ease-in-out flex items-center justify-between bg-gradient-to-r from-[#9b7b66] via-[#b0907a] to-[#c8ab97] text-white p-3.5 sm:p-7 md:p-12 overflow-hidden">
           <div class="z-10 max-w-[62%] sm:max-w-md md:max-w-lg space-y-1 sm:space-y-3 md:space-y-4">
             <span class="inline-block bg-white/20 backdrop-blur-md text-white text-[9px] sm:text-xs md:text-sm font-bold px-2 py-0.5 sm:px-3 sm:py-1 rounded-full border border-white/30">
               全膚質安心選
@@ -258,9 +202,9 @@
             <p class="text-[10px] sm:text-sm md:text-base text-stone-100 line-clamp-2 sm:line-clamp-none leading-relaxed drop-shadow-sm">
               跟著大家買不踩雷・純粹日常的安心首選
             </p>
-            <button onclick="handleProductNav(event, 'https://www.simplism.com.tw/products/product/')" class="mt-1 sm:mt-2 inline-flex items-center gap-1 sm:gap-2 bg-gradient-to-r from-[#faefc7] via-[#f4e6a6] to-[#ebd992] hover:from-[#fcf4d9] hover:to-[#e2cd7d] text-stone-800 font-extrabold text-[10px] sm:text-xs md:text-sm px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-lg sm:rounded-xl shadow-md transition transform active:scale-95 border border-amber-200/60 touch-manipulation">
+            <a href="https://www.simplism.com.tw/products/product/" target="_top" rel="noopener noreferrer" class="mt-1 sm:mt-2 inline-flex items-center gap-1 sm:gap-2 bg-gradient-to-r from-[#faefc7] via-[#f4e6a6] to-[#ebd992] hover:from-[#fcf4d9] hover:to-[#e2cd7d] text-stone-800 font-extrabold text-[10px] sm:text-xs md:text-sm px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-lg sm:rounded-xl shadow active:scale-95 border border-amber-200/60 no-underline">
               查看熱銷日常保養 <i class="fa-solid fa-arrow-right text-[10px] sm:text-xs text-stone-800"></i>
-            </button>
+            </a>
           </div>
           <img 
             src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/Gemini_Generated_Image_8bo1918bo1918bo1.jpg" 
@@ -274,22 +218,22 @@
       </div>
 
       <!-- Controls: Navigation Arrows -->
-      <button onclick="prevSlide()" class="absolute left-1.5 sm:left-3 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-white text-gray-800 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center backdrop-blur-md transition shadow-md opacity-75 hover:opacity-100 z-20 touch-manipulation active:scale-90" aria-label="上一張">
+      <button type="button" onclick="prevSlide()" class="absolute left-1.5 sm:left-3 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-white text-gray-800 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center backdrop-blur-md transition shadow opacity-75 hover:opacity-100 z-20 active:scale-90" aria-label="上一張">
         <i class="fa-solid fa-chevron-left text-xs sm:text-sm"></i>
       </button>
-      <button onclick="nextSlide()" class="absolute right-1.5 sm:right-3 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-white text-gray-800 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center backdrop-blur-md transition shadow-md opacity-75 hover:opacity-100 z-20 touch-manipulation active:scale-90" aria-label="下一張">
+      <button type="button" onclick="nextSlide()" class="absolute right-1.5 sm:right-3 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-white text-gray-800 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center backdrop-blur-md transition shadow opacity-75 hover:opacity-100 z-20 active:scale-90" aria-label="下一張">
         <i class="fa-solid fa-chevron-right text-xs sm:text-sm"></i>
       </button>
 
       <!-- Indicators Dots -->
       <div class="absolute bottom-2 sm:bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 sm:gap-2 bg-black/25 backdrop-blur-md px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full z-20">
-        <button onclick="goToSlide(0)" class="carousel-dot w-5 sm:w-8 h-2 sm:h-2.5 rounded-full bg-white transition-all duration-300 touch-manipulation" aria-label="第 1 頁"></button>
-        <button onclick="goToSlide(1)" class="carousel-dot w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-white/50 hover:bg-white/80 transition-all duration-300 touch-manipulation" aria-label="第 2 頁"></button>
-        <button onclick="goToSlide(2)" class="carousel-dot w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-white/50 hover:bg-white/80 transition-all duration-300 touch-manipulation" aria-label="第 3 頁"></button>
+        <button type="button" onclick="goToSlide(0)" class="carousel-dot w-5 sm:w-8 h-2 sm:h-2.5 rounded-full bg-white transition-all duration-300" aria-label="第 1 頁"></button>
+        <button type="button" onclick="goToSlide(1)" class="carousel-dot w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-white/50 hover:bg-white/80 transition-all duration-300" aria-label="第 2 頁"></button>
+        <button type="button" onclick="goToSlide(2)" class="carousel-dot w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-white/50 hover:bg-white/80 transition-all duration-300" aria-label="第 3 頁"></button>
       </div>
     </div>
 
-    <!-- SECTION 1: 依膚況挑選 -->
+    <!-- SECTION 1: 依膚況挑選 (採用原生 target="_top"，徹底擺脫跨網域跳轉封鎖) -->
     <section id="beautySection" class="scroll-mt-4 sm:scroll-mt-8">
       <div class="flex justify-center mb-4 sm:mb-8 px-1">
         <div class="relative inline-flex items-center justify-center text-white px-5 sm:px-12 md:px-16 py-2 sm:py-3.5 rounded-full shadow-md sm:shadow-xl border-2 border-sky-200/90 max-w-full">
@@ -326,14 +270,15 @@
         <!-- 1. 乾肌潤澤保濕組 -->
         <a 
           href="https://www.simplism.com.tw/product-detail/820260420001" 
-          onclick="handleProductNav(event, 'https://www.simplism.com.tw/product-detail/820260420001')" 
-          class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md hover:shadow-xl border border-slate-200/80 bg-white transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] cursor-pointer touch-manipulation"
+          target="_top" 
+          rel="noopener noreferrer" 
+          class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md hover:shadow-xl border border-slate-200/80 bg-white transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
         >
           <img 
             src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E4%B9%BE%E8%82%8C%E6%BD%A4%E6%BE%A4%E4%BF%9D%E6%BF%95%E7%B5%84%28%E4%B9%BE%E8%82%8C%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F%281%29.jpg" 
             onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/乾肌潤澤保濕組(乾肌)保養三步驟(1).jpg';"
             alt="乾肌潤澤保濕組 (乾肌) 保養三步驟" 
-            class="w-full h-auto max-w-full object-cover object-center block select-none group-hover:opacity-95 transition-opacity"
+            class="w-full h-auto max-w-full object-cover object-center block select-none group-hover:opacity-95"
             loading="lazy"
           />
         </a>
@@ -341,14 +286,15 @@
         <!-- 2. 混合肌控油調理組 -->
         <a 
           href="https://www.simplism.com.tw/product-detail/820260420002" 
-          onclick="handleProductNav(event, 'https://www.simplism.com.tw/product-detail/820260420002')" 
-          class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md hover:shadow-xl border border-slate-200/80 bg-white transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] cursor-pointer touch-manipulation"
+          target="_top" 
+          rel="noopener noreferrer" 
+          class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md hover:shadow-xl border border-slate-200/80 bg-white transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
         >
           <img 
-            src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E6%B7%B7%E5%90%88%E8%82%8C%E6%8E%A7%E6%B2%B9%E8%AA%BF%E7%90%86%E7%B5%84%28%E6%B7%B7%E5%90%88%E8%82%8C%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F%281%29.jpg" 
+            src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E6%B7%BB%E5%90%88%E8%82%8C%E6%8E%A7%E6%B2%B9%E8%AA%BF%E7%90%86%E7%B5%84%28%E6%B7%B7%E5%90%88%E8%82%8C%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F%281%29.jpg" 
             onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/混合肌控油調理組(混合肌)保養三步驟(1).jpg';"
             alt="混合肌控油調理組 (混合肌) 保養三步驟" 
-            class="w-full h-auto max-w-full object-cover object-center block select-none group-hover:opacity-95 transition-opacity"
+            class="w-full h-auto max-w-full object-cover object-center block select-none group-hover:opacity-95"
             loading="lazy"
           />
         </a>
@@ -356,14 +302,15 @@
         <!-- 3. 敏肌專研全效修護組 -->
         <a 
           href="https://www.simplism.com.tw/product-detail/820260420003" 
-          onclick="handleProductNav(event, 'https://www.simplism.com.tw/product-detail/820260420003')" 
-          class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md hover:shadow-xl border border-slate-200/80 bg-white transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] cursor-pointer touch-manipulation"
+          target="_top" 
+          rel="noopener noreferrer" 
+          class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md hover:shadow-xl border border-slate-200/80 bg-white transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
         >
           <img 
             src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E6%95%8F%E8%82%8C%E5%B0%88%E7%A0%94%E5%85%A8%E6%95%88%E4%BF%AE%E8%AD%B7%E7%B5%84%28%E6%95%8F%E5%BC%B1%E6%B3%9B%E7%B4%85%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F%281%29.jpg" 
             onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/敏肌專研全效修護組(敏弱泛紅)保養三步驟(1).jpg';"
             alt="敏肌專研全效修護組 (敏弱泛紅) 保養三步驟" 
-            class="w-full h-auto max-w-full object-cover object-center block select-none group-hover:opacity-95 transition-opacity"
+            class="w-full h-auto max-w-full object-cover object-center block select-none group-hover:opacity-95"
             loading="lazy"
           />
         </a>
@@ -371,14 +318,15 @@
         <!-- 4. 煥膚淨瑕調理組 -->
         <a 
           href="https://www.simplism.com.tw/product-detail/820260420004" 
-          onclick="handleProductNav(event, 'https://www.simplism.com.tw/product-detail/820260420004')" 
-          class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md hover:shadow-xl border border-slate-200/80 bg-white transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] cursor-pointer touch-manipulation"
+          target="_top" 
+          rel="noopener noreferrer" 
+          class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md hover:shadow-xl border border-slate-200/80 bg-white transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
         >
           <img 
             src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E7%85%A5%E8%86%9A%E6%B7%A8%E7%91%95%E8%AA%BF%E7%90%86%E7%B5%84%28%E8%8D%B3%E8%8D%B3%E7%B2%89%E5%88%BA%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F.jpg" 
             onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/煥膚淨瑕調理組(荳荳粉刺)保養三步驟.jpg';"
             alt="煥膚淨瑕調理組 (荳荳粉刺) 保養三步驟" 
-            class="w-full h-auto max-w-full object-cover object-center block select-none group-hover:opacity-95 transition-opacity"
+            class="w-full h-auto max-w-full object-cover object-center block select-none group-hover:opacity-95"
             loading="lazy"
           />
         </a>
@@ -386,14 +334,15 @@
         <!-- 5. 極緻抗老修復組 -->
         <a 
           href="https://www.simplism.com.tw/product-detail/820260420005" 
-          onclick="handleProductNav(event, 'https://www.simplism.com.tw/product-detail/820260420005')" 
-          class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md hover:shadow-xl border border-slate-200/80 bg-white transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] cursor-pointer touch-manipulation"
+          target="_top" 
+          rel="noopener noreferrer" 
+          class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md hover:shadow-xl border border-slate-200/80 bg-white transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
         >
           <img 
             src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E6%A5%B5%E7%B7%BB%E6%8A%97%E8%80%81%E4%BF%AE%E5%BE%A9%E7%B5%84%28%E6%8A%97%E8%80%81%E7%B7%8A%E7%B7%BB%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F.jpg" 
             onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/極緻抗老修復組(抗老緊緻)保養三步驟.jpg';"
             alt="極緻抗老修復組 (抗老緊緻) 保養三步驟" 
-            class="w-full h-auto max-w-full object-cover object-center block select-none group-hover:opacity-95 transition-opacity"
+            class="w-full h-auto max-w-full object-cover object-center block select-none group-hover:opacity-95"
             loading="lazy"
           />
         </a>
@@ -401,14 +350,15 @@
         <!-- 6. 深度修護穩膚組 -->
         <a 
           href="https://www.simplism.com.tw/product-detail/820260420006" 
-          onclick="handleProductNav(event, 'https://www.simplism.com.tw/product-detail/820260420006')" 
-          class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md hover:shadow-xl border border-slate-200/80 bg-white transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] cursor-pointer touch-manipulation"
+          target="_top" 
+          rel="noopener noreferrer" 
+          class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md hover:shadow-xl border border-slate-200/80 bg-white transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
         >
           <img 
-            src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E6%B7%B1%E5%BA%A6%E4%BF%AE%E8%AD%B7%E7%A9%A9%E8%86%9A%E7%B5%84%28%E7%BE%8E%E5%AE%B9%E8%AA%B2%E7%A8%8B%E5%BE%8C%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F.jpg" 
+            src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E6%B7%B4%E5%BA%A6%E4%BF%AE%E8%AD%B7%E7%A9%A9%E8%86%9A%E7%B5%84%28%E7%BE%8E%E5%AE%B9%E8%AA%B2%E7%A8%8B%E5%BE%8C%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F.jpg" 
             onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/深度修護穩膚組(美容課程後)保養三步驟.jpg';"
             alt="深度修護穩膚組 (美容課程後) 保養三步驟" 
-            class="w-full h-auto max-w-full object-cover object-center block select-none group-hover:opacity-95 transition-opacity"
+            class="w-full h-auto max-w-full object-cover object-center block select-none group-hover:opacity-95"
             loading="lazy"
           />
         </a>
@@ -416,13 +366,15 @@
       </div>
     </section>
 
-    <!-- SECTION 2: 官網熱銷 TOP 榜 -->
+    <!-- SECTION 2: 官網熱銷 TOP 榜 (同步複製 + 原生跳轉) -->
     <section id="healthSection" class="scroll-mt-4 sm:scroll-mt-8">
       <div class="flex justify-center mb-4 sm:mb-8 px-1">
         <a 
           href="https://www.simplism.com.tw/products/product/" 
+          target="_top" 
+          rel="noopener noreferrer" 
           onclick="handleCopyAndGo(event, 'NEW99', 'https://www.simplism.com.tw/products/product/')" 
-          class="relative inline-flex items-center justify-center text-[#364C84] px-4 sm:px-12 md:px-16 lg:px-20 py-2.5 sm:py-4 md:py-5 rounded-full shadow-lg sm:shadow-xl border-2 border-amber-200/80 cursor-pointer transition transform active:scale-95 group max-w-full w-full sm:w-auto select-none no-underline touch-manipulation"
+          class="relative inline-flex items-center justify-center text-[#364C84] px-4 sm:px-12 md:px-16 lg:px-20 py-2.5 sm:py-4 md:py-5 rounded-full shadow-lg sm:shadow-xl border-2 border-amber-200/80 cursor-pointer transition active:scale-95 group max-w-full w-full sm:w-auto select-none no-underline"
         >
           <div class="absolute inset-0 rounded-full overflow-hidden bg-gradient-to-r from-[#faefc7] via-[#f4e6a6] to-[#ebd992] group-hover:from-[#fcf4d9] group-hover:to-[#e2cd7d] shadow-inner pointer-events-none transition-colors duration-300">
             <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/55 via-white/20 to-transparent rounded-t-full"></div>
@@ -454,24 +406,14 @@
 
   </main>
 
-  <!-- Quick View / Detail Modal -->
-  <div id="productModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-4 modal-scroll">
-    <div class="bg-white rounded-2xl max-w-md w-full p-4 sm:p-6 relative shadow-2xl animate-fade-in transform transition-all max-h-[90vh] overflow-y-auto modal-scroll">
-      <button onclick="closeProductModal()" class="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-400 hover:text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-full w-9 h-9 flex items-center justify-center transition z-10 touch-manipulation" aria-label="關閉">
-        <i class="fa-solid fa-xmark text-base sm:text-lg"></i>
-      </button>
-      <div id="modalContent"></div>
-    </div>
-  </div>
-
   <!-- Membership Tiers Modal -->
   <div id="membershipModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-2.5 sm:p-4 md:p-6 modal-scroll" onclick="if(event.target === this) closeMembershipModal()">
-    <div class="bg-white rounded-2xl sm:rounded-3xl max-w-5xl w-full relative shadow-2xl overflow-hidden flex flex-col max-h-[94vh] border border-white/20 animate-fade-in">
+    <div class="bg-white rounded-2xl sm:rounded-3xl max-w-5xl w-full relative shadow-2xl overflow-hidden flex flex-col max-h-[94vh] border border-white/20">
       <div class="flex-shrink-0 flex items-center justify-between px-3.5 py-2.5 sm:px-6 sm:py-3.5 border-b border-gray-100 bg-slate-50/90 backdrop-blur-sm z-10">
         <h3 class="text-xs sm:text-base md:text-lg font-bold text-gray-800 flex items-center gap-1.5 sm:gap-2">
           <i class="fa-solid fa-crown text-amber-500"></i> 會員等級制度與專屬禮遇
         </h3>
-        <button onclick="closeMembershipModal()" class="text-gray-400 hover:text-gray-700 bg-white hover:bg-gray-200 rounded-full w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center transition shadow-sm touch-manipulation" aria-label="關閉">
+        <button type="button" onclick="closeMembershipModal()" class="text-gray-400 hover:text-gray-700 bg-white hover:bg-gray-200 rounded-full w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center transition shadow-sm" aria-label="關閉">
           <i class="fa-solid fa-xmark text-sm sm:text-lg"></i>
         </button>
       </div>
@@ -487,32 +429,6 @@
     </div>
   </div>
 
-  <!-- Shopping Cart Side Drawer/Modal -->
-  <div id="cartModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex justify-end">
-    <div class="bg-white w-full max-w-md h-full shadow-2xl flex flex-col p-4 sm:p-6">
-      <div class="flex justify-between items-center pb-3 sm:pb-4 border-b">
-        <h3 class="text-base sm:text-xl font-bold text-gray-800 flex items-center gap-2">
-          <i class="fa-solid fa-cart-shopping text-cyan-500"></i> 我的購物車
-        </h3>
-        <button onclick="closeCartModal()" class="text-gray-400 hover:text-gray-600 text-xl p-2 rounded-full hover:bg-gray-100 touch-manipulation" aria-label="關閉購物車">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-
-      <div id="cartItemsList" class="flex-1 overflow-y-auto py-3 sm:py-4 space-y-3 modal-scroll"></div>
-
-      <div class="pt-3 sm:pt-4 border-t space-y-3">
-        <div class="flex justify-between text-sm sm:text-lg font-bold">
-          <span>總金額：</span>
-          <span id="cartTotalPrice" class="text-red-600">$ 0</span>
-        </div>
-        <button onclick="checkoutCart()" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold py-2.5 sm:py-3 rounded-xl shadow-lg hover:brightness-105 active:scale-[0.99] transition text-sm sm:text-base touch-manipulation">
-          結帳領取會員優惠
-        </button>
-      </div>
-    </div>
-  </div>
-
   <!-- Notification Toast -->
   <div id="toast" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[90%] sm:max-w-md bg-gray-900/95 text-white px-4 py-3 sm:px-7 sm:py-4 rounded-xl sm:rounded-2xl shadow-2xl flex items-center justify-center gap-2 sm:gap-3 z-[9999] opacity-0 pointer-events-none transition-all duration-300 transform scale-90 border border-white/10 text-center backdrop-blur-md">
     <i class="fa-solid fa-circle-check text-green-400 text-sm sm:text-xl flex-shrink-0"></i>
@@ -520,9 +436,6 @@
   </div>
 
   <script>
-    // Global State
-    let isLoggedIn = false;
-    let cart = [];
     let currentSlide = 0;
     let slideTimer = null;
     let isTransitioning = false;
@@ -600,43 +513,6 @@
       startSlideTimer();
     }
 
-    function initTouchSwipe() {
-      const carousel = document.getElementById('heroCarousel');
-      if (!carousel) return;
-
-      let touchStartX = 0;
-      let touchStartY = 0;
-      let touchEndX = 0;
-      let touchEndY = 0;
-
-      carousel.addEventListener('touchstart', (e) => {
-        if (e.touches && e.touches.length > 0) {
-          touchStartX = e.touches[0].clientX;
-          touchStartY = e.touches[0].clientY;
-        }
-      }, { passive: true });
-
-      carousel.addEventListener('touchend', (e) => {
-        if (e.changedTouches && e.changedTouches.length > 0) {
-          touchEndX = e.changedTouches[0].clientX;
-          touchEndY = e.changedTouches[0].clientY;
-          handleSwipe();
-        }
-      }, { passive: true });
-
-      function handleSwipe() {
-        const deltaX = touchEndX - touchStartX;
-        const deltaY = touchEndY - touchStartY;
-        if (Math.abs(deltaX) > 45 && Math.abs(deltaX) > Math.abs(deltaY) * 1.4) {
-          if (deltaX < 0) {
-            nextSlide();
-          } else {
-            prevSlide();
-          }
-        }
-      }
-    }
-
     function openMembershipModal() {
       const modal = document.getElementById('membershipModal');
       if (modal) {
@@ -654,9 +530,7 @@
     }
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeMembershipModal();
-      }
+      if (e.key === 'Escape') closeMembershipModal();
     });
 
     function showToast(msg, duration = 2500) {
@@ -675,10 +549,11 @@
       }, duration);
     }
 
-    // 支援行動裝置全瀏覽器的剪貼簿相容複製
     function executeCopyText(code) {
-      let copied = false;
       try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(code).catch(() => {});
+        }
         const tempInput = document.createElement('textarea');
         tempInput.value = code;
         tempInput.setAttribute('readonly', '');
@@ -690,32 +565,19 @@
         tempInput.focus({ preventScroll: true });
         tempInput.select();
         tempInput.setSelectionRange(0, 99999);
-        copied = document.execCommand('copy');
+        document.execCommand('copy');
         document.body.removeChild(tempInput);
-      } catch (err) {
-        console.warn('execCommand fallback error:', err);
-      }
-
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(code).catch(() => {});
-      }
-      return copied;
+      } catch (err) {}
     }
 
     function copyPromoCode(code) {
       executeCopyText(code);
-      showPromoToast('已成功複製活動字串：【' + code + '】結帳輸入現折$130元');
-    }
-
-    function showPromoToast(msg) {
       const toast = document.getElementById('promoToast');
       const toastMessage = document.getElementById('promoToastMessage');
       if (!toast || !toastMessage) return;
-
-      toastMessage.innerText = msg;
+      toastMessage.innerText = '已成功複製活動字串：【' + code + '】結帳輸入現折$130元';
       toast.classList.remove('opacity-0', 'pointer-events-none', 'scale-90');
       toast.classList.add('opacity-100', 'scale-100');
-
       if (window._promoToastTimeout) clearTimeout(window._promoToastTimeout);
       window._promoToastTimeout = setTimeout(() => {
         toast.classList.remove('opacity-100', 'scale-100');
@@ -723,60 +585,15 @@
       }, 3000);
     }
 
-    // ========================================================
-    // 跨裝置、跨 iframe 核心跳轉與複製函式 (徹底解決手機按鈕失效)
-    // ========================================================
-    function navigateToUrl(targetUrl) {
-      const isInsideIframe = (window.self !== window.top);
-      if (!isInsideIframe) {
-        window.location.href = targetUrl;
-        return;
-      }
-      try {
-        // 優先嘗試由外層父視窗跳轉
-        window.top.location.href = targetUrl;
-      } catch (sandboxErr) {
-        // 若受限於跨網域政策，退回開啟新分頁
-        window.open(targetUrl, '_blank', 'noopener,noreferrer');
-      }
-    }
-
-    function handleProductNav(e, targetUrl) {
-      if (e) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
-      navigateToUrl(targetUrl);
-    }
-
+    // 金色按鈕：點擊當下「同步」複製並允許原生跳轉（絕不使用 setTimeout，避免被 iPad 判定為惡意彈窗）
     function handleCopyAndGo(e, code, targetUrl) {
-      if (e) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
-
-      // 1. 立即複製優惠碼
       executeCopyText(code);
-
-      // 2. 顯示複製成功提示
-      showToast('已複製活動字串【' + code + '】，為您前往全商品選購', 2000);
-
-      // 3. 縮短等待為 350ms，保留提示感，同時防止被手機 Safari/Chrome 當作未授權彈窗攔截
-      setTimeout(() => {
-        navigateToUrl(targetUrl);
-      }, 350);
+      // 不呼叫 e.preventDefault()，直接交由原生 target="_top" 導向
     }
 
     function initPage() {
       showSlide(0);
       startSlideTimer();
-      initTouchSwipe();
-
-      const heroCarousel = document.getElementById('heroCarousel');
-      if (heroCarousel) {
-        heroCarousel.addEventListener('mouseenter', stopSlideTimer);
-        heroCarousel.addEventListener('mouseleave', startSlideTimer);
-      }
     }
 
     if (document.readyState === 'loading') {
@@ -786,7 +603,7 @@
     }
   </script>
 
-  <!-- 自動向外層通報高度腳本 -->
+  <!-- 自動向外層通報真實高度 -->
   <script>
     (function () {
       function sendHeightToParent() {
