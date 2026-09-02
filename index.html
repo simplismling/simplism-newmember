@@ -15,6 +15,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
   
   <style>
+    /* 全局防溢出與平滑捲動設定 */
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
     /* 思源宋體 - 粗體 */
     .font-notoserif-bold {
       font-family: 'Noto Serif TC', 'Source Han Serif TC', 'Songti TC', serif;
@@ -97,7 +105,7 @@
     /* Smooth floating animation for decoration icons */
     @keyframes float {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-6px) rotate(5deg); }
+      50% { transform: translateY(-4px) rotate(4deg); }
     }
     .animate-float {
       animation: float 3s ease-in-out infinite;
@@ -127,60 +135,67 @@
     .animate-reflection {
       animation: specular-sweep 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
     }
+
+    /* 彈窗在行動裝置平滑滾動 */
+    .modal-scroll {
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
+    }
   </style>
 </head>
 
-<body class="bg-[#e7f7ff] text-gray-800 font-sans min-h-screen pb-16 antialiased selection:bg-sky-200">
+<body class="bg-[#e7f7ff] text-gray-800 font-sans min-h-screen pb-12 sm:pb-16 antialiased selection:bg-sky-200 overflow-x-hidden">
 
-  <main class="w-full max-w-7xl mx-auto px-3 sm:px-6 md:px-8 py-4 sm:py-8 space-y-6 sm:space-y-10 md:space-y-12">
+  <main class="w-full max-w-7xl mx-auto px-2.5 sm:px-5 md:px-8 py-3.5 sm:py-6 md:py-8 space-y-5 sm:space-y-8 md:space-y-12">
 
     <!-- TOP PROMOTIONAL BANNER IMAGE -->
     <div id="promoBanner" class="relative w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-md sm:shadow-lg border border-slate-200/80 bg-[#f7f3e7] group">
       
       <!-- Promo Banner Localized Toast -->
-      <div id="promoToast" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[90%] bg-slate-900/95 text-white px-4 py-2.5 sm:px-6 sm:py-3.5 rounded-xl sm:rounded-2xl shadow-2xl flex items-center gap-2 sm:gap-3 z-30 opacity-0 pointer-events-none transition-all duration-300 transform scale-90 border border-white/10 text-center">
+      <div id="promoToast" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[92%] sm:max-w-md bg-slate-900/95 text-white px-3.5 py-2 sm:px-6 sm:py-3.5 rounded-xl sm:rounded-2xl shadow-2xl flex items-center gap-2 sm:gap-3 z-30 opacity-0 pointer-events-none transition-all duration-300 transform scale-90 border border-white/10 text-center">
         <i class="fa-solid fa-circle-check text-green-400 text-sm sm:text-base flex-shrink-0"></i>
         <span id="promoToastMessage" class="text-xs sm:text-sm font-bold tracking-wide break-words"></span>
       </div>
 
-      <div class="relative min-h-[220px] sm:min-h-[200px] md:min-h-[240px] w-full overflow-hidden flex items-center justify-between">
+      <div class="relative min-h-[190px] sm:min-h-[210px] md:min-h-[240px] w-full overflow-hidden flex items-center justify-between">
         
         <!-- Right Aligned Hand Skincare Image (Responsive positioning to prevent mobile overlap) -->
-        <div class="absolute right-0 top-0 bottom-0 h-full w-2/3 sm:w-2/3 md:w-7/12 flex justify-end items-end sm:items-center pointer-events-none z-0">
+        <div class="absolute right-0 top-0 bottom-0 h-full w-2/3 sm:w-7/12 md:w-1/2 flex justify-end items-end sm:items-center pointer-events-none z-0">
           <img 
             src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E6%89%8B%E9%83%A801.jpg" 
             onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/手部01.jpg';"
             alt="手部精華保養" 
-            class="h-full w-auto object-contain object-right-bottom sm:object-right scale-[1.25] sm:scale-[1.6] origin-bottom-right sm:origin-right group-hover:scale-[1.3] sm:group-hover:scale-[1.65] transition-transform duration-700 opacity-35 sm:opacity-100"
-            style="mask-image: linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%); -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);"
+            class="h-full w-auto object-contain object-right-bottom sm:object-right scale-[1.2] sm:scale-[1.5] origin-bottom-right sm:origin-right group-hover:scale-[1.25] sm:group-hover:scale-[1.55] transition-transform duration-700 opacity-25 sm:opacity-90 md:opacity-100"
+            style="mask-image: linear-gradient(to left, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%); -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);"
           />
         </div>
 
         <!-- Left Content Area -->
-        <div class="relative z-10 p-3.5 sm:p-6 md:p-8 w-full sm:max-w-[75%] md:max-w-[70%] space-y-2 sm:space-y-2.5 pr-2 sm:pr-6">
-          <div class="flex items-center gap-1.5 sm:gap-2 flex-wrap">
-            <span class="font-chironsung bg-red-500 text-white text-[11px] sm:text-xs md:text-sm font-black px-2 py-0.5 sm:px-2.5 rounded-full shadow-sm tracking-wider uppercase animate-pulse">
+        <div class="relative z-10 p-3 sm:p-5 md:p-8 w-full sm:max-w-[75%] md:max-w-[70%] space-y-1.5 sm:space-y-2.5 pr-2 sm:pr-6">
+          <div class="flex items-center gap-1 sm:gap-2 flex-wrap">
+            <span class="font-chironsung bg-red-500 text-white text-[10px] sm:text-xs md:text-sm font-black px-2 py-0.5 sm:px-2.5 rounded-full shadow-sm tracking-wider uppercase animate-pulse">
               🎁 專屬限時折抵
             </span>
-            <span class="font-chironsung text-[11px] sm:text-xs md:text-sm font-bold text-[#364C84] bg-white/90 backdrop-blur-sm px-2 py-0.5 sm:px-2.5 rounded-full border border-indigo-200/80 shadow-sm">
+            <span class="font-chironsung text-[10px] sm:text-xs md:text-sm font-bold text-[#364C84] bg-white/90 backdrop-blur-sm px-2 py-0.5 sm:px-2.5 rounded-full border border-indigo-200/80 shadow-sm">
               全館滿 $1000 即享國內免運
             </span>
-            <span class="font-chironsung text-[11px] sm:text-xs md:text-sm font-bold text-[#364C84] bg-white/90 backdrop-blur-sm px-2 py-0.5 sm:px-2.5 rounded-full border border-indigo-200/80 shadow-sm">
+            <span class="font-chironsung text-[10px] sm:text-xs md:text-sm font-bold text-[#364C84] bg-white/90 backdrop-blur-sm px-2 py-0.5 sm:px-2.5 rounded-full border border-indigo-200/80 shadow-sm">
               結帳輸入活動字串【NEW99】首購現折$130元
             </span>
           </div>
 
-          <h2 class="font-gensen text-base sm:text-2xl md:text-3xl font-black text-[#364C84] tracking-[0.1em] sm:tracking-[0.227em] leading-tight">
+          <h2 class="font-gensen text-sm sm:text-xl md:text-2xl lg:text-3xl font-black text-[#364C84] tracking-[0.05em] sm:tracking-[0.15em] md:tracking-[0.227em] leading-tight">
             官網新會員首購．專屬升級禮
           </h2>
 
-          <p class="font-chironsung text-xs sm:text-sm md:text-base text-slate-600 font-medium leading-relaxed hidden sm:block">
+          <p class="font-chironsung text-[11px] sm:text-xs md:text-base text-slate-600 font-medium leading-relaxed hidden sm:block">
             用得習慣嗎？下一次的優惠先幫你留好了！<br>少一點繁瑣，多一點心意 💝 現在右上角註冊加入會員直接折抵！
           </p>
 
-          <div class="pt-1 sm:pt-0.5 flex items-center gap-2 sm:gap-3 flex-wrap">
-            <button onclick="copyPromoCode('NEW99')" class="font-chironsung flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 bg-gradient-to-r from-[#faefc7] via-[#f4e6a6] to-[#ebd992] hover:from-[#fcf4d9] hover:to-[#e2cd7d] text-[#364C84] font-bold text-[11px] sm:text-xs md:text-sm px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg sm:rounded-xl shadow hover:shadow-amber-900/15 transition transform hover:scale-[1.02] sm:hover:scale-105 active:scale-95 whitespace-nowrap border border-amber-200/60">
-              <i class="fa-solid fa-copy text-[#364C84]"></i> 點我活動複製活動字串(可隨時返回本頁複製活動字串)
+          <div class="pt-0.5 sm:pt-1 flex items-center gap-2 flex-wrap w-full">
+            <button onclick="copyPromoCode('NEW99')" class="font-chironsung w-full sm:w-auto inline-flex items-center justify-center gap-1.5 bg-gradient-to-r from-[#faefc7] via-[#f4e6a6] to-[#ebd992] hover:from-[#fcf4d9] hover:to-[#e2cd7d] text-[#364C84] font-bold text-[10px] sm:text-xs md:text-sm px-2.5 py-1.5 sm:px-4 sm:py-2.5 rounded-lg sm:rounded-xl shadow hover:shadow-amber-900/15 transition transform active:scale-95 text-center border border-amber-200/60 leading-snug touch-manipulation">
+              <i class="fa-solid fa-copy text-[#364C84] text-xs flex-shrink-0"></i>
+              <span class="break-words">點我活動複製活動字串(可隨時返回本頁複製活動字串)</span>
             </button>
           </div>
         </div>
@@ -191,19 +206,19 @@
     <!-- HERO CAROUSEL BANNER -->
     <div class="relative w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl group border border-sky-100 bg-white select-none touch-pan-y" id="heroCarousel">
       <!-- Carousel Slides Container -->
-      <div class="relative h-56 sm:h-72 md:h-80 lg:h-96 w-full overflow-hidden">
+      <div class="relative min-h-[220px] h-56 sm:h-72 md:h-80 lg:h-96 w-full overflow-hidden">
         
         <!-- Slide 1 -->
-        <div class="carousel-slide absolute inset-0 opacity-100 transition-opacity duration-700 ease-in-out flex items-center justify-between bg-gradient-to-r from-sky-600 via-cyan-500 to-teal-400 text-white p-4 sm:p-8 md:p-12">
-          <div class="z-10 max-w-[70%] sm:max-w-lg md:max-w-xl space-y-2 sm:space-y-3.5 md:space-y-5">
-            <span class="inline-block bg-white/20 backdrop-blur-md text-white text-[10px] sm:text-xs md:text-sm font-bold px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full border border-white/30 shadow-sm tracking-wide">
+        <div class="carousel-slide absolute inset-0 opacity-100 transition-opacity duration-700 ease-in-out flex items-center justify-between bg-gradient-to-r from-sky-600 via-cyan-500 to-teal-400 text-white p-3.5 sm:p-7 md:p-12">
+          <div class="z-10 max-w-[70%] sm:max-w-lg md:max-w-xl space-y-1.5 sm:space-y-3.5 md:space-y-5">
+            <span class="inline-block bg-white/20 backdrop-blur-md text-white text-[9px] sm:text-xs md:text-sm font-bold px-2 py-0.5 sm:px-3 sm:py-1 rounded-full border border-white/30 shadow-sm tracking-wide">
               官網限定 ｜ 專屬膚況調理組
             </span>
-            <h1 class="font-notoserif-bold text-xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-snug sm:leading-tight drop-shadow-lg tracking-wider">
+            <h1 class="font-notoserif-bold text-lg sm:text-3xl md:text-4xl lg:text-5xl font-black leading-snug sm:leading-tight drop-shadow-lg tracking-wider">
               六大膚質<br>保養懶人包
             </h1>
-            <p class="text-xs sm:text-base md:text-lg text-sky-50 font-medium line-clamp-2 sm:line-clamp-none leading-relaxed drop-shadow-sm">
-              擺脫「乾、油、敏、荳、老」<br>【下滑挑選】快速找出你的專屬保養組！
+            <p class="text-[10px] sm:text-base md:text-lg text-sky-50 font-medium line-clamp-2 sm:line-clamp-none leading-relaxed drop-shadow-sm">
+              擺脫「乾、油、敏、荳、老」<br class="hidden sm:inline">【下滑挑選】快速找出你的專屬保養組！
             </p>
           </div>
           <img 
@@ -211,24 +226,24 @@
             onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/Simplism簡單保養 (1).jpg';"
             alt="Simplism 簡單保養 - 六大膚質保養懶人包" 
             class="absolute right-0 top-0 h-full w-3/5 sm:w-8/12 md:w-9/12 object-cover object-center scale-105 sm:scale-115 origin-right opacity-90 sm:opacity-100 pointer-events-none" 
-            style="mask-image: linear-gradient(to left, rgba(0,0,0,1) 60%, rgba(0,0,0,0)); -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 60%, rgba(0,0,0,0));"
+            style="mask-image: linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0)); -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0));"
           >
         </div>
 
         <!-- Slide 2 -->
-        <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out flex items-center justify-between bg-gradient-to-r from-[#f7f2e7] via-[#f3ebe0] to-[#e8decb] text-stone-800 p-4 sm:p-8 md:p-12 overflow-hidden">
-          <div class="z-10 max-w-[65%] sm:max-w-md md:max-w-lg space-y-1.5 sm:space-y-3 md:space-y-4">
-            <span class="inline-block bg-white/70 backdrop-blur-sm text-stone-800 text-[10px] sm:text-xs md:text-sm font-black px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full border border-amber-200/60 shadow-sm tracking-wide">
+        <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out flex items-center justify-between bg-gradient-to-r from-[#f7f2e7] via-[#f3ebe0] to-[#e8decb] text-stone-800 p-3.5 sm:p-7 md:p-12 overflow-hidden">
+          <div class="z-10 max-w-[65%] sm:max-w-md md:max-w-lg space-y-1 sm:space-y-3 md:space-y-4">
+            <span class="inline-block bg-white/70 backdrop-blur-sm text-stone-800 text-[9px] sm:text-xs md:text-sm font-black px-2 py-0.5 sm:px-3 sm:py-1 rounded-full border border-amber-200/60 shadow-sm tracking-wide">
               會員專屬禮遇
             </span>
-            <h1 class="font-notoserif-bold text-lg sm:text-2xl md:text-3xl lg:text-4xl font-black leading-snug sm:leading-tight text-stone-800 drop-shadow-sm tracking-wide">
+            <h1 class="font-notoserif-bold text-base sm:text-2xl md:text-3xl lg:text-4xl font-black leading-snug sm:leading-tight text-stone-800 drop-shadow-sm tracking-wide">
               加入簡單保養<br><span class="text-stone-800 font-black drop-shadow-sm">美好回饋很簡單</span>
             </h1>
-            <p class="text-[11px] sm:text-sm md:text-base text-stone-800 font-medium line-clamp-2 sm:line-clamp-none leading-relaxed">
+            <p class="text-[10px] sm:text-sm md:text-base text-stone-800 font-medium line-clamp-2 sm:line-clamp-none leading-relaxed">
               登入領專屬好禮，最高享 <span class="text-stone-800 font-black drop-shadow-sm">$500</span> 升等回饋
             </p>
-            <button onclick="openMembershipModal()" class="mt-1 sm:mt-2 inline-flex items-center gap-1.5 sm:gap-2 bg-gradient-to-r from-[#faefc7] via-[#f4e6a6] to-[#ebd992] hover:from-[#fcf4d9] hover:to-[#e2cd7d] text-stone-800 font-extrabold text-[11px] sm:text-xs md:text-sm px-3.5 py-1.5 sm:px-5 sm:py-2.5 rounded-lg sm:rounded-xl shadow-md transition transform hover:scale-105 active:scale-95 border border-amber-200/60">
-              查看會員制度 <i class="fa-solid fa-arrow-right text-xs text-stone-800"></i>
+            <button onclick="openMembershipModal()" class="mt-1 sm:mt-2 inline-flex items-center gap-1 sm:gap-2 bg-gradient-to-r from-[#faefc7] via-[#f4e6a6] to-[#ebd992] hover:from-[#fcf4d9] hover:to-[#e2cd7d] text-stone-800 font-extrabold text-[10px] sm:text-xs md:text-sm px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-lg sm:rounded-xl shadow-md transition transform active:scale-95 border border-amber-200/60 touch-manipulation">
+              查看會員制度 <i class="fa-solid fa-arrow-right text-[10px] sm:text-xs text-stone-800"></i>
             </button>
           </div>
           <img 
@@ -241,19 +256,19 @@
         </div>
 
         <!-- Slide 3 -->
-        <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out flex items-center justify-between bg-gradient-to-r from-[#9b7b66] via-[#b0907a] to-[#c8ab97] text-white p-4 sm:p-8 md:p-12 overflow-hidden">
-          <div class="z-10 max-w-[60%] sm:max-w-md md:max-w-lg space-y-1.5 sm:space-y-3 md:space-y-4">
-            <span class="inline-block bg-white/20 backdrop-blur-md text-white text-[10px] sm:text-xs md:text-sm font-bold px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full border border-white/30">
+        <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out flex items-center justify-between bg-gradient-to-r from-[#9b7b66] via-[#b0907a] to-[#c8ab97] text-white p-3.5 sm:p-7 md:p-12 overflow-hidden">
+          <div class="z-10 max-w-[62%] sm:max-w-md md:max-w-lg space-y-1 sm:space-y-3 md:space-y-4">
+            <span class="inline-block bg-white/20 backdrop-blur-md text-white text-[9px] sm:text-xs md:text-sm font-bold px-2 py-0.5 sm:px-3 sm:py-1 rounded-full border border-white/30">
               全膚質安心選
             </span>
-            <h1 class="font-notoserif-bold text-lg sm:text-2xl md:text-3xl lg:text-4xl font-black leading-snug sm:leading-tight drop-shadow-md tracking-wide">
+            <h1 class="font-notoserif-bold text-base sm:text-2xl md:text-3xl lg:text-4xl font-black leading-snug sm:leading-tight drop-shadow-md tracking-wide">
               官網熱銷 TOP 榜
             </h1>
-            <p class="text-[11px] sm:text-sm md:text-base text-stone-100 line-clamp-2 sm:line-clamp-none leading-relaxed drop-shadow-sm">
+            <p class="text-[10px] sm:text-sm md:text-base text-stone-100 line-clamp-2 sm:line-clamp-none leading-relaxed drop-shadow-sm">
               跟著大家買不踩雷・純粹日常的安心首選
             </p>
-            <button onclick="handleProductNav(event, 'https://www.simplism.com.tw/products/product/')" class="mt-1 sm:mt-2 inline-flex items-center gap-1.5 sm:gap-2 bg-gradient-to-r from-[#faefc7] via-[#f4e6a6] to-[#ebd992] hover:from-[#fcf4d9] hover:to-[#e2cd7d] text-stone-800 font-extrabold text-[11px] sm:text-xs md:text-sm px-3.5 py-1.5 sm:px-5 sm:py-2.5 rounded-lg sm:rounded-xl shadow-md transition transform hover:scale-105 active:scale-95 border border-amber-200/60">
-              查看熱銷日常保養 <i class="fa-solid fa-arrow-right text-xs text-stone-800"></i>
+            <button onclick="handleProductNav(event, 'https://www.simplism.com.tw/products/product/')" class="mt-1 sm:mt-2 inline-flex items-center gap-1 sm:gap-2 bg-gradient-to-r from-[#faefc7] via-[#f4e6a6] to-[#ebd992] hover:from-[#fcf4d9] hover:to-[#e2cd7d] text-stone-800 font-extrabold text-[10px] sm:text-xs md:text-sm px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-lg sm:rounded-xl shadow-md transition transform active:scale-95 border border-amber-200/60 touch-manipulation">
+              查看熱銷日常保養 <i class="fa-solid fa-arrow-right text-[10px] sm:text-xs text-stone-800"></i>
             </button>
           </div>
           <img 
@@ -267,27 +282,27 @@
 
       </div>
 
-      <!-- Controls: Navigation Arrows -->
-      <button onclick="prevSlide()" class="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white/90 text-gray-800 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center backdrop-blur-md transition shadow-md opacity-70 hover:opacity-100 z-20" aria-label="上一張">
-        <i class="fa-solid fa-chevron-left text-xs sm:text-base"></i>
+      <!-- Controls: Navigation Arrows (Comfortable touch target) -->
+      <button onclick="prevSlide()" class="absolute left-1.5 sm:left-3 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-white text-gray-800 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center backdrop-blur-md transition shadow-md opacity-75 hover:opacity-100 z-20 touch-manipulation active:scale-90" aria-label="上一張">
+        <i class="fa-solid fa-chevron-left text-xs sm:text-sm"></i>
       </button>
-      <button onclick="nextSlide()" class="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white/90 text-gray-800 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center backdrop-blur-md transition shadow-md opacity-70 hover:opacity-100 z-20" aria-label="下一張">
-        <i class="fa-solid fa-chevron-right text-xs sm:text-base"></i>
+      <button onclick="nextSlide()" class="absolute right-1.5 sm:right-3 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-white text-gray-800 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center backdrop-blur-md transition shadow-md opacity-75 hover:opacity-100 z-20 touch-manipulation active:scale-90" aria-label="下一張">
+        <i class="fa-solid fa-chevron-right text-xs sm:text-sm"></i>
       </button>
 
       <!-- Indicators Dots -->
-      <div class="absolute bottom-2.5 sm:bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 sm:gap-2 bg-black/20 backdrop-blur-md px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full z-20">
-        <button onclick="goToSlide(0)" class="carousel-dot w-5 sm:w-8 h-2 sm:h-3 rounded-full bg-white transition-all duration-300"></button>
-        <button onclick="goToSlide(1)" class="carousel-dot w-2 sm:w-3 h-2 sm:h-3 rounded-full bg-white/50 hover:bg-white/80 transition-all duration-300"></button>
-        <button onclick="goToSlide(2)" class="carousel-dot w-2 sm:w-3 h-2 sm:h-3 rounded-full bg-white/50 hover:bg-white/80 transition-all duration-300"></button>
+      <div class="absolute bottom-2 sm:bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 sm:gap-2 bg-black/25 backdrop-blur-md px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full z-20">
+        <button onclick="goToSlide(0)" class="carousel-dot w-5 sm:w-8 h-2 sm:h-2.5 rounded-full bg-white transition-all duration-300 touch-manipulation" aria-label="第 1 頁"></button>
+        <button onclick="goToSlide(1)" class="carousel-dot w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-white/50 hover:bg-white/80 transition-all duration-300 touch-manipulation" aria-label="第 2 頁"></button>
+        <button onclick="goToSlide(2)" class="carousel-dot w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-white/50 hover:bg-white/80 transition-all duration-300 touch-manipulation" aria-label="第 3 頁"></button>
       </div>
     </div>
 
     <!-- SECTION 1: 依膚況挑選 -->
-    <section id="beautySection" class="scroll-mt-6 sm:scroll-mt-10">
-      <!-- Category Pill Title Banner -->
-      <div class="flex justify-center mb-5 sm:mb-8 px-2">
-        <div class="relative inline-flex items-center justify-center text-white px-8 sm:px-14 md:px-16 py-2.5 sm:py-3.5 rounded-full shadow-lg sm:shadow-xl border-2 border-sky-200/90">
+    <section id="beautySection" class="scroll-mt-4 sm:scroll-mt-8">
+      <!-- Category Pill Title Banner (Responsive padding & safe overflow) -->
+      <div class="flex justify-center mb-4 sm:mb-8 px-1">
+        <div class="relative inline-flex items-center justify-center text-white px-5 sm:px-12 md:px-16 py-2 sm:py-3.5 rounded-full shadow-md sm:shadow-xl border-2 border-sky-200/90 max-w-full">
           
           <!-- Glossy & Gradient Background with Specular Reflection (Soft Light Blue Gradient Theme) -->
           <div class="absolute inset-0 rounded-full overflow-hidden bg-gradient-to-r from-[#70c7f8] via-[#4baee8] to-[#70c7f8] shadow-inner pointer-events-none">
@@ -298,34 +313,34 @@
             <div class="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-sky-600/20 to-transparent"></div>
 
             <!-- Moving Specular Reflection Light Streak -->
-            <div class="absolute -inset-y-4 left-0 w-24 sm:w-32 bg-gradient-to-r from-transparent via-white/70 to-transparent transform -skew-x-[25deg] animate-reflection pointer-events-none filter blur-[1px]"></div>
+            <div class="absolute -inset-y-4 left-0 w-20 sm:w-32 bg-gradient-to-r from-transparent via-white/70 to-transparent transform -skew-x-[25deg] animate-reflection pointer-events-none filter blur-[1px]"></div>
           </div>
 
-          <!-- Left Brightness Icon (Retaining background with shadow, no border) -->
+          <!-- Left Brightness Icon -->
           <div class="absolute -left-2 sm:-left-3.5 -bottom-1 sm:-bottom-1.5 animate-float pointer-events-none z-20">
-            <div class="bg-gradient-to-br from-[#fdf8eb] via-[#f7f3e7] to-[#ebdcc4] p-2 sm:p-3 rounded-lg sm:rounded-xl shadow-md sm:shadow-lg rotate-[-12deg] flex items-center justify-center">
-              <i class="fi fi-sr-brightness text-[#364C84] text-base sm:text-xl md:text-2xl flex items-center justify-center leading-none"></i>
+            <div class="bg-gradient-to-br from-[#fdf8eb] via-[#f7f3e7] to-[#ebdcc4] p-1.5 sm:p-3 rounded-lg sm:rounded-xl shadow-md sm:shadow-lg rotate-[-12deg] flex items-center justify-center">
+              <i class="fi fi-sr-brightness text-[#364C84] text-xs sm:text-xl md:text-2xl flex items-center justify-center leading-none"></i>
             </div>
           </div>
 
-          <!-- Right Moon Stars Icon (Bright Yellow Background) -->
+          <!-- Right Moon Stars Icon -->
           <div class="absolute -right-2 sm:-right-3.5 -top-1 sm:-top-1.5 animate-float-delayed pointer-events-none z-20">
-            <div class="bg-gradient-to-br from-[#fef08a] via-[#fde047] to-[#eab308] p-2 sm:p-3 rounded-lg sm:rounded-xl shadow-md sm:shadow-lg rotate-[15deg] flex items-center justify-center">
-              <i class="fi fi-ss-moon-stars text-[#364C84] text-base sm:text-xl md:text-2xl flex items-center justify-center leading-none"></i>
+            <div class="bg-gradient-to-br from-[#fef08a] via-[#fde047] to-[#eab308] p-1.5 sm:p-3 rounded-lg sm:rounded-xl shadow-md sm:shadow-lg rotate-[15deg] flex items-center justify-center">
+              <i class="fi fi-ss-moon-stars text-[#364C84] text-xs sm:text-xl md:text-2xl flex items-center justify-center leading-none"></i>
             </div>
           </div>
 
           <!-- Title Text -->
-          <h2 class="font-notoserif-bold relative z-10 text-base sm:text-2xl md:text-3xl font-black tracking-wider drop-shadow-md whitespace-nowrap flex items-center">
+          <h2 class="font-notoserif-bold relative z-10 text-xs sm:text-xl md:text-2xl lg:text-3xl font-black tracking-wider drop-shadow-md whitespace-nowrap flex items-center">
             <span>保養</span>
-            <span class="text-xl sm:text-3xl md:text-4xl font-black mx-1 sm:mx-1.5 text-yellow-300 drop-shadow inline-block transform scale-110">3</span>
+            <span class="text-base sm:text-2xl md:text-4xl font-black mx-1 sm:mx-1.5 text-yellow-300 drop-shadow inline-block transform scale-105">3</span>
             <span>步驟｜依膚況挑選</span>
           </h2>
         </div>
       </div>
 
       <!-- Skincare Routine Infographic Images: 2-Column Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-6">
         
         <!-- 1. 乾肌潤澤保濕組(乾肌)保養三步驟 -->
         <a 
@@ -333,13 +348,13 @@
           target="_top" 
           rel="noopener noreferrer" 
           onclick="handleProductNav(event, 'https://www.simplism.com.tw/product-detail/820260420001')" 
-          class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-md sm:shadow-lg border border-slate-200/80 bg-white transition-all duration-300 hover:shadow-xl hover:scale-[1.01] cursor-pointer"
+          class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md hover:shadow-xl border border-slate-200/80 bg-white transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] cursor-pointer touch-manipulation"
         >
           <img 
             src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E4%B9%BE%E8%82%8C%E6%BD%A4%E6%BE%A4%E4%BF%9D%E6%BF%95%E7%B5%84%28%E4%B9%BE%E8%82%8C%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F%281%29.jpg" 
             onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/乾肌潤澤保濕組(乾肌)保養三步驟(1).jpg';"
             alt="乾肌潤澤保濕組 (乾肌) 保養三步驟" 
-            class="w-full h-auto object-cover object-center block select-none group-hover:opacity-95 transition-opacity"
+            class="w-full h-auto max-w-full object-cover object-center block select-none group-hover:opacity-95 transition-opacity"
             loading="lazy"
           />
         </a>
@@ -350,13 +365,13 @@
           target="_top" 
           rel="noopener noreferrer" 
           onclick="handleProductNav(event, 'https://www.simplism.com.tw/product-detail/820260420002')" 
-          class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-md sm:shadow-lg border border-slate-200/80 bg-white transition-all duration-300 hover:shadow-xl hover:scale-[1.01] cursor-pointer"
+          class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md hover:shadow-xl border border-slate-200/80 bg-white transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] cursor-pointer touch-manipulation"
         >
           <img 
             src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E6%B7%B7%E5%90%88%E8%82%8C%E6%8E%A7%E6%B2%B9%E8%AA%BF%E7%90%86%E7%B5%84%28%E6%B7%B7%E5%90%88%E8%82%8C%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F%281%29.jpg" 
             onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/混合肌控油調理組(混合肌)保養三步驟(1).jpg';"
             alt="混合肌控油調理組 (混合肌) 保養三步驟" 
-            class="w-full h-auto object-cover object-center block select-none group-hover:opacity-95 transition-opacity"
+            class="w-full h-auto max-w-full object-cover object-center block select-none group-hover:opacity-95 transition-opacity"
             loading="lazy"
           />
         </a>
@@ -367,13 +382,13 @@
           target="_top" 
           rel="noopener noreferrer" 
           onclick="handleProductNav(event, 'https://www.simplism.com.tw/product-detail/820260420003')" 
-          class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-md sm:shadow-lg border border-slate-200/80 bg-white transition-all duration-300 hover:shadow-xl hover:scale-[1.01] cursor-pointer"
+          class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md hover:shadow-xl border border-slate-200/80 bg-white transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] cursor-pointer touch-manipulation"
         >
           <img 
             src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E6%95%8F%E8%82%8C%E5%B0%88%E7%A0%94%E5%85%A8%E6%95%88%E4%BF%AE%E8%AD%B7%E7%B5%84%28%E6%95%8F%E5%BC%B1%E6%B3%9B%E7%B4%85%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F%281%29.jpg" 
             onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/敏肌專研全效修護組(敏弱泛紅)保養三步驟(1).jpg';"
             alt="敏肌專研全效修護組 (敏弱泛紅) 保養三步驟" 
-            class="w-full h-auto object-cover object-center block select-none group-hover:opacity-95 transition-opacity"
+            class="w-full h-auto max-w-full object-cover object-center block select-none group-hover:opacity-95 transition-opacity"
             loading="lazy"
           />
         </a>
@@ -384,13 +399,13 @@
           target="_top" 
           rel="noopener noreferrer" 
           onclick="handleProductNav(event, 'https://www.simplism.com.tw/product-detail/820260420004')" 
-          class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-md sm:shadow-lg border border-slate-200/80 bg-white transition-all duration-300 hover:shadow-xl hover:scale-[1.01] cursor-pointer"
+          class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md hover:shadow-xl border border-slate-200/80 bg-white transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] cursor-pointer touch-manipulation"
         >
           <img 
             src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E7%85%A5%E8%86%9A%E6%B7%A8%E7%91%95%E8%AA%BF%E7%90%86%E7%B5%84%28%E8%8D%B3%E8%8D%B3%E7%B2%89%E5%88%BA%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F.jpg" 
             onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/煥膚淨瑕調理組(荳荳粉刺)保養三步驟.jpg';"
             alt="煥膚淨瑕調理組 (荳荳粉刺) 保養三步驟" 
-            class="w-full h-auto object-cover object-center block select-none group-hover:opacity-95 transition-opacity"
+            class="w-full h-auto max-w-full object-cover object-center block select-none group-hover:opacity-95 transition-opacity"
             loading="lazy"
           />
         </a>
@@ -401,13 +416,13 @@
           target="_top" 
           rel="noopener noreferrer" 
           onclick="handleProductNav(event, 'https://www.simplism.com.tw/product-detail/820260420005')" 
-          class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-md sm:shadow-lg border border-slate-200/80 bg-white transition-all duration-300 hover:shadow-xl hover:scale-[1.01] cursor-pointer"
+          class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md hover:shadow-xl border border-slate-200/80 bg-white transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] cursor-pointer touch-manipulation"
         >
           <img 
             src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E6%A5%B5%E7%B7%BB%E6%8A%97%E8%80%81%E4%BF%AE%E5%BE%A9%E7%B5%84%28%E6%8A%97%E8%80%81%E7%B7%8A%E7%B7%BB%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F.jpg" 
             onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/極緻抗老修復組(抗老緊緻)保養三步驟.jpg';"
             alt="極緻抗老修復組 (抗老緊緻) 保養三步驟" 
-            class="w-full h-auto object-cover object-center block select-none group-hover:opacity-95 transition-opacity"
+            class="w-full h-auto max-w-full object-cover object-center block select-none group-hover:opacity-95 transition-opacity"
             loading="lazy"
           />
         </a>
@@ -418,13 +433,13 @@
           target="_top" 
           rel="noopener noreferrer" 
           onclick="handleProductNav(event, 'https://www.simplism.com.tw/product-detail/820260420006')" 
-          class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-md sm:shadow-lg border border-slate-200/80 bg-white transition-all duration-300 hover:shadow-xl hover:scale-[1.01] cursor-pointer"
+          class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md hover:shadow-xl border border-slate-200/80 bg-white transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] cursor-pointer touch-manipulation"
         >
           <img 
             src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E6%B7%B1%E5%BA%A6%E4%BF%AE%E8%AD%B7%E7%A9%A9%E8%86%9A%E7%B5%84%28%E7%BE%8E%E5%AE%B9%E8%AA%B2%E7%A8%8B%E5%BE%8C%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F.jpg" 
             onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/深度修護穩膚組(美容課程後)保養三步驟.jpg';"
             alt="深度修護穩膚組 (美容課程後) 保養三步驟" 
-            class="w-full h-auto object-cover object-center block select-none group-hover:opacity-95 transition-opacity"
+            class="w-full h-auto max-w-full object-cover object-center block select-none group-hover:opacity-95 transition-opacity"
             loading="lazy"
           />
         </a>
@@ -433,15 +448,15 @@
     </section>
 
     <!-- SECTION 2: 官網熱銷 TOP 榜 -->
-    <section id="healthSection" class="scroll-mt-6 sm:scroll-mt-10">
-      <!-- Category Pill Title Banner -->
-      <div class="flex justify-center mb-5 sm:mb-8 px-2">
+    <section id="healthSection" class="scroll-mt-4 sm:scroll-mt-8">
+      <!-- Category Pill Title Banner (Adaptive for Mobile, Tablet, Laptop, Desktop) -->
+      <div class="flex justify-center mb-4 sm:mb-8 px-1">
         <a 
           href="https://www.simplism.com.tw/products/product/" 
           target="_top" 
           rel="noopener noreferrer" 
           onclick="handleCopyAndGo(event, 'NEW99', 'https://www.simplism.com.tw/products/product/')" 
-          class="relative inline-flex items-center justify-center text-[#364C84] px-10 sm:px-16 md:px-20 py-4 sm:py-5 md:py-6 rounded-full shadow-lg sm:shadow-xl border-2 border-amber-200/80 cursor-pointer transition transform hover:scale-[1.03] active:scale-95 group max-w-full sm:max-w-2xl w-auto select-none no-underline"
+          class="relative inline-flex items-center justify-center text-[#364C84] px-4 sm:px-12 md:px-16 lg:px-20 py-2.5 sm:py-4 md:py-5 rounded-full shadow-lg sm:shadow-xl border-2 border-amber-200/80 cursor-pointer transition transform active:scale-95 group max-w-full w-full sm:w-auto select-none no-underline touch-manipulation"
         >
           
           <!-- Glossy & Golden Gradient Background with Specular Reflection -->
@@ -453,28 +468,28 @@
             <div class="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-amber-600/10 to-transparent"></div>
 
             <!-- Moving Specular Reflection Light Streak -->
-            <div class="absolute -inset-y-4 left-0 w-24 sm:w-32 bg-gradient-to-r from-transparent via-white/80 to-transparent transform -skew-x-[25deg] animate-reflection pointer-events-none filter blur-[1px]"></div>
+            <div class="absolute -inset-y-4 left-0 w-20 sm:w-32 bg-gradient-to-r from-transparent via-white/80 to-transparent transform -skew-x-[25deg] animate-reflection pointer-events-none filter blur-[1px]"></div>
           </div>
 
-          <!-- Left 3D Gift Icon -->
-          <div class="absolute -left-2 sm:-left-3.5 -bottom-1 sm:-bottom-1.5 animate-float pointer-events-none z-20">
-            <div class="bg-gradient-to-br from-[#fdf8eb] via-[#f7f3e7] to-[#ebdcc4] p-2 sm:p-3 rounded-lg sm:rounded-xl shadow-md sm:shadow-lg border border-amber-200/80 rotate-[-12deg]">
-              <i class="fa-solid fa-copy text-[#364C84] text-base sm:text-xl md:text-2xl"></i>
+          <!-- Left 3D Copy Icon -->
+          <div class="absolute -left-1.5 sm:-left-3.5 -bottom-1 sm:-bottom-1.5 animate-float pointer-events-none z-20">
+            <div class="bg-gradient-to-br from-[#fdf8eb] via-[#f7f3e7] to-[#ebdcc4] p-1.5 sm:p-3 rounded-lg sm:rounded-xl shadow-md sm:shadow-lg border border-amber-200/80 rotate-[-12deg]">
+              <i class="fa-solid fa-copy text-[#364C84] text-xs sm:text-xl md:text-2xl"></i>
             </div>
           </div>
 
           <!-- Title Text -->
-          <h2 class="relative z-10 text-sm sm:text-2xl md:text-3xl font-black tracking-wider shadow-sm whitespace-nowrap flex items-center">
+          <h2 class="relative z-10 text-[11px] sm:text-lg md:text-2xl lg:text-3xl font-black tracking-wide sm:tracking-wider shadow-sm whitespace-nowrap flex items-center justify-center">
             <span>點我複製活動字串．前往全商品選購</span>
-            <svg class="w-4 h-4 sm:w-6 sm:h-6 md:w-7 md:h-7 inline-block ml-1.5 sm:ml-2.5 transition-transform duration-300 group-hover:translate-x-1.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="w-3.5 h-3.5 sm:w-6 sm:h-6 md:w-7 md:h-7 inline-block ml-1 sm:ml-2.5 transition-transform duration-300 group-hover:translate-x-1.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
               <path d="M5 12h14M13 5l7 7-7 7"/>
             </svg>
           </h2>
 
           <!-- Right 3D Shopping Bag Icon -->
-          <div class="absolute -right-2 sm:-right-3.5 -top-1 sm:-top-1.5 animate-float-delayed pointer-events-none z-20">
-            <div class="bg-gradient-to-br from-[#db5d5c] via-[#c95251] to-[#b0403f] p-2 sm:p-3 rounded-lg sm:rounded-xl shadow-md sm:shadow-lg border border-rose-200/50 rotate-[15deg]">
-              <i class="fa-solid fa-bag-shopping text-white text-base sm:text-xl md:text-2xl"></i>
+          <div class="absolute -right-1.5 sm:-right-3.5 -top-1 sm:-top-1.5 animate-float-delayed pointer-events-none z-20">
+            <div class="bg-gradient-to-br from-[#db5d5c] via-[#c95251] to-[#b0403f] p-1.5 sm:p-3 rounded-lg sm:rounded-xl shadow-md sm:shadow-lg border border-rose-200/50 rotate-[15deg]">
+              <i class="fa-solid fa-bag-shopping text-white text-xs sm:text-xl md:text-2xl"></i>
             </div>
           </div>
         </a>
@@ -484,9 +499,9 @@
   </main>
 
   <!-- Quick View / Detail Modal -->
-  <div id="productModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-4">
-    <div class="bg-white rounded-2xl max-w-md w-full p-4 sm:p-6 relative shadow-2xl animate-fade-in transform transition-all max-h-[90vh] overflow-y-auto">
-      <button onclick="closeProductModal()" class="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-400 hover:text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center transition z-10" aria-label="關閉">
+  <div id="productModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-4 modal-scroll">
+    <div class="bg-white rounded-2xl max-w-md w-full p-4 sm:p-6 relative shadow-2xl animate-fade-in transform transition-all max-h-[90vh] overflow-y-auto modal-scroll">
+      <button onclick="closeProductModal()" class="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-400 hover:text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-full w-9 h-9 flex items-center justify-center transition z-10 touch-manipulation" aria-label="關閉">
         <i class="fa-solid fa-xmark text-base sm:text-lg"></i>
       </button>
       
@@ -497,20 +512,20 @@
   </div>
 
   <!-- Membership Tiers Modal -->
-  <div id="membershipModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-2.5 sm:p-4 md:p-6" onclick="if(event.target === this) closeMembershipModal()">
+  <div id="membershipModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-2.5 sm:p-4 md:p-6 modal-scroll" onclick="if(event.target === this) closeMembershipModal()">
     <div class="bg-white rounded-2xl sm:rounded-3xl max-w-5xl w-full relative shadow-2xl overflow-hidden flex flex-col max-h-[94vh] border border-white/20 animate-fade-in">
       <!-- Modal Header -->
-      <div class="flex-shrink-0 flex items-center justify-between px-4 py-3 sm:px-6 sm:py-3.5 border-b border-gray-100 bg-slate-50/90 backdrop-blur-sm z-10">
-        <h3 class="text-sm sm:text-base md:text-lg font-bold text-gray-800 flex items-center gap-2">
+      <div class="flex-shrink-0 flex items-center justify-between px-3.5 py-2.5 sm:px-6 sm:py-3.5 border-b border-gray-100 bg-slate-50/90 backdrop-blur-sm z-10">
+        <h3 class="text-xs sm:text-base md:text-lg font-bold text-gray-800 flex items-center gap-1.5 sm:gap-2">
           <i class="fa-solid fa-crown text-amber-500"></i> 會員等級制度與專屬禮遇
         </h3>
-        <button onclick="closeMembershipModal()" class="text-gray-400 hover:text-gray-700 bg-white hover:bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center transition shadow-sm" aria-label="關閉">
-          <i class="fa-solid fa-xmark text-base sm:text-lg"></i>
+        <button onclick="closeMembershipModal()" class="text-gray-400 hover:text-gray-700 bg-white hover:bg-gray-200 rounded-full w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center transition shadow-sm touch-manipulation" aria-label="關閉">
+          <i class="fa-solid fa-xmark text-sm sm:text-lg"></i>
         </button>
       </div>
       
       <!-- Modal Body (Image Container) -->
-      <div class="flex-1 min-h-0 overflow-y-auto overflow-x-auto p-2 sm:p-4 md:p-5 flex items-center justify-center bg-gray-50/60">
+      <div class="flex-1 min-h-0 overflow-y-auto overflow-x-auto p-2 sm:p-4 md:p-5 flex items-center justify-center bg-gray-50/60 modal-scroll">
         <img 
           src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E6%9C%83%E5%93%A1%E7%AD%89%E7%B4%9A%E5%88%B6%E5%BA%A6_7%E7%89%88%281%29.png" 
           onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/會員等級制度_7版(1).png';"
@@ -526,24 +541,24 @@
   <div id="cartModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex justify-end">
     <div class="bg-white w-full max-w-md h-full shadow-2xl flex flex-col p-4 sm:p-6">
       <div class="flex justify-between items-center pb-3 sm:pb-4 border-b">
-        <h3 class="text-lg sm:text-xl font-bold text-gray-800 flex items-center gap-2">
+        <h3 class="text-base sm:text-xl font-bold text-gray-800 flex items-center gap-2">
           <i class="fa-solid fa-cart-shopping text-cyan-500"></i> 我的購物車
         </h3>
-        <button onclick="closeCartModal()" class="text-gray-400 hover:text-gray-600 text-xl p-1" aria-label="關閉購物車">
+        <button onclick="closeCartModal()" class="text-gray-400 hover:text-gray-600 text-xl p-2 rounded-full hover:bg-gray-100 touch-manipulation" aria-label="關閉購物車">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
 
-      <div id="cartItemsList" class="flex-1 overflow-y-auto py-3 sm:py-4 space-y-3">
+      <div id="cartItemsList" class="flex-1 overflow-y-auto py-3 sm:py-4 space-y-3 modal-scroll">
         <!-- Dynamic Cart Items -->
       </div>
 
       <div class="pt-3 sm:pt-4 border-t space-y-3">
-        <div class="flex justify-between text-base sm:text-lg font-bold">
+        <div class="flex justify-between text-sm sm:text-lg font-bold">
           <span>總金額：</span>
           <span id="cartTotalPrice" class="text-red-600">$ 0</span>
         </div>
-        <button onclick="checkoutCart()" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold py-2.5 sm:py-3 rounded-xl shadow-lg hover:brightness-105 active:scale-[0.99] transition text-sm sm:text-base">
+        <button onclick="checkoutCart()" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold py-2.5 sm:py-3 rounded-xl shadow-lg hover:brightness-105 active:scale-[0.99] transition text-sm sm:text-base touch-manipulation">
           結帳領取會員優惠
         </button>
       </div>
@@ -551,8 +566,8 @@
   </div>
 
   <!-- Notification Toast (Centered in Screen) -->
-  <div id="toast" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[90%] bg-gray-900/95 text-white px-5 py-3.5 sm:px-7 sm:py-4 rounded-xl sm:rounded-2xl shadow-2xl flex items-center justify-center gap-2.5 sm:gap-3 z-[9999] opacity-0 pointer-events-none transition-all duration-300 transform scale-90 border border-white/10 text-center backdrop-blur-md">
-    <i class="fa-solid fa-circle-check text-green-400 text-base sm:text-xl flex-shrink-0"></i>
+  <div id="toast" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[90%] sm:max-w-md bg-gray-900/95 text-white px-4 py-3 sm:px-7 sm:py-4 rounded-xl sm:rounded-2xl shadow-2xl flex items-center justify-center gap-2 sm:gap-3 z-[9999] opacity-0 pointer-events-none transition-all duration-300 transform scale-90 border border-white/10 text-center backdrop-blur-md">
+    <i class="fa-solid fa-circle-check text-green-400 text-sm sm:text-xl flex-shrink-0"></i>
     <span id="toastMessage" class="text-xs sm:text-sm md:text-base font-semibold break-words">已加入購物車</span>
   </div>
 
@@ -713,11 +728,11 @@
 
       dots.forEach((dot, i) => {
         if (i === currentSlide) {
-          dot.classList.remove('bg-white/50', 'w-2', 'sm:w-3');
+          dot.classList.remove('bg-white/50', 'w-2', 'sm:w-2.5');
           dot.classList.add('bg-white', 'w-5', 'sm:w-8');
         } else {
           dot.classList.remove('bg-white', 'w-5', 'sm:w-8');
-          dot.classList.add('bg-white/50', 'w-2', 'sm:w-3');
+          dot.classList.add('bg-white/50', 'w-2', 'sm:w-2.5');
         }
       });
     }
@@ -765,29 +780,41 @@
       startSlideTimer();
     }
 
-    // Touch Swipe Detection for Mobile Carousel
+    // Touch Swipe Detection for Mobile Carousel (Improved: prevents interference with vertical scrolling)
     function initTouchSwipe() {
       const carousel = document.getElementById('heroCarousel');
       if (!carousel) return;
 
       let touchStartX = 0;
+      let touchStartY = 0;
       let touchEndX = 0;
+      let touchEndY = 0;
 
       carousel.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
+        if (e.touches && e.touches.length > 0) {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+        }
       }, { passive: true });
 
       carousel.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
+        if (e.changedTouches && e.changedTouches.length > 0) {
+          touchEndX = e.changedTouches[0].clientX;
+          touchEndY = e.changedTouches[0].clientY;
+          handleSwipe();
+        }
       }, { passive: true });
 
       function handleSwipe() {
-        const threshold = 40; // min swipe distance in px
-        if (touchEndX < touchStartX - threshold) {
-          nextSlide(); // Swiped left -> Next
-        } else if (touchEndX > touchStartX + threshold) {
-          prevSlide(); // Swiped right -> Prev
+        const deltaX = touchEndX - touchStartX;
+        const deltaY = touchEndY - touchStartY;
+        // 僅當橫向移動顯著大於縱向移動時判定為滑動輪播，避免干擾使用者上下滑動網頁
+        if (Math.abs(deltaX) > 45 && Math.abs(deltaX) > Math.abs(deltaY) * 1.4) {
+          if (deltaX < 0) {
+            nextSlide(); // 向左滑 -> 下一張
+          } else {
+            prevSlide(); // 向右滑 -> 上一張
+          }
         }
       }
     }
@@ -813,7 +840,7 @@
       }
 
       return `
-        <div class="group bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between border border-gray-100 relative cursor-pointer" onclick="openProductModal('${item.id}')">
+        <div class="group bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between border border-gray-100 relative cursor-pointer touch-manipulation" onclick="openProductModal('${item.id}')">
           
           <!-- Top Member Ribbon Banner -->
           <div class="bg-gradient-to-r from-red-500 to-rose-500 text-white text-[10px] sm:text-xs font-bold py-1 px-1.5 sm:px-2 flex items-center justify-center gap-1 shadow-sm">
@@ -836,7 +863,7 @@
             <!-- Quick Add Hover Overlay -->
             <button 
               onclick="event.stopPropagation(); addToCart('${item.id}')" 
-              class="absolute bottom-1.5 right-1.5 sm:bottom-2 sm:right-2 bg-cyan-500 hover:bg-cyan-600 text-white p-1.5 sm:p-2 rounded-full shadow transition-transform duration-200 active:scale-95 opacity-90 sm:opacity-0 sm:group-hover:opacity-100"
+              class="absolute bottom-1.5 right-1.5 sm:bottom-2 sm:right-2 bg-cyan-500 hover:bg-cyan-600 text-white p-2 rounded-full shadow transition-transform duration-200 active:scale-90 opacity-90 sm:opacity-0 sm:group-hover:opacity-100 touch-manipulation"
               title="加入購物車"
             >
               <i class="fa-solid fa-cart-plus text-xs sm:text-sm"></i>
@@ -844,7 +871,7 @@
           </div>
 
           <!-- Product Info -->
-          <div class="p-2 sm:p-3 flex-1 flex flex-col justify-between space-y-1.5 sm:space-y-2">
+          <div class="p-2 sm:p-3 flex-1 flex flex-col justify-between space-y-1 sm:space-y-2">
             <!-- Title -->
             <h3 class="text-xs sm:text-sm font-medium text-gray-800 line-clamp-2 leading-snug group-hover:text-cyan-600 transition-colors">
               ${item.name}
@@ -895,16 +922,16 @@
 
       const modalContent = document.getElementById('modalContent');
       modalContent.innerHTML = `
-        <div class="space-y-4">
-          <div class="w-full h-56 bg-gray-100 rounded-xl overflow-hidden relative">
+        <div class="space-y-3.5 sm:space-y-4">
+          <div class="w-full h-48 sm:h-56 bg-gray-100 rounded-xl overflow-hidden relative">
             <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover">
-            <div class="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
+            <div class="absolute top-2 left-2 bg-red-500 text-white text-[10px] sm:text-xs font-bold px-2 py-1 rounded shadow-sm">
               ${item.badge}
             </div>
           </div>
           <div>
-            <span class="text-xs text-cyan-600 font-bold tracking-wider">熱銷商品</span>
-            <h3 class="text-lg font-bold text-gray-900 mt-1">${item.name}</h3>
+            <span class="text-[10px] sm:text-xs text-cyan-600 font-bold tracking-wider">熱銷商品</span>
+            <h3 class="text-sm sm:text-lg font-bold text-gray-900 mt-0.5">${item.name}</h3>
             <div class="flex items-center gap-1 mt-1 text-amber-400 text-xs">
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
@@ -914,12 +941,12 @@
               <span class="text-gray-500 ml-1">(${item.rating})</span>
             </div>
           </div>
-          <div class="bg-sky-50 p-3 rounded-xl flex items-center justify-between">
+          <div class="bg-sky-50 p-2.5 sm:p-3 rounded-xl flex items-center justify-between">
             <div>
-              <div class="text-xs text-gray-500">原價 ${formatPrice(item.originalPrice)}</div>
-              <div class="text-2xl font-black text-red-600">${formatPrice(item.memberPrice)}</div>
+              <div class="text-[10px] sm:text-xs text-gray-500">原價 ${formatPrice(item.originalPrice)}</div>
+              <div class="text-xl sm:text-2xl font-black text-red-600">${formatPrice(item.memberPrice)}</div>
             </div>
-            <div class="text-xs bg-white text-red-500 border border-red-200 font-bold px-2.5 py-1 rounded-full shadow-sm">
+            <div class="text-[10px] sm:text-xs bg-white text-red-500 border border-red-200 font-bold px-2 sm:px-2.5 py-1 rounded-full shadow-sm">
               省 ${formatPrice(item.originalPrice - item.memberPrice)}
             </div>
           </div>
@@ -929,17 +956,19 @@
           </p>
           <button 
             onclick="addToCart('${item.id}'); closeProductModal();" 
-            class="w-full bg-gradient-to-r from-cyan-500 to-sky-500 text-white font-bold py-3 rounded-xl shadow-lg hover:brightness-105 active:scale-95 transition flex items-center justify-center gap-2"
+            class="w-full bg-gradient-to-r from-cyan-500 to-sky-500 text-white font-bold py-2.5 sm:py-3 rounded-xl shadow-lg hover:brightness-105 active:scale-95 transition flex items-center justify-center gap-2 touch-manipulation text-sm sm:text-base"
           >
             <i class="fa-solid fa-cart-shopping"></i> 加入購物車
           </button>
         </div>
       `;
       document.getElementById('productModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
     }
 
     function closeProductModal() {
       document.getElementById('productModal').classList.add('hidden');
+      document.body.style.overflow = '';
     }
 
     // Membership Modal Functions
@@ -971,8 +1000,9 @@
     // Cart Management
     function addToCart(id) {
       const item = getProductById(id);
-      const existing = cart.find(c => c.id === id);
+      if (!item) return;
 
+      const existing = cart.find(c => c.id === id);
       if (existing) {
         existing.qty += 1;
       } else {
@@ -991,6 +1021,8 @@
       }
 
       const cartItemsList = document.getElementById('cartItemsList');
+      if (!cartItemsList) return;
+
       if (cart.length === 0) {
         cartItemsList.innerHTML = `
           <div class="text-center py-12 text-gray-400">
@@ -998,7 +1030,8 @@
             <p class="text-sm">購物車目前是空的</p>
           </div>
         `;
-        document.getElementById('cartTotalPrice').innerText = '$ 0';
+        const totalEl = document.getElementById('cartTotalPrice');
+        if (totalEl) totalEl.innerText = '$ 0';
         return;
       }
 
@@ -1007,22 +1040,23 @@
         const itemTotal = item.memberPrice * item.qty;
         totalPrice += itemTotal;
         return `
-          <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl border border-gray-100">
-            <img src="${item.image}" class="w-12 h-12 rounded-lg object-cover">
-            <div class="flex-1 ml-3 pr-2">
+          <div class="flex items-center justify-between p-2.5 sm:p-3 bg-gray-50 rounded-xl border border-gray-100">
+            <img src="${item.image}" class="w-11 h-11 sm:w-12 sm:h-12 rounded-lg object-cover">
+            <div class="flex-1 ml-2.5 sm:ml-3 pr-2">
               <h4 class="text-xs font-bold text-gray-800 line-clamp-1">${item.name}</h4>
               <div class="text-xs text-red-600 font-semibold">${formatPrice(item.memberPrice)}</div>
             </div>
-            <div class="flex items-center gap-2">
-              <button onclick="changeQty('${item.id}', -1)" class="w-6 h-6 bg-white border rounded text-xs font-bold hover:bg-gray-100">-</button>
+            <div class="flex items-center gap-1.5 sm:gap-2">
+              <button onclick="changeQty('${item.id}', -1)" class="w-6 h-6 bg-white border rounded text-xs font-bold hover:bg-gray-100 active:scale-95 touch-manipulation">-</button>
               <span class="text-xs font-bold w-4 text-center">${item.qty}</span>
-              <button onclick="changeQty('${item.id}', 1)" class="w-6 h-6 bg-white border rounded text-xs font-bold hover:bg-gray-100">+</button>
+              <button onclick="changeQty('${item.id}', 1)" class="w-6 h-6 bg-white border rounded text-xs font-bold hover:bg-gray-100 active:scale-95 touch-manipulation">+</button>
             </div>
           </div>
         `;
       }).join('');
 
-      document.getElementById('cartTotalPrice').innerText = formatPrice(totalPrice);
+      const totalEl = document.getElementById('cartTotalPrice');
+      if (totalEl) totalEl.innerText = formatPrice(totalPrice);
     }
 
     function changeQty(id, delta) {
@@ -1038,11 +1072,19 @@
 
     function openCartModal() {
       updateCartUI();
-      document.getElementById('cartModal').classList.remove('hidden');
+      const modal = document.getElementById('cartModal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
     }
 
     function closeCartModal() {
-      document.getElementById('cartModal').classList.add('hidden');
+      const modal = document.getElementById('cartModal');
+      if (modal) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
     }
 
     function checkoutCart() {
@@ -1050,46 +1092,59 @@
         showToast('購物車為空，請先選擇商品！');
         return;
       }
-      alert('感謝您的訂購！已經為您保留指定會員優惠折抵金額。');
+      showToast('感謝您的訂購！已經為您保留專屬折抵金額。', 3500);
       cart = [];
       updateCartUI();
       closeCartModal();
     }
 
-    // Toast Alert
+    // Toast Alert (Centered in Screen)
     function showToast(msg, duration = 3000) {
       const toast = document.getElementById('toast');
       const toastMessage = document.getElementById('toastMessage');
-      toastMessage.innerText = msg;
+      if (!toast || !toastMessage) return;
 
+      toastMessage.innerText = msg;
       toast.classList.remove('opacity-0', 'pointer-events-none', 'scale-90');
       toast.classList.add('opacity-100', 'scale-100');
 
-      setTimeout(() => {
+      if (window._toastTimeout) clearTimeout(window._toastTimeout);
+      window._toastTimeout = setTimeout(() => {
         toast.classList.remove('opacity-100', 'scale-100');
         toast.classList.add('opacity-0', 'pointer-events-none', 'scale-90');
       }, duration);
     }
 
-    // Copy Promo Code Function
-    function copyPromoCode(code) {
-      const tempInput = document.createElement('textarea');
-      tempInput.value = code;
-      tempInput.setAttribute('readonly', '');
-      tempInput.style.position = 'fixed';
-      tempInput.style.top = '0';
-      tempInput.style.left = '-9999px';
-      tempInput.style.opacity = '0';
-      document.body.appendChild(tempInput);
+    // Fallback safe clipboard write
+    function executeCopyText(code) {
+      let copied = false;
       try {
+        const tempInput = document.createElement('textarea');
+        tempInput.value = code;
+        tempInput.setAttribute('readonly', '');
+        tempInput.style.position = 'fixed';
+        tempInput.style.top = '0';
+        tempInput.style.left = '-9999px';
+        tempInput.style.opacity = '0';
+        document.body.appendChild(tempInput);
         tempInput.focus({ preventScroll: true });
         tempInput.select();
-        document.execCommand('copy');
-        showPromoToast('已成功複製活動字串：【' + code + '】結帳輸入現折$130元');
+        copied = document.execCommand('copy');
+        document.body.removeChild(tempInput);
       } catch (err) {
-        showPromoToast('複製失敗，活動字串為：' + code);
+        console.warn('execCommand copy fallback:', err);
       }
-      document.body.removeChild(tempInput);
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code).catch(() => {});
+      }
+      return copied;
+    }
+
+    // Copy Promo Code Function
+    function copyPromoCode(code) {
+      executeCopyText(code);
+      showPromoToast('已成功複製活動字串：【' + code + '】結帳輸入現折$130元');
     }
 
     // Show Toast over Promo Banner
@@ -1102,7 +1157,8 @@
       toast.classList.remove('opacity-0', 'pointer-events-none', 'scale-90');
       toast.classList.add('opacity-100', 'scale-100');
 
-      setTimeout(() => {
+      if (window._promoToastTimeout) clearTimeout(window._promoToastTimeout);
+      window._promoToastTimeout = setTimeout(() => {
         toast.classList.remove('opacity-100', 'scale-100');
         toast.classList.add('opacity-0', 'pointer-events-none', 'scale-90');
       }, 3000);
@@ -1131,27 +1187,8 @@
         e.stopPropagation();
       }
 
-      // 2. 同步執行剪貼簿複製（加入 preventScroll，避免焦點引發視窗捲動）
-      try {
-        const tempInput = document.createElement('textarea');
-        tempInput.value = code;
-        tempInput.setAttribute('readonly', '');
-        tempInput.style.position = 'fixed';
-        tempInput.style.top = '0';
-        tempInput.style.left = '-9999px';
-        tempInput.style.opacity = '0';
-        document.body.appendChild(tempInput);
-        tempInput.focus({ preventScroll: true });
-        tempInput.select();
-        document.execCommand('copy');
-        document.body.removeChild(tempInput);
-      } catch (err) {
-        console.warn('execCommand 複製備援:', err);
-      }
-
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(code).catch(() => {});
-      }
+      // 2. 同步執行剪貼簿複製
+      executeCopyText(code);
 
       // 3. 顯示專屬提示，顯示時長為 3 秒 (3000ms)，並保持畫面停留在原位置
       showToast('已複製活動字串【' + code + '】，為您前往全商品選購', 3000);
@@ -1174,7 +1211,6 @@
 
     // Initialize Page
     function initPage() {
-      window.scrollTo(0, 0);
       initGrids();
       showSlide(0);
       startSlideTimer();
