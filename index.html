@@ -62,8 +62,32 @@
       font-family: 'GenSenRounded', '源泉圓體', 'Noto Sans TC', sans-serif;
     }
 
+    /* 昭源宋體 (Chiron Sung HK / 昭源宋體) 宣告與完整別名支援 */
+    @font-face {
+      font-family: 'ChironSungHK';
+      src: local('Chiron Sung HK'),
+           local('Chiron Sung HK-R'),
+           local('Chiron Sung HK Regular'),
+           local('Chiron Sung HK-Regular'),
+           local('Chiron Sung HK Text-R'),
+           local('Chiron Sung HK Text-Regular'),
+           local('Chiron Sung HK-M'),
+           local('Chiron Sung HK Medium'),
+           local('Chiron Sung HK Text-M'),
+           local('Chiron Sung HK Text'),
+           local('Chiron Sung HK VF'),
+           local('昭源宋體'),
+           local('昭源宋體 Regular'),
+           local('昭源宋體-R'),
+           local('昭源宋體-Regular'),
+           local('昭源宋體-M');
+      font-weight: 400 500 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
     .font-chironsung {
-      font-family: 'Noto Serif TC', 'Source Han Serif TC', serif;
+      font-family: 'ChironSungHK', 'Chiron Sung HK', 'Chiron Sung HK Text', '昭源宋體', 'Noto Serif TC', 'Source Han Serif TC', 'Songti TC', serif;
     }
 
     .no-scrollbar::-webkit-scrollbar {
@@ -141,11 +165,11 @@
             </span>
           </div>
 
-          <h2 class="font-gensen text-base sm:text-xl md:text-2xl lg:text-3xl font-black text-[#364C84] tracking-[0.05em] sm:tracking-[0.15em] md:tracking-[0.227em] leading-tight">
+          <h2 class="font-gensen text-sm sm:text-xl md:text-2xl lg:text-3xl font-black text-[#364C84] tracking-[0.05em] sm:tracking-[0.15em] md:tracking-[0.227em] leading-tight">
             官網新會員首購．專屬升級禮
           </h2>
 
-          <!-- 關鍵修改處：移除 hidden sm:block，改為 block，並設定手機版 text-[10.5px] 讓兩行文案平整不擁擠 -->
+          <p class="font-chironsung text-[9.5px] sm:text-xs md:text-base text-slate-600 font-medium leading-relaxed block">
             用得習慣嗎？下一次的優惠先幫你留好了！<br>少一點繁瑣，多一點心意 💝 現在右上角註冊加入會員直接折抵！
           </p>
 
