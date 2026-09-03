@@ -50,44 +50,28 @@
       font-weight: 700;
     }
 
+    /* 源泉圓體 (GenSenRounded) + 繁中開源粉圓雲端字型 + iOS/iPhone 原生圓體回退 */
     @font-face {
       font-family: 'GenSenRounded';
-      src: local('GenSenRounded-B'), local('GenSenRounded-Bold'), local('源泉圓體 Bold');
+      src: local('GenSenRounded-B'),
+           local('GenSenRounded-Bold'),
+           local('源泉圓體 Bold'),
+           local('源泉圓體-B'),
+           local('GenSenRounded'),
+           local('源泉圓體'),
+           url('https://cdn.jsdelivr.net/gh/justfont/open-huninn-font@master/font/jf-openhuninn-2.0.ttf') format('truetype');
       font-weight: 700 900;
       font-style: normal;
       font-display: swap;
     }
 
+    /* iPhone / iOS 與所有行動設備專用圓體串列：優先讀取本機源泉圓體 -> 雲端開源圓體 -> iPhone 專用 ui-rounded -> 圓體通用別名 */
     .font-gensen {
-      font-family: 'GenSenRounded', '源泉圓體', 'Noto Sans TC', sans-serif;
-    }
-
-    /* 昭源宋體 (Chiron Sung HK / 昭源宋體) 宣告與完整別名支援 */
-    @font-face {
-      font-family: 'ChironSungHK';
-      src: local('Chiron Sung HK'),
-           local('Chiron Sung HK-R'),
-           local('Chiron Sung HK Regular'),
-           local('Chiron Sung HK-Regular'),
-           local('Chiron Sung HK Text-R'),
-           local('Chiron Sung HK Text-Regular'),
-           local('Chiron Sung HK-M'),
-           local('Chiron Sung HK Medium'),
-           local('Chiron Sung HK Text-M'),
-           local('Chiron Sung HK Text'),
-           local('Chiron Sung HK VF'),
-           local('昭源宋體'),
-           local('昭源宋體 Regular'),
-           local('昭源宋體-R'),
-           local('昭源宋體-Regular'),
-           local('昭源宋體-M');
-      font-weight: 400 500 700;
-      font-style: normal;
-      font-display: swap;
+      font-family: 'GenSenRounded', '源泉圓體', ui-rounded, 'SF Pro Rounded', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft JhengHei', 'Noto Sans TC', sans-serif;
     }
 
     .font-chironsung {
-      font-family: 'ChironSungHK', 'Chiron Sung HK', 'Chiron Sung HK Text', '昭源宋體', 'Noto Serif TC', 'Source Han Serif TC', 'Songti TC', serif;
+      font-family: 'Noto Serif TC', 'Source Han Serif TC', serif;
     }
 
     .no-scrollbar::-webkit-scrollbar {
