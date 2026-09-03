@@ -50,13 +50,31 @@
       font-weight: 700;
     }
 
-    /* 源泉圓體 (GenSenRounded) + 繁中開源粉圓雲端字型 + iOS/iPhone 原生圓體回退 */
+    /* 源泉圓體 (GenSenRounded / 源泉圓體 TW) 電腦版與行動端完整字型宣告 */
     @font-face {
       font-family: 'GenSenRounded';
-      src: local('GenSenRounded-B'),
+      src: local('GenSenRounded TW Bold'),
+           local('GenSenRounded TW-B'),
+           local('GenSenRounded TW-Bold'),
+           local('源泉圓體 TW Bold'),
+           local('源泉圓體 TW-B'),
+           local('源泉圓體 TW-Bold'),
+           local('GenSenRounded TW'),
+           local('源泉圓體 TW'),
+           local('GenSenRounded-B'),
            local('GenSenRounded-Bold'),
+           local('GenSenRounded Bold'),
            local('源泉圓體 Bold'),
            local('源泉圓體-B'),
+           local('源泉圓體-Bold'),
+           local('GenSenRounded-H'),
+           local('GenSenRounded Heavy'),
+           local('源泉圓體 Heavy'),
+           local('GenSenRounded-M'),
+           local('GenSenRounded Medium'),
+           local('GenSenRounded TW-M'),
+           local('源泉圓體 Medium'),
+           local('源泉圓體 TW-M'),
            local('GenSenRounded'),
            local('源泉圓體'),
            url('https://cdn.jsdelivr.net/gh/justfont/open-huninn-font@master/font/jf-openhuninn-2.0.ttf') format('truetype');
@@ -65,9 +83,38 @@
       font-display: swap;
     }
 
-    /* iPhone / iOS 與所有行動設備專用圓體串列：優先讀取本機源泉圓體 -> 雲端開源圓體 -> iPhone 專用 ui-rounded -> 圓體通用別名 */
+    @font-face {
+      font-family: 'GenSenRounded TW';
+      src: local('GenSenRounded TW Bold'),
+           local('GenSenRounded TW-B'),
+           local('GenSenRounded TW-Bold'),
+           local('源泉圓體 TW Bold'),
+           local('源泉圓體 TW-B'),
+           local('源泉圓體 TW'),
+           local('GenSenRounded TW');
+      font-weight: 700 900;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: '源泉圓體';
+      src: local('源泉圓體 TW Bold'),
+           local('源泉圓體 TW-B'),
+           local('源泉圓體 Bold'),
+           local('源泉圓體-B'),
+           local('源泉圓體 TW'),
+           local('源泉圓體'),
+           local('GenSenRounded TW Bold'),
+           local('GenSenRounded-B');
+      font-weight: 700 900;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* 電腦版 (Windows/Mac) 與行動端專用圓體串列：優先精準讀取電腦本機繁中源泉圓體各別名 */
     .font-gensen {
-      font-family: 'GenSenRounded', '源泉圓體', ui-rounded, 'SF Pro Rounded', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft JhengHei', 'Noto Sans TC', sans-serif;
+      font-family: 'GenSenRounded TW', 'GenSenRounded TW Bold', 'GenSenRounded TW-B', '源泉圓體 TW', '源泉圓體 TW Bold', '源泉圓體 TW-B', 'GenSenRounded', 'GenSenRounded-B', 'GenSenRounded-Bold', 'GenSenRounded Bold', '源泉圓體', '源泉圓體 Bold', '源泉圓體-B', ui-rounded, 'SF Pro Rounded', 'PingFang TC', 'Hiragino Sans GB', 'Microsoft JhengHei', 'Noto Sans TC', sans-serif;
     }
 
     /* 手機版標題極限加粗強化（補強行動裝置字型渲染引擎細線問題） */
@@ -119,8 +166,8 @@
         height: 100% !important;
         inset: 0 !important;
         object-fit: cover !important;
-        object-position: 80% 58% !important;
-        transform: scale(1.15) translate(-10px, 8px) !important;
+        object-position: 80% 61% !important;
+        transform: scale(1.15) translate(-10px, 12px) !important;
         transform-origin: center center !important;
         mask-image: linear-gradient(to left, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 85%) !important;
         -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 85%) !important;
@@ -394,7 +441,7 @@
             </div>
           </div>
 
-          <h2 class="relative z-10 text-[11px] sm:text-lg md:text-2xl lg:text-3xl font-black tracking-wide sm:tracking-wider shadow-sm whitespace-nowrap flex items-center justify-center">
+          <h2 class="relative z-10 text-xs min-[360px]:text-[13px] min-[390px]:text-sm sm:text-lg md:text-2xl lg:text-3xl font-black tracking-tight min-[360px]:tracking-normal sm:tracking-wider shadow-sm whitespace-nowrap flex items-center justify-center">
             <span>點我複製活動字串．前往全商品選購</span>
             <svg class="w-3.5 h-3.5 sm:w-6 sm:h-6 md:w-7 md:h-7 inline-block ml-1 sm:ml-2.5 transition-transform duration-300 group-hover:translate-x-1.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
               <path d="M5 12h14M13 5l7 7-7 7"/>
