@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>美妝保養與休閒健康專區 - 精選特惠購物</title>
+  <title>Simplism簡單保養-新會員首購專屬升級禮</title>
   
   <!-- 1. DNS 預解析與 Preconnect：提前建立握手連線，省去 500ms 以上等待 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -127,6 +127,12 @@
 </head>
 
 <body class="bg-[#e7f7ff] text-gray-800 font-sans min-h-screen pb-12 sm:pb-16 antialiased selection:bg-sky-200 overflow-x-hidden">
+
+  <!-- 全螢幕頂部懸浮通知 (顯示在上方位置，不遮擋畫面中央) -->
+  <div id="topNotificationToast" class="fixed top-4 sm:top-7 left-1/2 -translate-x-1/2 max-w-[92%] sm:max-w-md bg-slate-900/95 text-white px-4 py-2.5 sm:px-6 sm:py-3.5 rounded-full shadow-2xl flex items-center justify-center gap-2 sm:gap-3 z-[9999] opacity-0 pointer-events-none transition-all duration-300 transform -translate-y-4 scale-95 border border-white/10 text-center backdrop-blur-md">
+    <i class="fa-solid fa-circle-check text-green-400 text-sm sm:text-base flex-shrink-0"></i>
+    <span id="topNotificationMessage" class="text-xs sm:text-sm font-bold tracking-wide break-words"></span>
+  </div>
 
   <main class="w-full max-w-7xl mx-auto px-2.5 sm:px-5 md:px-8 py-3.5 sm:py-6 md:py-8 space-y-5 sm:space-y-8 md:space-y-12">
 
@@ -314,6 +320,7 @@
         </div>
       </div>
 
+      <!-- 1 ~ 4 步驟卡片 -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-6">
         <!-- 1. 乾肌 -->
         <a href="https://www.simplism.com.tw/product-detail/820260420001" target="_top" onclick="safeNav(event, this.href)" class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md hover:shadow-xl border border-slate-200/80 bg-white transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]">
@@ -334,16 +341,27 @@
         <a href="https://www.simplism.com.tw/product-detail/820260420004" target="_top" onclick="safeNav(event, this.href)" class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md hover:shadow-xl border border-slate-200/80 bg-white transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]">
           <img src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E7%85%A5%E8%86%9A%E6%B7%A8%E7%91%95%E8%AA%BF%E7%90%86%E7%B5%84%28%E8%8D%B3%E8%8D%B3%E7%B2%89%E5%88%BA%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F.jpg" onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/煥膚淨瑕調理組(荳荳粉刺)保養三步驟.jpg';" alt="煥膚淨瑕調理組 保養三步驟" loading="lazy" decoding="async" class="w-full h-auto max-w-full object-cover object-center block group-hover:opacity-95 transition-opacity" />
         </a>
+      </div>
 
-        <!-- 5. 抗老緊緻 -->
-        <a href="https://www.simplism.com.tw/product-detail/820260420005" target="_top" onclick="safeNav(event, this.href)" class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md hover:shadow-xl border border-slate-200/80 bg-white transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]">
-          <img src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E6%A5%B5%E7%B7%BB%E6%8A%97%E8%80%81%E4%BF%AE%E5%BE%A9%E7%B5%84%28%E6%8A%97%E8%80%81%E7%B7%8A%E7%B7%BB%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F.jpg" onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/極緻抗老修復組(抗老緊緻)保養三步驟.jpg';" alt="極緻抗老修復組 保養三步驟" loading="lazy" decoding="async" class="w-full h-auto max-w-full object-cover object-center block group-hover:opacity-95 transition-opacity" />
-        </a>
+      <!-- 5. 抗老緊緻 與 6. 美容課程後 (提示框直接居中顯示於兩者中間區塊) -->
+      <div class="relative mt-3.5 sm:mt-6">
+        <!-- 專屬提示框：直接顯示在極緻抗老修復組與深度修護穩膚組中間區塊 -->
+        <div id="skincareCopyToast" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[92%] sm:max-w-md bg-slate-900/95 text-white px-3.5 py-2 sm:px-6 sm:py-3.5 rounded-xl sm:rounded-2xl shadow-2xl flex items-center justify-center gap-2 sm:gap-3 z-30 opacity-0 pointer-events-none transition-all duration-300 transform scale-90 border border-white/10 text-center backdrop-blur-md">
+          <i class="fa-solid fa-circle-check text-green-400 text-sm sm:text-base flex-shrink-0"></i>
+          <span id="skincareCopyToastMessage" class="text-xs sm:text-sm font-bold tracking-wide break-words"></span>
+        </div>
 
-        <!-- 6. 美容課程後 -->
-        <a href="https://www.simplism.com.tw/product-detail/820260420006" target="_top" onclick="safeNav(event, this.href)" class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md hover:shadow-xl border border-slate-200/80 bg-white transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]">
-          <img src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E6%B7%B1%E5%BA%A6%E4%BF%AE%E8%AD%B7%E7%A9%A9%E8%86%9A%E7%B5%84%28%E7%BE%8E%E5%AE%B9%E8%AA%B2%E7%A8%8B%E5%BE%8C%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F.jpg" onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/深度修護穩膚組(美容課程後)保養三步驟.jpg';" alt="深度修護穩膚組 保養三步驟" loading="lazy" decoding="async" class="w-full h-auto max-w-full object-cover object-center block group-hover:opacity-95 transition-opacity" />
-        </a>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-6">
+          <!-- 5. 抗老緊緻 -->
+          <a href="https://www.simplism.com.tw/product-detail/820260420005" target="_top" onclick="safeNav(event, this.href)" class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md hover:shadow-xl border border-slate-200/80 bg-white transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]">
+            <img src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E6%A5%B5%E7%B7%BB%E6%8A%97%E8%80%81%E4%BF%AE%E5%BE%A9%E7%B5%84%28%E6%8A%97%E8%80%81%E7%B7%8A%E7%B7%BB%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F.jpg" onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/極緻抗老修復組(抗老緊緻)保養三步驟.jpg';" alt="極緻抗老修復組 保養三步驟" loading="lazy" decoding="async" class="w-full h-auto max-w-full object-cover object-center block group-hover:opacity-95 transition-opacity" />
+          </a>
+
+          <!-- 6. 美容課程後 -->
+          <a href="https://www.simplism.com.tw/product-detail/820260420006" target="_top" onclick="safeNav(event, this.href)" class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md hover:shadow-xl border border-slate-200/80 bg-white transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]">
+            <img src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E6%B7%B1%E5%BA%A6%E4%BF%AE%E8%AD%B7%E7%A9%A9%E8%86%9A%E7%B5%84%28%E7%BE%8E%E5%AE%B9%E8%AA%B2%E7%A8%8B%E5%BE%8C%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F.jpg" onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/深度修護穩膚組(美容課程後)保養三步驟.jpg';" alt="深度修護穩膚組 保養三步驟" loading="lazy" decoding="async" class="w-full h-auto max-w-full object-cover object-center block group-hover:opacity-95 transition-opacity" />
+          </a>
+        </div>
       </div>
     </section>
 
@@ -584,8 +602,28 @@
     }
 
     function handleCopyAndGo(event, code, url) {
+      if (event) event.preventDefault();
       executeCopyText(code);
-      safeNav(event, url);
+      showSkincareToast('已成功複製活動字串：【' + code + '】結帳輸入現折$130元');
+      setTimeout(() => {
+        safeNav(null, url);
+      }, 750);
+    }
+
+    function showSkincareToast(msg) {
+      const toast = document.getElementById('skincareCopyToast');
+      const toastMessage = document.getElementById('skincareCopyToastMessage');
+      if (!toast || !toastMessage) return;
+
+      toastMessage.innerText = msg;
+      toast.classList.remove('opacity-0', 'pointer-events-none', 'scale-90');
+      toast.classList.add('opacity-100', 'scale-100');
+
+      if (window._skincareToastTimeout) clearTimeout(window._skincareToastTimeout);
+      window._skincareToastTimeout = setTimeout(() => {
+        toast.classList.remove('opacity-100', 'scale-100');
+        toast.classList.add('opacity-0', 'pointer-events-none', 'scale-90');
+      }, 2500);
     }
 
     function showPromoToast(msg) {
