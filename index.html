@@ -103,6 +103,20 @@
       animation: specular-sweep 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
     }
 
+    /* 手機版專屬：輪播圖片全面滿版貼合容器，長距羽化消除所有圖片切線與方框硬邊（電腦版不受任何影響） */
+    @media (max-width: 639px) {
+      .carousel-img-mobile-full {
+        width: 100% !important;
+        height: 100% !important;
+        inset: 0 !important;
+        object-fit: cover !important;
+        object-position: right center !important;
+        transform: none !important;
+        mask-image: linear-gradient(to left, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 85%) !important;
+        -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 85%) !important;
+      }
+    }
+
     .modal-scroll {
       -webkit-overflow-scrolling: touch;
       overscroll-behavior: contain;
@@ -179,7 +193,7 @@
       <div class="relative min-h-[220px] h-56 sm:h-72 md:h-80 lg:h-96 w-full overflow-hidden">
         
         <!-- Slide 1 (首頁主圖：立即加載) -->
-        <div class="carousel-slide absolute inset-0 opacity-100 transition-opacity duration-700 ease-in-out flex items-center justify-between bg-gradient-to-r from-sky-600 via-cyan-500 to-teal-400 text-white p-3.5 sm:p-7 md:p-12">
+        <div class="carousel-slide absolute inset-0 opacity-100 transition-opacity duration-700 ease-in-out flex items-center justify-between bg-gradient-to-r from-sky-600 via-cyan-500 to-teal-400 text-white p-3.5 sm:p-7 md:p-12 overflow-hidden">
           <div class="z-10 max-w-[70%] sm:max-w-lg md:max-w-xl space-y-1.5 sm:space-y-3.5 md:space-y-5">
             <span class="inline-block bg-white/20 backdrop-blur-md text-white text-[9px] sm:text-xs md:text-sm font-bold px-2 py-0.5 sm:px-3 sm:py-1 rounded-full border border-white/30 shadow-sm tracking-wide">
               官網限定 ｜ 專屬膚況調理組
@@ -197,7 +211,7 @@
             alt="Simplism 簡單保養 - 六大膚質保養懶人包" 
             fetchpriority="high"
             decoding="async"
-            class="absolute right-0 top-0 h-full w-3/5 sm:w-8/12 md:w-9/12 object-cover object-center scale-105 sm:scale-115 origin-right opacity-90 sm:opacity-100 pointer-events-none" 
+            class="carousel-img-mobile-full absolute right-0 top-0 h-full w-3/5 sm:w-8/12 md:w-9/12 object-cover object-center scale-105 sm:scale-115 origin-right opacity-90 sm:opacity-100 pointer-events-none" 
             style="mask-image: linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0)); -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0));"
           >
         </div>
@@ -224,7 +238,7 @@
             alt="加入簡單保養 美好回饋" 
             loading="lazy"
             decoding="async"
-            class="absolute right-0 top-0 h-full w-7/12 sm:w-8/12 md:w-8/12 object-cover object-right opacity-95 sm:opacity-100 pointer-events-none" 
+            class="carousel-img-mobile-full absolute right-0 top-0 h-full w-7/12 sm:w-8/12 md:w-8/12 object-cover object-right opacity-95 sm:opacity-100 pointer-events-none" 
             style="mask-image: linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%); -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);"
           >
         </div>
@@ -251,7 +265,7 @@
             alt="官網熱銷 TOP 榜" 
             loading="lazy"
             decoding="async"
-            class="absolute right-0 top-0 h-full w-7/12 sm:w-8/12 md:w-8/12 object-cover object-right opacity-95 sm:opacity-100 pointer-events-none" 
+            class="carousel-img-mobile-full absolute right-0 top-0 h-full w-7/12 sm:w-8/12 md:w-8/12 object-cover object-right opacity-95 sm:opacity-100 pointer-events-none" 
             style="mask-image: linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%); -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);"
           >
         </div>
