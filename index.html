@@ -103,15 +103,16 @@
       animation: specular-sweep 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
     }
 
-    /* 手機版專屬：輪播圖片全面滿版貼合容器，長距羽化消除所有圖片切線與方框硬邊（電腦版不受任何影響） */
+    /* 手機版專屬：輪播圖片微幅放大並往左下移動，滿版無邊界切線（電腦版完全不受影響） */
     @media (max-width: 639px) {
       .carousel-img-mobile-full {
         width: 100% !important;
         height: 100% !important;
         inset: 0 !important;
         object-fit: cover !important;
-        object-position: right center !important;
-        transform: none !important;
+        object-position: 80% 60% !important;
+        transform: scale(1.1) translate(-10px, 8px) !important;
+        transform-origin: center center !important;
         mask-image: linear-gradient(to left, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 85%) !important;
         -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 85%) !important;
       }
@@ -127,9 +128,9 @@
 <body class="bg-[#e7f7ff] text-gray-800 font-sans min-h-screen pb-12 sm:pb-16 antialiased selection:bg-sky-200 overflow-x-hidden">
 
   <!-- 全螢幕頂部懸浮通知 (顯示在上方位置，不遮擋畫面中央) -->
-  <div id="topNotificationToast" class="fixed top-4 sm:top-7 left-1/2 -translate-x-1/2 max-w-[92%] sm:max-w-md bg-slate-900/95 text-white px-4 py-2.5 sm:px-6 sm:py-3.5 rounded-full shadow-2xl flex items-center justify-center gap-2 sm:gap-3 z-[9999] opacity-0 pointer-events-none transition-all duration-300 transform -translate-y-4 scale-95 border border-white/10 text-center backdrop-blur-md">
-    <i class="fa-solid fa-circle-check text-green-400 text-sm sm:text-base flex-shrink-0"></i>
-    <span id="topNotificationMessage" class="text-xs sm:text-sm font-bold tracking-wide break-words"></span>
+  <div id="topNotificationToast" class="fixed top-4 sm:top-7 left-1/2 -translate-x-1/2 max-w-[96%] sm:max-w-max bg-slate-900/95 text-white px-3 py-2 sm:px-6 sm:py-3.5 rounded-full shadow-2xl flex items-center justify-center gap-1.5 sm:gap-3 z-[9999] opacity-0 pointer-events-none transition-all duration-300 transform -translate-y-4 scale-95 border border-white/10 text-center backdrop-blur-md whitespace-nowrap">
+    <i class="fa-solid fa-circle-check text-green-400 text-xs sm:text-base flex-shrink-0"></i>
+    <span id="topNotificationMessage" class="text-[10px] min-[360px]:text-[11px] min-[390px]:text-xs sm:text-sm font-bold tracking-tight sm:tracking-wide whitespace-nowrap"></span>
   </div>
 
   <main class="w-full max-w-7xl mx-auto px-2.5 sm:px-5 md:px-8 py-3.5 sm:py-6 md:py-8 space-y-5 sm:space-y-8 md:space-y-12">
@@ -137,10 +138,10 @@
     <!-- TOP PROMOTIONAL BANNER -->
     <div id="promoBanner" class="relative w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-md sm:shadow-lg border border-slate-200/80 bg-[#f7f3e7] group">
       
-      <!-- Promo Banner Toast -->
-      <div id="promoToast" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[92%] sm:max-w-md bg-slate-900/95 text-white px-3.5 py-2 sm:px-6 sm:py-3.5 rounded-xl sm:rounded-2xl shadow-2xl flex items-center gap-2 sm:gap-3 z-30 opacity-0 pointer-events-none transition-all duration-300 transform scale-90 border border-white/10 text-center">
-        <i class="fa-solid fa-circle-check text-green-400 text-sm sm:text-base flex-shrink-0"></i>
-        <span id="promoToastMessage" class="text-xs sm:text-sm font-bold tracking-wide break-words"></span>
+      <!-- Promo Banner Toast (單行完整呈現，絕不斷行) -->
+      <div id="promoToast" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[96%] sm:max-w-max bg-slate-900/95 text-white px-2.5 py-1.5 sm:px-5 sm:py-3 rounded-full sm:rounded-2xl shadow-2xl flex items-center justify-center gap-1.5 sm:gap-2.5 z-30 opacity-0 pointer-events-none transition-all duration-300 transform scale-90 border border-white/10 text-center whitespace-nowrap">
+        <i class="fa-solid fa-circle-check text-green-400 text-xs sm:text-base flex-shrink-0"></i>
+        <span id="promoToastMessage" class="text-[10px] min-[360px]:text-[11px] min-[390px]:text-xs sm:text-sm font-bold tracking-tight sm:tracking-wide whitespace-nowrap"></span>
       </div>
 
       <div class="relative min-h-[190px] sm:min-h-[210px] md:min-h-[240px] w-full overflow-hidden flex items-center justify-between">
@@ -343,10 +344,10 @@
 
       <!-- 5. 抗老緊緻 與 6. 美容課程後 (提示框直接居中顯示於兩者中間區塊) -->
       <div class="relative mt-3.5 sm:mt-6">
-        <!-- 專屬提示框：直接顯示在極緻抗老修復組與深度修護穩膚組中間區塊 -->
-        <div id="skincareCopyToast" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[92%] sm:max-w-md bg-slate-900/95 text-white px-3.5 py-2 sm:px-6 sm:py-3.5 rounded-xl sm:rounded-2xl shadow-2xl flex items-center justify-center gap-2 sm:gap-3 z-30 opacity-0 pointer-events-none transition-all duration-300 transform scale-90 border border-white/10 text-center backdrop-blur-md">
-          <i class="fa-solid fa-circle-check text-green-400 text-sm sm:text-base flex-shrink-0"></i>
-          <span id="skincareCopyToastMessage" class="text-xs sm:text-sm font-bold tracking-wide break-words"></span>
+        <!-- 專屬提示框：直接顯示在極緻抗老修復組與深度修護穩膚組中間區塊 (單行完整呈現，絕不斷行) -->
+        <div id="skincareCopyToast" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[96%] sm:max-w-max bg-slate-900/95 text-white px-2.5 py-1.5 sm:px-5 sm:py-3 rounded-full sm:rounded-2xl shadow-2xl flex items-center justify-center gap-1.5 sm:gap-2.5 z-30 opacity-0 pointer-events-none transition-all duration-300 transform scale-90 border border-white/10 text-center backdrop-blur-md whitespace-nowrap">
+          <i class="fa-solid fa-circle-check text-green-400 text-xs sm:text-base flex-shrink-0"></i>
+          <span id="skincareCopyToastMessage" class="text-[10px] min-[360px]:text-[11px] min-[390px]:text-xs sm:text-sm font-bold tracking-tight sm:tracking-wide whitespace-nowrap"></span>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-6">
