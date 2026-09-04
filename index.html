@@ -40,6 +40,28 @@
       pointer-events: auto !important;
       touch-action: manipulation;
       cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* 關鍵修復：圖片絕對不攔截點擊與長按選單，手機版點擊秒開無延遲 */
+    a img {
+      pointer-events: none !important;
+      -webkit-touch-callout: none !important;
+      -webkit-user-select: none !important;
+      user-select: none !important;
+    }
+
+    /* 電腦版具備滑鼠時才啟用 hover 縮放，手機觸控螢幕不套用 scale 動畫，徹底避免返回後卡死在動畫狀態 */
+    @media (hover: hover) and (pointer: fine) {
+      .product-card-hover:hover {
+        transform: scale(1.01);
+        box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+      }
+    }
+
+    /* 手機版觸控點擊反饋：純透明度微調，零重繪零延遲 */
+    .product-card-hover:active {
+      opacity: 0.85;
     }
 
     /* 提示視窗設為純顯示層，嚴格禁止阻擋底層圖片與按鈕之觸控操作 */
@@ -375,57 +397,57 @@
           </div>
 
           <h2 class="font-notoserif-bold relative z-10 text-sm min-[390px]:text-base sm:text-xl md:text-2xl lg:text-3xl font-black tracking-wider drop-shadow-md whitespace-nowrap flex items-center">
-            <span>保養</span>
-            <span class="text-xl min-[390px]:text-2xl sm:text-2xl md:text-4xl font-black mx-1 sm:mx-1.5 text-yellow-300 drop-shadow inline-block transform scale-105">3</span>
-            <span>步驟｜依膚況挑選</span>
-          </h2>
-        </div>
-      </div>
+        <span>保養</span>
+        <span class="text-xl min-[390px]:text-2xl sm:text-2xl md:text-4xl font-black mx-1 sm:mx-1.5 text-yellow-300 drop-shadow inline-block transform scale-105">3</span>
+        <span>步驟｜依膚況挑選</span>
+      </h2>
+    </div>
+  </div>
 
-      <!-- 1 ~ 4 步驟卡片 (改為 100% 原生 HTML target="_top"，返回上一頁再次點擊保證 100% 有反應) -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-6">
-        <!-- 1. 乾肌 -->
-        <a href="https://www.simplism.com.tw/product-detail/820260420001" target="_top" class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md hover:shadow-xl border border-slate-200/80 bg-white transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]">
-          <img src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E4%B9%BE%E8%82%8C%E6%BD%A4%E6%BE%A4%E4%BF%9D%E6%BF%95%E7%B5%84%28%E4%B9%BE%E8%82%8C%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F%281%29.jpg" onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/乾肌潤澤保濕組(乾肌)保養三步驟(1).jpg';" alt="乾肌潤澤保濕組 保養三步驟" loading="lazy" decoding="async" class="w-full h-auto max-w-full object-cover object-center block group-hover:opacity-95 transition-opacity" />
-        </a>
+  <!-- 1 ~ 4 步驟卡片 (改為 100% 原生 HTML target="_top"，移除 scale 卡頓，返回上一頁再次點擊保證秒開) -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-6">
+    <!-- 1. 乾肌 -->
+    <a href="https://www.simplism.com.tw/product-detail/820260420001" target="_top" class="product-card-hover group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md border border-slate-200/80 bg-white transition-opacity duration-150">
+      <img src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E4%B9%BE%E8%82%8C%E6%BD%A4%E6%BE%A4%E4%BF%9D%E6%BF%95%E7%B5%84%28%E4%B9%BE%E8%82%8C%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F%281%29.jpg" onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/乾肌潤澤保濕組(乾肌)保養三步驟(1).jpg';" alt="乾肌潤澤保濕組 保養三步驟" loading="lazy" decoding="async" class="w-full h-auto max-w-full object-cover object-center block group-hover:opacity-95 transition-opacity" />
+    </a>
 
-        <!-- 2. 混合肌 -->
-        <a href="https://www.simplism.com.tw/product-detail/820260420002" target="_top" class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md hover:shadow-xl border border-slate-200/80 bg-white transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]">
-          <img src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E6%B7%B7%E5%90%88%E8%82%8C%E6%8E%A7%E6%B2%B9%E8%AA%BF%E7%90%86%E7%B5%84%28%E6%B7%B7%E5%90%88%E8%82%8C%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F%281%29.jpg" onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/混合肌控油調理組(混合肌)保養三步驟(1).jpg';" alt="混合肌控油調理組 保養三步驟" loading="lazy" decoding="async" class="w-full h-auto max-w-full object-cover object-center block group-hover:opacity-95 transition-opacity" />
-        </a>
+    <!-- 2. 混合肌 -->
+    <a href="https://www.simplism.com.tw/product-detail/820260420002" target="_top" class="product-card-hover group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md border border-slate-200/80 bg-white transition-opacity duration-150">
+      <img src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E6%B7%B7%E5%90%88%E8%82%8C%E6%8E%A7%E6%B2%B9%E8%AA%BF%E7%90%86%E7%B5%84%28%E6%B7%B7%E5%90%88%E8%82%8C%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F%281%29.jpg" onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/混合肌控油調理組(混合肌)保養三步驟(1).jpg';" alt="混合肌控油調理組 保養三步驟" loading="lazy" decoding="async" class="w-full h-auto max-w-full object-cover object-center block group-hover:opacity-95 transition-opacity" />
+    </a>
 
-        <!-- 3. 敏弱泛紅 -->
-        <a href="https://www.simplism.com.tw/product-detail/820260420003" target="_top" class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md hover:shadow-xl border border-slate-200/80 bg-white transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]">
-          <img src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E6%95%8F%E8%82%8C%E5%B0%88%E7%A0%94%E5%85%A8%E6%95%88%E4%BF%AE%E8%AD%B7%E7%B5%84%28%E6%95%8F%E5%BC%B1%E6%B3%9B%E7%B4%85%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F%281%29.jpg" onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/敏肌專研全效修護組(敏弱泛紅)保養三步驟(1).jpg';" alt="敏肌專研全效修護組 保養三步驟" loading="lazy" decoding="async" class="w-full h-auto max-w-full object-cover object-center block group-hover:opacity-95 transition-opacity" />
-        </a>
+    <!-- 3. 敏弱泛紅 -->
+    <a href="https://www.simplism.com.tw/product-detail/820260420003" target="_top" class="product-card-hover group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md border border-slate-200/80 bg-white transition-opacity duration-150">
+      <img src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E6%95%8F%E8%82%8C%E5%B0%88%E7%A0%94%E5%85%A8%E6%95%88%E4%BF%AE%E8%AD%B7%E7%B5%84%28%E6%95%8F%E5%BC%B1%E6%B3%9B%E7%B4%85%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F%281%29.jpg" onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/敏肌專研全效修護組(敏弱泛紅)保養三步驟(1).jpg';" alt="敏肌專研全效修護組 保養三步驟" loading="lazy" decoding="async" class="w-full h-auto max-w-full object-cover object-center block group-hover:opacity-95 transition-opacity" />
+    </a>
 
-        <!-- 4. 荳荳粉刺 -->
-        <a href="https://www.simplism.com.tw/product-detail/820260420004" target="_top" class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md hover:shadow-xl border border-slate-200/80 bg-white transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]">
-          <img src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E7%85%A5%E8%86%9A%E6%B7%A8%E7%91%95%E8%AA%BF%E7%90%86%E7%B5%84%28%E8%8D%B3%E8%8D%B3%E7%B2%89%E5%88%BA%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F.jpg" onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/煥膚淨瑕調理組(荳荳粉刺)保養三步驟.jpg';" alt="煥膚淨瑕調理組 保養三步驟" loading="lazy" decoding="async" class="w-full h-auto max-w-full object-cover object-center block group-hover:opacity-95 transition-opacity" />
-        </a>
-      </div>
+    <!-- 4. 荳荳粉刺 -->
+    <a href="https://www.simplism.com.tw/product-detail/820260420004" target="_top" class="product-card-hover group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md border border-slate-200/80 bg-white transition-opacity duration-150">
+      <img src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E7%85%A5%E8%86%9A%E6%B7%A8%E7%91%95%E8%AA%BF%E7%90%86%E7%B5%84%28%E8%8D%B3%E8%8D%B3%E7%B2%89%E5%88%BA%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F.jpg" onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/煥膚淨瑕調理組(荳荳粉刺)保養三步驟.jpg';" alt="煥膚淨瑕調理組 保養三步驟" loading="lazy" decoding="async" class="w-full h-auto max-w-full object-cover object-center block group-hover:opacity-95 transition-opacity" />
+    </a>
+  </div>
 
-      <!-- 5. 抗老緊緻 與 6. 美容課程後 (提示框直接居中顯示於兩者中間區塊) -->
-      <div class="relative mt-3.5 sm:mt-6">
-        <!-- 專屬提示框：直接顯示在極緻抗老修復組與深度修護穩膚組中間區塊 (單行完整呈現，絕不斷行) -->
-        <div id="skincareCopyToast" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[96%] sm:max-w-max bg-slate-900/95 text-white px-2.5 py-1.5 sm:px-5 sm:py-3 rounded-full sm:rounded-2xl shadow-2xl flex items-center justify-center gap-1.5 sm:gap-2.5 z-30 opacity-0 pointer-events-none transition-all duration-300 transform scale-90 border border-white/10 text-center backdrop-blur-md whitespace-nowrap">
-          <i class="fa-solid fa-circle-check text-green-400 text-xs sm:text-base flex-shrink-0"></i>
-          <span id="skincareCopyToastMessage" class="text-[10px] min-[360px]:text-[11px] min-[390px]:text-xs sm:text-sm font-bold tracking-tight sm:tracking-wide whitespace-nowrap"></span>
-        </div>
+  <!-- 5. 抗老緊緻 與 6. 美容課程後 (提示框直接居中顯示於兩者中間區塊) -->
+  <div class="relative mt-3.5 sm:mt-6">
+    <!-- 專屬提示框：直接顯示在極緻抗老修復組與深度修護穩膚組中間區塊 (單行完整呈現，絕不斷行) -->
+    <div id="skincareCopyToast" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[96%] sm:max-w-max bg-slate-900/95 text-white px-2.5 py-1.5 sm:px-5 sm:py-3 rounded-full sm:rounded-2xl shadow-2xl flex items-center justify-center gap-1.5 sm:gap-2.5 z-30 opacity-0 pointer-events-none transition-all duration-300 transform scale-90 border border-white/10 text-center backdrop-blur-md whitespace-nowrap">
+      <i class="fa-solid fa-circle-check text-green-400 text-xs sm:text-base flex-shrink-0"></i>
+      <span id="skincareCopyToastMessage" class="text-[10px] min-[360px]:text-[11px] min-[390px]:text-xs sm:text-sm font-bold tracking-tight sm:tracking-wide whitespace-nowrap"></span>
+    </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-6">
-          <!-- 5. 抗老緊緻 -->
-          <a href="https://www.simplism.com.tw/product-detail/820260420005" target="_top" class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md hover:shadow-xl border border-slate-200/80 bg-white transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]">
-            <img src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E6%A5%B5%E7%B7%BB%E6%8A%97%E8%80%81%E4%BF%AE%E5%BE%A9%E7%B5%84%28%E6%8A%97%E8%80%81%E7%B7%8A%E7%B7%BB%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F.jpg" onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/極緻抗老修復組(抗老緊緻)保養三步驟.jpg';" alt="極緻抗老修復組 保養三步驟" loading="lazy" decoding="async" class="w-full h-auto max-w-full object-cover object-center block group-hover:opacity-95 transition-opacity" />
-          </a>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-6">
+      <!-- 5. 抗老緊緻 -->
+      <a href="https://www.simplism.com.tw/product-detail/820260420005" target="_top" class="product-card-hover group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md border border-slate-200/80 bg-white transition-opacity duration-150">
+        <img src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E6%A5%B5%E7%B7%BB%E6%8A%97%E8%80%81%E4%BF%AE%E5%BE%A9%E7%B5%84%28%E6%8A%97%E8%80%81%E7%B7%8A%E7%B7%BB%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F.jpg" onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/極緻抗老修復組(抗老緊緻)保養三步驟.jpg';" alt="極緻抗老修復組 保養三步驟" loading="lazy" decoding="async" class="w-full h-auto max-w-full object-cover object-center block group-hover:opacity-95 transition-opacity" />
+      </a>
 
-          <!-- 6. 美容課程後 -->
-          <a href="https://www.simplism.com.tw/product-detail/820260420006" target="_top" class="group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md hover:shadow-xl border border-slate-200/80 bg-white transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]">
-            <img src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E6%B7%B1%E5%BA%A6%E4%BF%AE%E8%AD%B7%E7%A9%A9%E8%86%9A%E7%B5%84%28%E7%BE%8E%E5%AE%B9%E8%AA%B2%E7%A8%8B%E5%BE%8C%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F.jpg" onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/深度修護穩膚組(美容課程後)保養三步驟.jpg';" alt="深度修護穩膚組 保養三步驟" loading="lazy" decoding="async" class="w-full h-auto max-w-full object-cover object-center block group-hover:opacity-95 transition-opacity" />
-          </a>
-        </div>
-      </div>
-    </section>
+      <!-- 6. 美容課程後 -->
+      <a href="https://www.simplism.com.tw/product-detail/820260420006" target="_top" class="product-card-hover group block w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-sm sm:shadow-md border border-slate-200/80 bg-white transition-opacity duration-150">
+        <img src="https://stage-secure-oper-simplism-rwd.shang-yu.com.tw/upload_files/fonlego-rwd/website/%E6%B7%B1%E5%BA%A6%E4%BF%AE%E8%AD%B7%E7%A9%A9%E8%86%9A%E7%B5%84%28%E7%BE%8E%E5%AE%B9%E8%AA%B2%E7%A8%8B%E5%BE%8C%29%E4%BF%9D%E9%A4%8A%E4%B8%89%E6%AD%A5%E9%A9%9F.jpg" onerror="this.onerror=null; this.src='/upload_files/fonlego-rwd/website/深度修護穩膚組(美容課程後)保養三步驟.jpg';" alt="深度修護穩膚組 保養三步驟" loading="lazy" decoding="async" class="w-full h-auto max-w-full object-cover object-center block group-hover:opacity-95 transition-opacity" />
+      </a>
+    </div>
+  </div>
+</section>
 
     <!-- SECTION 2: 官網熱銷 TOP 榜 -->
     <section id="healthSection" class="scroll-mt-4 sm:scroll-mt-8">
@@ -657,6 +679,7 @@
         tempInput.select();
         tempInput.setSelectionRange(0, 99999);
         document.execCommand('copy');
+        tempInput.blur(); // 即刻釋放手機焦點，不殘留虛擬鍵盤鎖定
         document.body.removeChild(tempInput);
       } catch (err) {
         console.warn('Copy error:', err);
@@ -668,13 +691,11 @@
       showPromoToast('已成功複製活動字串：【' + code + '】結帳輸入首購現折$130元');
     }
 
+    /* 關鍵修復：不調用 preventDefault()，讓瀏覽器原生 target="_top" 毫無延遲自然跳轉，永不遺失使用者授權與計時器 */
     function handleCopyAndGo(event, code, url) {
-      if (event) event.preventDefault();
       executeCopyText(code);
       showSkincareToast('已成功複製活動字串：【' + code + '】結帳輸入首購現折$130元');
-      setTimeout(() => {
-        navigateToTop(url);
-      }, 450);
+      // 原生 <a href="..." target="_top"> 會自然順暢跳轉，不需延遲等待
     }
 
     function showSkincareToast(msg) {
@@ -711,18 +732,24 @@
 
     // 關鍵修復：監聽 pageshow 事件（專門處理手機瀏覽器返回上一頁 bfcache）
     window.addEventListener('pageshow', function(event) {
-      // 1. 關閉所有可能殘留的 Toast 提示框
+      // 1. 強制讓視窗重新取得焦點，確保手機版返回後第一下點擊立刻響應，不被瀏覽器吞掉
+      try { window.focus(); } catch (e) {}
+      if (document.activeElement && document.activeElement !== document.body) {
+        try { document.activeElement.blur(); } catch (e) {}
+      }
+
+      // 2. 關閉所有可能殘留的 Toast 提示框
       const toasts = document.querySelectorAll('#skincareCopyToast, #promoToast, #topNotificationToast');
       toasts.forEach(t => {
         t.classList.remove('opacity-100', 'scale-100');
         t.classList.add('opacity-0', 'scale-90');
       });
 
-      // 2. 解除彈窗鎖定，重設輪播過渡狀態
+      // 3. 解除彈窗鎖定，重設輪播過渡狀態
       isTransitioning = false;
       document.body.style.overflow = '';
 
-      // 3. 恢復定時輪播
+      // 4. 恢復定時輪播
       startSlideTimer();
     });
 
